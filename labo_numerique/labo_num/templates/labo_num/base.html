@@ -14,7 +14,9 @@
     
     <body>
         <header>
-            <img id="logo" src="{% static 'labo_num/images/logo_labo_num.svg' %}" />    
+            <a href="{% url 'liste_animations' %}">
+                <img id="logo" src="{% static 'labo_num/images/logo_labo_num.svg' %}" />
+            </a>
             <nav>
                 <div style="height: 100%; display: flex;">
                     <div class="navigation" id="nav_num">
