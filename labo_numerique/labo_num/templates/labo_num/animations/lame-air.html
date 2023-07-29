@@ -1,0 +1,15 @@
+{% extends 'labo_num/base_animation.html' %}
+{% load static %}
+
+{% block head %}
+	<link rel="stylesheet" href="{% static 'animations/lame-air/style.css' %}" />
+	<script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+	<script defer src="{% static 'animations/lame-air/script.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <div id="zoneCanvas">
+        <canvas id="canvasCurseurs" width="550" height="520" margin="auto"></canvas>
+        <canvas id="canvasGraphes" width="600" height="520" margin="auto"></canvas>
+    </div>
+{% endblock %}

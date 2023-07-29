@@ -1,0 +1,20 @@
+{% extends 'labo_num/base.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'animations/css/genially.css' %}" />
+{% endblock head %}
+
+{% block pagetitle %}
+    <h1>Genially</h1>
+{% endblock %}
+
+{% block content %}
+    {% for genially in geniallies %}
+        <div style="width: 80%; margin: auto;">
+            <div style="position: relative; padding-bottom: 56.25%; padding-top: 0; height: 0;">
+                <iframe title="{{ genially.titre }}" frameborder="0" width="1200" height="675" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="{{ genially.url }}" type="text/html" allowscriptaccess="always" allowfullscreen="true" scrolling="yes" allownetworking="all"></iframe>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

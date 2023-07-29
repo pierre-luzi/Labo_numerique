@@ -1,0 +1,12 @@
+asgiref==3.7.2
+Django==3.2.20
+django-froala-editor==4.1.0
+django-jsoneditor==0.2.4
+packaging==23.1
+Pillow==9.5.0
+python-environ==0.4.54
+pytz==2023.3
+six==1.16.0
+sqlparse==0.4.4
+standardjson==0.3.1
+typing_extensions==4.7.1

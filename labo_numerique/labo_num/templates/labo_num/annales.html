@@ -1,0 +1,161 @@
+{% extends 'labo_num/base.html' %}
+{% load static %}
+{% load labo_num_extras %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'labo_num/css/annales.css' %}" />
+{% endblock head %}
+
+{% block pagetitle %}
+    <h1>Annales STL - Physique-chimie et mathématiques</h1>
+{% endblock %}
+
+{% block content %}
+    <div id="filtres">
+        <h2>Chapitres abordés</h2>
+        {% for chapitre in chapitres %}
+            <div>
+                <input type="checkbox" name="{{ chapitre.matiere }}{{ chapitre.numero }}" value="{{ chapitre.matiere }}{{ chapitre.numero }}" checked />
+                <label for="{{ chapitre.matiere }}{{ chapitre.numero }}">{% short_name chapitre %} - {{ chapitre.titre }}</label>
+            </div>
+        {% endfor %}
+        <div style="width: 70%; text-align: center; margin-top: 10px;">
+            <span id="aucun_filtre">Tout cocher</span><span style="margin: 0 5px;">|</span><span id="tous_filtres">Tout décocher</span>
+        </div>
+    </div>
+    <div id="annales">
+        <h2 class="selected_h2">Sujets complets</h2>
+        <h2 class="unselected_h2">Exercices</h2>
+        <div id="sujets" class="liste_annales">
+            {% for sujet in sujets|dictsort:"lieu"|dictsortreversed:"annee" %}
+                <div class="{% for chapitre in sujet.chapitres.all %}{{ chapitre.matiere }}{{ chapitre.numero }} {% endfor %}annale">
+                    <h3>{{ sujet.lieu|capfirst }} {{ sujet.annee }}</h3>
+                    <div class="contenu_annale">
+                        <div class="download">
+                            <a href="/media/{{ sujet.fichier }}" target=_blank>
+                                <div>
+                                    <img style="height: 50px; width: auto;" src="{% static 'labo_num/images/pdf_download.svg' %}" />
+                                </div>                                
+                                <div>Télécharger</div>
+                            </a>
+                        </div>
+                        <div class="description">
+                            {{ sujet.description|safe }}
+                        </div>
+                    </div>
+                    <div class="liens_chapitres">
+                        <span style="margin-right: 10px">Chapitres :</span>
+                        {% for chapitre in sujet.chapitres.all %}
+                            <a href="{% url 'chapitre' chapitre.niveau chapitre.matiere chapitre.numero %}" class="lien_chapitre" title="{% short_name chapitre %} - {{ chapitre.titre }}">
+                                {% short_name chapitre %}
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div id="exercices" class="liste_annales" style="display: none;">
+            {% for exercice in exercices|dictsort:"lieu"|dictsortreversed:"annee" %}
+                <div class="{% for chapitre in exercice.chapitres.all %}{{ chapitre.matiere }}{{ chapitre.numero }} {% endfor %}annale">
+                    <h3>{{ exercice.titre }}</h3>
+                    <div class="contenu_annale">
+                        <div class="download">
+                            <a href="/media/{{ exercice.fichier }}" target=_blank>
+                                <div>
+                                    <img style="height: 50px; width: auto;" src="{% static 'labo_num/images/pdf_download.svg' %}" />
+                                </div>                                
+                                <div>Télécharger</div>
+                            </a>
+                        </div>
+                        <div class="description">
+                            {{ exercice.description|safe }}
+                        </div>
+                    </div>
+                    <div class="liens_chapitres">
+                        <span style="margin-right: 10px">Chapitres :</span>
+                        {% for chapitre in exercice.chapitres.all %}
+                            <a href="{% url 'chapitre' chapitre.niveau chapitre.matiere chapitre.numero %}" class="lien_chapitre" title="{% short_name chapitre %} - {{ chapitre.titre }}">
+                                {% short_name chapitre %}
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <script defer>
+        //==== Filtrage des chapitres ====
+        const filters = document.querySelector("#filtres");
+        const chapterFilters = document.querySelector("#filtres");
+        const subjectsDiv = document.querySelector("#sujets");
+        const exercisesDiv = document.querySelector("#exercices");
+        
+        // ajout d'un écouteur pour chaque élément input
+        for (input of chapterFilters.querySelectorAll("input")) {
+            input.addEventListener("change", updateDisplay);
+        }
+        
+        function updateDisplay() {
+            /*
+                Met à jour l'affichage des sujets ou des exercices.
+            */
+            // cache tous les sujets ou exercices
+            for (annale of document.querySelectorAll(".annale")) {
+                annale.style.display = 'none';
+            }
+            
+            // fait apparaître les annales corresponant aux chapitres sélectionnés
+            for (input of chapterFilters.querySelectorAll("input")) {
+                if (input.checked) {
+                    let className = "." + input.value;
+                    for (element of document.querySelectorAll(className)) {
+                        element.style.display = 'block';
+                    }
+                }
+            }
+        }
+        
+        const noFilter = document.querySelector("#aucun_filtre");
+        const allFilters = document.querySelector("#tous_filtres");
+        
+        noFilter.addEventListener("click", function() {
+            for (input of chapterFilters.querySelectorAll("input")) {
+                input.checked = true;
+            }
+            updateDisplay();
+        });
+        
+        allFilters.addEventListener("click", function() {
+            for (input of chapterFilters.querySelectorAll("input")) {
+                input.checked = false;
+            }
+            updateDisplay();
+        });
+        
+        
+        
+        // ==== Sujets ou exercices ====
+        const subjectsTitle = document.querySelector(".selected_h2");
+        const exercisesTitle = document.querySelector(".unselected_h2");
+        
+        // fait apparaître les sujets lors d'un clic sur l'onglet "Sujets"
+        subjectsTitle.addEventListener("click", function() {
+            if (subjectsTitle.className == "unselected_h2") {
+                subjectsTitle.className = "selected_h2";
+                exercisesTitle.className = "unselected_h2";
+                document.querySelector("#sujets").style.display = "block";
+                document.querySelector("#exercices").style.display = "none";
+            }
+        });
+        
+        // fait apparaître les exercices lors d'un clic sur l'onglet "Exercices"
+        exercisesTitle.addEventListener("click", function() {
+            if (exercisesTitle.className == "unselected_h2") {
+                exercisesTitle.className = "selected_h2";
+                subjectsTitle.className = "unselected_h2";
+                document.querySelector("#exercices").style.display = "block";
+                document.querySelector("#sujets").style.display = "none";
+            }
+        });
+    </script>
+{% endblock content %}

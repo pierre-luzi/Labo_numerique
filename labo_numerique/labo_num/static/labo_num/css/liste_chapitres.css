@@ -1,0 +1,71 @@
+.container{
+    width: 95%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    margin-top: 20px;
+}
+
+#physique, #chimie {
+    margin: 0 auto;
+    width: 49%;
+}
+
+h1 {
+    margin-bottom: 0;
+}
+
+h2 {
+    text-align: center;
+}
+
+h3 {
+    margin-top: 0;
+    color: #2cc0de;
+}
+
+h3:hover {
+    text-decoration: underline;
+}
+
+.logo {
+    width: 100%;
+    text-align: center;
+}
+
+#logo_physique, #logo_chimie {
+    height: 80px;
+}
+
+.chapitre{
+    margin: 20px;
+    text-decoration: none;
+    border: solid black 1px;
+    padding: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.chapitre_img{
+    position: relative;
+    height: 200px;
+    width: 300px;
+}
+
+.chapitre_img:hover{
+    box-shadow: 0 0 8px rgba(25, 25, 25, 0.7);
+}
+
+.description_chapitre p {
+    margin-bottom: 0;
+    margin-top: 0;
+    text-align: justify;
+}
+
+.chapitre ul {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chapitre li {
+    width: 45%;
+}

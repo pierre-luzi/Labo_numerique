@@ -1,0 +1,103 @@
+.container {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+aside {
+    position: fixed;
+    display: flex;
+    flex-direction: column;
+    width: 30%;
+    padding: 20px;
+    background-color: rgba(45, 179, 179, 0.4);
+    height: 100%;
+}
+
+aside a {
+/*    font-size: 1.1em;*/
+    padding: 3px;
+}
+
+aside a:hover {
+    color: white;
+}
+
+#contenu_chapitre {
+    width: 65%;
+    margin-left: 33%;
+}
+
+#div_notions {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+#notions {
+    width: 35%;
+}
+
+#notions h3 {
+    margin-bottom: 10px;
+}
+
+#notions ul {
+    margin-top: 0;
+}
+
+.lien_icone {
+    margin: 0 10px;
+    width: 20%;
+}
+
+.lien_icone a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.lien_icone a:hover {
+    background-color: white;
+}
+
+.contenu_activite {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+/* Téléchargement du fichier */
+
+.download {
+    width: 15%;
+    margin-right: 5%;
+}
+
+.download a {
+    text-align: center;
+}
+
+.download a div {
+    margin: auto;
+    margin-top: 3px;
+    font-size: 0.8em;
+}
+
+/* Description du sujet/exercice */
+
+.description {
+    width: 75%;
+}
+
+.description p {
+    margin: 0.2em 0;
+}
+
+
+
+#credits {
+    font-size: 0.7em;
+}

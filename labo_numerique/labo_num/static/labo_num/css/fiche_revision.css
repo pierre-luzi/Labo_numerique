@@ -1,0 +1,55 @@
+h1 {
+    text-align: center;
+}
+
+h3 {
+    text-align: center;
+}
+
+#div_notions, #div_capacites {
+    margin-bottom: 10px;
+}
+
+.entete {
+    display: flex;
+}
+
+.entete_maitrise {
+    width: 125px;
+    text-align: center;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.entree {
+    display: flex;
+    padding: 5px;
+}
+
+.paire {
+/*    background-color: rgba(0, 100, 255, 0.2);*/
+    background-color: rgba(45, 179, 179, 0.4);
+}
+
+.notion {
+    text-align: justify;
+    margin-right: 40px;
+    width: 400px;
+}
+
+#formulaire input {
+    width: 17px;
+    margin: 0 55px;
+}
+
+.commentaire {
+    text-align: justify;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-left: 40px;
+    min-height: 2em;
+}
+
+.commentaire p {
+    margin: 0;
+}

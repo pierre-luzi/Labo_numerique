@@ -1,0 +1,22 @@
+{% load static %}
+{% load i18n %}     <!-- formattage des dates -->
+<!DOCTYPE html>
+
+<html lang="fr">
+    <head>
+        <title>{{ animation.titre }}</title>
+        <link rel="stylesheet" href="{% static 'labo_num/css/animation.css' %}" />
+        {% block head %}
+        {% endblock head %}
+    </head>
+    
+    <body>
+        <h1>{{ animation.titre }}</h1>
+        <main>
+            {% block content %}{% endblock %}
+        </main>
+       <footer>
+           Réalisé par P. Luzi - {% language 'fr' %}{{ animation.date|date:'F Y'|capfirst }}{% endlanguage %} - CC <strong>BY-NC-SA</strong>
+       </footer>
+    </body>
+</html>

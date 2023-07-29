@@ -1,0 +1,157 @@
+body {
+    overflow: visible;
+}
+
+.container{
+	display: flex;
+	flex-wrap: wrap;
+    width: 100%;
+    justify-content: space-around;
+    align-items: flex-start;
+    align-content: flex-start;
+}
+
+h2 {
+    margin-top: 0px;
+    margin-bottom: 0;
+    padding: 10px;
+}
+
+
+
+
+
+/********************/
+/* Menu des filtres */
+/********************/
+
+#filtres {
+    width: 30%;
+    padding-left: 20px;
+    position: sticky;
+    position: -webkit-sticky;
+    top: 110px;
+}
+
+#aucun_filtre, #tous_filtres {
+    margin: 10px auto;
+    cursor: pointer;
+}
+
+#aucun_filtre:hover, #tous_filtres:hover {
+    color: #4444dd;
+}
+
+
+
+
+
+/*********************/
+/* Liste des annales */
+/*********************/
+
+#annales {
+    width: 60%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    margin-bottom: 20px;
+}
+
+/* Titre des onglets Sujets complets et Exercices */
+
+#annales h2 {
+    border-radius: 10px;
+    border-radius: 12px 15px 0 0;
+    cursor: pointer;
+    padding: 10px 20px;
+}
+
+.selected_h2 {
+    background-color: white;
+}
+
+.unselected_h2 {
+    background-color: #eeeeee;
+}
+
+
+/* Sujets et exercices */
+
+.liste_annales {
+    width: 90%;
+    background-color: white;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 10px;
+}
+
+.annale {
+    border: solid gray 1px;
+    width: 95%;
+    padding: 10px;
+    margin: 7px auto;
+    display: block;
+}
+
+h3 {
+    margin-top: 0px;
+    margin-bottom: 5px;
+}
+
+.contenu_annale {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+
+/* Téléchargement du fichier */
+
+.download {
+    width: 15%;
+    margin-right: 5%;
+}
+
+.download a {
+    text-align: center;
+}
+
+.download a div {
+    margin: auto;
+    margin-top: 3px;
+    font-size: 0.8em;
+}
+
+
+/* Description du sujet/exercice */
+
+.description {
+    width: 75%;
+}
+
+.description p {
+    margin: 0.2em 0;
+}
+
+
+/* Liste des chapitres abordés */
+
+.liens_chapitres {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    align-items: center;
+}
+
+.lien_chapitre {
+    display: block;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 20px;
+    background-color: #ededff;
+    margin-right: 10px;
+    font-size: 0.8em;
+}

@@ -1,0 +1,119 @@
+{% load static %}
+<!DOCTYPE html>
+
+<html lang="fr">
+    <head>
+        <title>Physique-chimie P. Luzi</title>
+        <link rel="stylesheet" href="{% static 'labo_num/css/styles.css' %}" />
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+        {% block head %}{% endblock head %}
+    </head>
+    
+    <body>
+        <header>
+            <img id="logo" src="{% static 'labo_num/images/logo_labo_num.svg' %}" />    
+            <nav>
+                <div style="height: 100%; display: flex;">
+                    <div class="navigation" id="nav_cours">
+                        <span>Cours &#8964;</span>
+                    </div>
+                    <div class="navigation" id="nav_num">
+                        <span>Ressources numériques &#8964;</span>
+                    </div>
+                    <div class="navigation">
+                        <a href="#">Ressources pour le laboratoire</a>
+                    </div>
+                    <div class="navigation">
+                        <a href="{% url 'annales' %}">Annales TSTL</a>
+                    </div>
+                </div>
+            </nav>
+            <div class="nav_liste" id="liste_cours">
+                <a href="{% url 'ressources' '2e' %}">Seconde GT - Physique-chimie</a>
+                <a href="{% url 'ressources' '1re' %}">Première GT - Spécialité physique-chimie</a>
+                <a href="{% url 'ressources' 'TSTL' %}">Terminale STL - Spécialité PCM</a>
+            </div>
+            <div class="nav_liste" id="liste_num">
+                <a href="{% url 'liste_animations' %}">Animations et simulations</a>
+                <a href="{% url 'liste_geniallies' %}">Genially</a>
+            </div>
+        </header>
+        
+        {% block pagetitle %}{% endblock %}
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
+    
+        <footer>
+            <p>La labo numérique - Ressources en physique-chimie - Site réalisé par Pierre LUZI, professeur au lycée Simone Veil (92)</p>
+            {% block credits %}{% endblock %}
+        </footer>
+    </body>
+    <script>
+        const navCours = document.getElementById("nav_cours");
+        navCours.addEventListener("mousedown", displayListCours);
+        
+        const listCours = document.getElementById("liste_cours");
+        listCours.style.zIndex = 10;
+        
+        function displayListCours(event) {
+            let xListCours = navCours.offsetLeft;
+            let yListCours = navCours.offsetTop + 30;
+            listCours.style.left = xListCours + 'px';
+            listCours.style.top = yListCours + 'px';
+            listCours.style.visibility = 'visible';
+            event.stopPropagation();
+            if (listNum.style.visibility == 'visible') {
+                listNum.style.visibility = 'hidden';
+                navNum.addEventListener("mousedown", displayListNum);
+                document.removeEventListener("mousedown", hideListNum);
+            }
+            document.addEventListener("mousedown", hideListCours);
+            navCours.removeEventListener("mousedown", displayListCours);
+        }
+        
+        function hideListCours(event) {
+            event.stopPropagation();
+            if (!listCours.contains(event.target)) {
+                listCours.style.visibility = 'hidden';
+                navCours.addEventListener("mousedown", displayListCours);
+                document.removeEventListener("mousedown", hideListCours);
+            }
+        }
+        
+        const navNum = document.getElementById("nav_num");
+        navNum.addEventListener("mousedown", displayListNum);
+        
+        const listNum = document.getElementById("liste_num");
+        listNum.style.zIndex = 10;
+        
+        function displayListNum(event) {
+            let xListNum = navNum.offsetLeft;
+            let yListNum = navNum.offsetTop + 30;
+            listNum.style.left = xListNum + 'px';
+            listNum.style.top = yListNum + 'px';
+            listNum.style.visibility = 'visible';
+            event.stopPropagation();
+            if (listCours.style.visibility == 'visible') {
+                listCours.style.visibility = 'hidden';
+                navCours.addEventListener("mousedown", displayListCours);
+                document.removeEventListener("mousedown", hideListCours);
+            }
+            document.addEventListener("mousedown", hideListNum);
+            navNum.removeEventListener("mousedown", displayListNum);
+        }
+        
+        function hideListNum(event) {
+            console.log("Mother");
+            event.stopPropagation();
+            if (!listNum.contains(event.target)) {
+                listNum.style.visibility = 'hidden';
+                navNum.addEventListener("mousedown", displayListNum);
+                document.removeEventListener("mousedown", hideListNum);
+            }
+        }
+    </script>
+    {% block script %}{% endblock %}
+</html>

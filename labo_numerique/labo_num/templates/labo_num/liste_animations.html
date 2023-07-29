@@ -1,0 +1,139 @@
+{% extends 'labo_num/base.html' %}
+{% load static %}
+{% load labo_num_extras %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'labo_num/css/liste_animations.css' %}" />
+{% endblock head %}
+
+{% block pagetitle %}
+    <h1>Animations et simulations</h1>
+{% endblock %}
+
+{% block content %}
+    <aside>
+        <div id="type_animation" class="select_animations">
+            <h2>Thème</h2>
+        </div>
+        <div id="niveau_animation" class="select_animations">
+            <h2>Niveau</h2>
+        </div>
+    </aside>
+    <div id="animations">
+        {% for animation in animations %}
+            {% if animation.visible %}
+                <a href="{% url 'animation' animation.slug %}" class="lien_animation {% categories animation %}" style="cursor: default">
+                    <div class="animation" id="animation{{ animation.pk }}">
+                        <h3>{{ animation.titre }}</h3>
+                        <div class="animation_img">{% if animation.img %}<img src="{{ animation.img.url }}" />{% endif %}</div>
+                        <div class="description">{% if animation.description %}{{ animation.description }}{% endif %}</div>
+                    </div>
+                </a>
+            {% endif %}
+        {% endfor %}
+    </div>
+    <script>
+        const animations = document.querySelector("#animations");
+        
+        const animationTypes = document.querySelector("#type_animation");
+        const typeClasses = [
+            "methodologie",
+            "chimie",
+            "optique",
+            "ondes",
+            "mecanique",
+            "electricite",
+        ];
+        const typeNames = [
+            "Méthodologie",
+            "Chimie",
+            "Optique",
+            "Ondes",
+            "Mécanique",
+            "Électricité",
+        ];
+        
+        const animationNiveau = document.querySelector("#niveau_animation");
+        const levelClasses = ["lycee", "prepa"];
+        const levelNames = ["Lycée", "Prépa"];
+        
+        function createCheckboxes(menu, list, names) {
+            /*
+                Crée une liste d'éléments input de type checkbox pour
+                contrôler l'affichage des animations.
+                Arguments :
+                    - menu : élément du DOM contenant la liste des inputs ;
+                    - list : liste des valeurs des inputs, qui correspondent
+                    aux classes des animations à afficher ;
+                    - names : les des noms des labels.
+            */
+            for (let i = 0; i < list.length; i++) {
+                let div = document.createElement("div");
+                
+                let input = document.createElement("input");
+                input.setAttribute("type", "checkbox");
+                input.setAttribute("name", list[i]);
+                input.setAttribute("value", list[i]);
+                input.checked = true;
+                input.addEventListener("change", updateAnimationDisplay);
+                
+                let label = document.createElement("label");
+                label.setAttribute("for", list[i]);
+                label.innerText = names[i];
+                
+                div.appendChild(input);
+                div.appendChild(label);
+                menu.appendChild(div);
+            }
+        }
+
+        createCheckboxes(animationTypes, typeClasses, typeNames);
+        createCheckboxes(animationNiveau, levelClasses, levelNames);
+        
+        
+        
+        function putFirst(className) {
+            /*
+                Place en premier les animations appartenant à la classe
+                passée en argument.
+            */
+            for (element of document.querySelectorAll(className)) {
+                animations.prepend(element);
+            }
+        }
+        
+        // place les animations dans le sens des listes précédentes :
+        //  - animations lycée avant animations prépa
+        //  - animations dans l'ordre de type de la liste.
+        levelClasses.reverse();
+        typeClasses.reverse();
+        for (level of levelClasses) {
+            for (type of typeClasses) {
+                let className = "." + level + "." + type;
+                putFirst(className);
+            }
+        }
+        
+        function updateAnimationDisplay() {
+            /*
+                Met à jour l'affichage des animations en fonction des
+                filtres sélectionnés.
+            */
+            for (animation of document.querySelectorAll(".lien_animation")) {
+                animation.style.display = 'none';
+            }
+            for (level of levelClasses) {
+                if (document.querySelector("input[name=" + level + "]").checked) {
+                    for (type of typeClasses) {
+                        if (document.querySelector("input[name=" + type + "]").checked) {
+                            let className = "." + level + "." + type;
+                            for (animation of document.querySelectorAll(className)) {
+                                animation.style.display = 'flex';
+                            }
+                        }
+                    }
+                }
+            }
+        }  
+    </script>
+{% endblock %}

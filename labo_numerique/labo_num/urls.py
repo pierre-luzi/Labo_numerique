@@ -1,0 +1,13 @@
+from django.urls import path, include
+import labo_num.views
+
+urlpatterns = [
+    path('accueil/', labo_num.views.accueil, name='accueil'),
+    path('ressources/<str:classe>/', labo_num.views.liste_chapitres, name='ressources'),
+    path('ressources/<str:classe>/<str:matiere><int:numero>/', labo_num.views.contenu_chapitre, name='chapitre'),
+    path('ressources/<str:classe>/<str:matiere><int:numero>/fiche_revision/', labo_num.views.fiche_revision, name='fiche_revision'),
+    path('annales/', labo_num.views.annales, name='annales'),
+    path('animations/<slug:slug>/', labo_num.views.animation, name='animation'),
+    path('animations/', labo_num.views.liste_animations, name='liste_animations'),
+    path('genially/', labo_num.views.liste_geniallies, name='liste_geniallies'),
+]
