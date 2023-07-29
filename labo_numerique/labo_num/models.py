@@ -46,8 +46,8 @@ class Chapitre(models.Model):
     titre = models.fields.CharField(max_length=150)
     matiere = models.fields.CharField(choices=Matiere.choices, max_length=3)
     niveau = models.fields.CharField(choices=Niveau.choices, max_length=4, default='2e')
-    description = FroalaField(null=True, blank=True)
-    notions = FroalaField(null=True)
+    description = models.TextField(max_length=500, null=True, blank=True)
+    notions = models.JSONField(default=list)
     fiche_revision = models.JSONField(default=defaultJSON)
     exercices = models.FileField(upload_to='uploads/exercices/', null=True, blank=True)
     cours = models.FileField(upload_to='uploads/cours/', null=True, blank=True)
@@ -73,7 +73,7 @@ class Activite(models.Model):
     type_activite = models.fields.CharField(choices=Type.choices, max_length=6, default='doc')
     numero = models.fields.IntegerField(null=True, blank=True)
     titre = models.fields.CharField(max_length=150)
-    contenu = FroalaField(null=True, blank=True)
+    contenu = models.TextField(max_length=500, null=True, blank=True)
     fichier = models.FileField(upload_to='uploads/activites/', null=True, blank=True)
     chapitre = models.ForeignKey(Chapitre, on_delete=models.CASCADE, null=True)
 
@@ -102,7 +102,7 @@ class Annale(models.Model):
             MaxValueValidator(datetime.now().year)
         ]
     )
-    description = FroalaField(null=True)
+    description = models.TextField(max_length=500, null=True)
     chapitres = models.ManyToManyField(Chapitre)
     sujet_complet = models.BooleanField(default=False)
     fichier = models.FileField(upload_to='uploads/annales/', null=False, blank=False)

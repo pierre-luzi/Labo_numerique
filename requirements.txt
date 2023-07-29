@@ -1,6 +1,5 @@
 asgiref==3.7.2
 Django==3.2.20
-django-froala-editor==4.1.0
 django-jsoneditor==0.2.4
 packaging==23.1
 Pillow==9.5.0

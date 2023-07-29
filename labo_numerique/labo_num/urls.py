@@ -10,4 +10,5 @@ urlpatterns = [
     path('animations/<slug:slug>/', labo_num.views.animation, name='animation'),
     path('animations/', labo_num.views.liste_animations, name='liste_animations'),
     path('genially/', labo_num.views.liste_geniallies, name='liste_geniallies'),
+    path('genially/<slug:slug>', labo_num.views.genially, name='genially'),
 ]

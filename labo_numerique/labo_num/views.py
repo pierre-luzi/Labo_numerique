@@ -58,3 +58,7 @@ def liste_animations(request):
 def liste_geniallies(request):
     geniallies = Genially.objects.all()
     return render(request, 'labo_num/liste_geniallies.html', {'geniallies': geniallies})
+
+def genially(request, slug):
+    genially = get_object_or_404(Genially, slug=slug)
+    return render(request, 'labo_num/genially.html', {'genially': genially})

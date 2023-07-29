@@ -33,7 +33,11 @@
                 {{ chapitre.description|safe }}
             </div>
             <div class="notions">
-                {{ chapitre.notions|safe }}
+                <ul>
+                    {% for notion in chapitre.notions %}
+                        <li>{{ notion }}</li>
+                    {% endfor %}
+                </ul>
             </div>
         </div>
     {% endfor %}

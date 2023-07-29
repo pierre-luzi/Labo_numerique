@@ -1,0 +1,34 @@
+.container {
+    width: 92%;
+}
+
+#geniallies {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.genially {
+    width: 47%;
+}
+
+.contenu_genially {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.contenu_genially img {
+    height: auto;
+    width: 30%;
+}
+
+.contenu_genially img:hover {
+    box-shadow: 0 0 8px rgba(25, 25, 25, 0.7);
+}
+
+.description {
+    width: 65%;
+    text-align: justify;
+}

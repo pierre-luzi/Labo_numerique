@@ -24,7 +24,11 @@
         <div id="div_notions">
             <div id="notions">
                 <h3>Notions abordées :</h3>
-                {{ chapitre.notions|safe }}
+                <ul>
+                    {% for notion in chapitre.notions %}
+                        <li>{{ notion }}</li>
+                    {% endfor %}
+                </ul>
             </div>
             {% if chapitre.cours %}
             <div id="cours" class="lien_icone">
