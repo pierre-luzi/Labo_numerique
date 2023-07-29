@@ -17,17 +17,17 @@
             <img id="logo" src="{% static 'labo_num/images/logo_labo_num.svg' %}" />    
             <nav>
                 <div style="height: 100%; display: flex;">
-                    <div class="navigation" id="nav_cours">
-                        <span>Cours &#8964;</span>
-                    </div>
                     <div class="navigation" id="nav_num">
                         <span>Ressources numériques &#8964;</span>
                     </div>
-                    <div class="navigation">
-                        <a href="#">Ressources pour le laboratoire</a>
+                    <div class="navigation" id="nav_cours">
+                        <span>Cours &#8964;</span>
                     </div>
                     <div class="navigation">
                         <a href="{% url 'annales' %}">Annales TSTL</a>
+                    </div>
+                    <div class="navigation">
+                        <a href="#">Ressources pour le laboratoire</a>
                     </div>
                 </div>
             </nav>
