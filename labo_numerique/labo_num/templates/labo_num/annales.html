@@ -13,7 +13,7 @@
 {% block content %}
     <div id="filtres">
         <h2>Chapitres abordés</h2>
-        {% for chapitre in chapitres|dictsortreversed:"matiere"|dictsort:numero %}
+        {% for chapitre in chapitres|dictsortreversed:"matiere"|dictsort:"numero" %}
             <div>
                 <input type="checkbox" name="{{ chapitre.matiere }}{{ chapitre.numero }}" value="{{ chapitre.matiere }}{{ chapitre.numero }}" checked />
                 <label for="{{ chapitre.matiere }}{{ chapitre.numero }}">{% short_name chapitre %} - {{ chapitre.titre }}</label>
