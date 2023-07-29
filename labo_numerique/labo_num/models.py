@@ -1,6 +1,5 @@
 from django import forms
 from django.db import models
-from froala_editor.fields import FroalaField
 from django.core.validators import MaxValueValidator, MinValueValidator
 from datetime import datetime
 import json
