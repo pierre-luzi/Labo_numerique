@@ -66,3 +66,7 @@ h3:hover {
     -webkit-columns: 2;
     -moz-columns: 2;
 }
+
+.chapitre li {
+    width: 95%;
+}
