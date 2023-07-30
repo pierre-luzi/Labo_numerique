@@ -62,11 +62,7 @@ h3:hover {
 }
 
 .chapitre ul {
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.chapitre li {
-    width: 43%;
-    margin-right: auto;
+    columns: 2;
+    -webkit-columns: 2;
+    -moz-columns: 2;
 }
