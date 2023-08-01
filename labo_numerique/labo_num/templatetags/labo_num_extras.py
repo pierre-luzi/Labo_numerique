@@ -17,13 +17,13 @@ def categories(animation):
     return " ".join(categories)
 
 @register.filter
-def niveau_clean(niveau):
+def niveau_formatte(niveau):
     if niveau == '2e':
         return '2<sup>e</sup>'
     elif niveau == '1re':
         return '1<sup>re</sup> spécialité'
     elif niveau == '1ES':
-        return '1<sup>re</sup> enseignement scientifique'.safe()
+        return '1<sup>re</sup> enseignement scientifique'
     elif niveau == 'Term':
         return 'Terminale spécialité'
     elif niveau == 'TES':
