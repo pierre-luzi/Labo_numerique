@@ -20,7 +20,6 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    url(r'^froala_editor/', include('froala_editor.urls')),
     path('admin/', admin.site.urls),
     path('', include('labo_num.urls')),
 ]

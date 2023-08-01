@@ -7,7 +7,7 @@
 {% endblock head %}
 
 {% block pagetitle %}
-    <h1>Liste des chapitres {{ niveau|niveau_clean|safe }}</h1>
+    <h1>Liste des chapitres {{ niveau|niveau_formatte|safe }}</h1>
 {% endblock %}
 
 {% block content %}
@@ -16,15 +16,45 @@
         <div class="logo">
             <img id="logo_physique" src="{% static 'labo_num/images/logo_physique.svg' %}" />    
         </div>
+        {% for chapitre in chapitres_physique|dictsort:"numero" %}
+            <div class="chapitre">
+                <a href="{% url 'chapitre' chapitre.niveau chapitre.matiere chapitre.numero %}">
+                    <h3>Chapitre {% short_name chapitre %} : {{ chapitre.titre }}</h3>
+                </a>
+                <div class="description_chapitre">
+                    {{ chapitre.description|safe }}
+                </div>
+                <div class="notions">
+                    <ul>
+                        {% for notion in chapitre.notions %}<li>{{ notion }}</li>{% endfor %}
+                    </ul>
+                </div>
+            </div>
+        {% endfor %}
     </div>
     <div id="chimie">
         <!-- <h2>Chimie</h2> -->
         <div class="logo">
             <img id="logo_chimie" src="{% static 'labo_num/images/logo_chimie.svg' %}" />    
         </div>
+        {% for chapitre in chapitres_chimie|dictsort:"numero" %}
+            <div class="chapitre">
+                <a href="{% url 'chapitre' chapitre.niveau chapitre.matiere chapitre.numero %}">
+                    <h3>Chapitre {% short_name chapitre %} : {{ chapitre.titre }}</h3>
+                </a>
+                <div class="description_chapitre">
+                    {{ chapitre.description|safe }}
+                </div>
+                <div class="notions">
+                    <ul>
+                        {% for notion in chapitre.notions %}<li>{{ notion }}</li>{% endfor %}
+                    </ul>
+                </div>
+            </div>
+        {% endfor %}
     </div>
 
-    {% for chapitre in chapitres|dictsort:"numero"|dictsort:"matiere" %}
+    <!-- {% for chapitre in chapitres|dictsort:"numero"|dictsort:"matiere" %}
         <div class="chapitre {{ chapitre.matiere }}">
             <a href="{% url 'chapitre' chapitre.niveau chapitre.matiere chapitre.numero %}">
                 <h3>Chapitre {% short_name chapitre %} : {{ chapitre.titre }}</h3>
@@ -34,9 +64,7 @@
             </div>
             <div class="notions">
                 <ul>
-                    {% for notion in chapitre.notions %}
-                        <li>{{ notion }}</li>
-                    {% endfor %}
+                    {% for notion in chapitre.notions %}<li>{{ notion }}</li>{% endfor %}
                 </ul>
             </div>
         </div>
@@ -46,10 +74,10 @@
         for (chapitreDiv of document.querySelectorAll(".phy")) {
             physicsDiv.appendChild(chapitreDiv);
         }
-        
+
         const chemistryDiv = document.querySelector("#chimie");
         for (chapitreDiv of document.querySelectorAll(".chi")) {
             chemistryDiv.appendChild(chapitreDiv);
         }
-    </script>
+    </script> -->
 {% endblock content %}

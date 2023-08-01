@@ -12,14 +12,14 @@
 {% block content %}
     <aside>
         <div style="margin-bottom: auto; display: flex; flex-direction: column;">
-            <h2>Sommaire {{ chapitre.niveau|niveau_clean|safe }}</h2>
+            <h2>Sommaire {{ chapitre.niveau|niveau_formatte|safe }}</h2>
             {% for chap in chapitres|dictsort:"numero"|dictsortreversed:"matiere" %}
                 <a href="{% url 'chapitre' chap.niveau chap.matiere chap.numero %}">{% short_name chap %} : {{ chap.titre }}</a>
             {% endfor %}
         </div>
     </aside>
     <div id="contenu_chapitre">
-        <h1>{{ chapitre }} - {{ chapitre.titre }}</h1>
+        <h1>{{ chapitre|safe }} - {{ chapitre.titre }}</h1>
         
         <div id="div_notions">
             <div id="notions">

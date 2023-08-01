@@ -51,12 +51,23 @@ class Chapitre(models.Model):
     exercices = models.FileField(upload_to='uploads/exercices/', null=True, blank=True)
     cours = models.FileField(upload_to='uploads/cours/', null=True, blank=True)
     
+    def niveau_formatte(self):
+        niveau = self.niveau
+        if niveau == '2e':
+            return '2<sup>e</sup>'
+        elif niveau == '1re' or niveau == '1ES':
+            return '1<sup>re</sup>'
+        elif niveau == 'Term' or niveau == 'TES':
+            return 'Terminale'
+        elif niveau == 'TSTL':
+            return 'TSTL'
+    
     def __str__(self):
         """Fonction définissant l'affichage du chapitre."""
         if self.matiere == 'phy':
-            return f'{self.niveau} - P{self.numero}'
+            return f'{self.niveau_formatte()} - P{self.numero}'
         elif self.matiere == 'chi':
-            return f'{self.niveau} - C{self.numero}'
+            return f'{self.niveau_formatte()} - C{self.numero}'
         return self.__str__
 
 class Activite(models.Model):

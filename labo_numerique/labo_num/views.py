@@ -1,21 +1,29 @@
 from django.shortcuts import render, get_object_or_404, get_list_or_404
 from labo_num.models import *
+from django.http import Http404
 
 def accueil(request):
     chapitres = Chapitre.objects.all()
     return render(request, 'phychim/accueil.html', {'chapitres': chapitres})
 
 def liste_chapitres(request, classe):
-    chapitres = get_list_or_404(Chapitre, niveau=classe)
+    if not classe in Chapitre.Niveau:
+        raise Http404
+    chapitres_physique = Chapitre.objects.filter(niveau=classe, matiere='phy')
+    chapitres_chimie = Chapitre.objects.filter(niveau=classe, matiere='chi')
     return render(
         request,
         'labo_num/liste_chapitres.html',
-        {'chapitres': chapitres, 'niveau': classe}
+        {
+            'chapitres_physique': chapitres_physique,
+            'chapitres_chimie': chapitres_chimie,
+            'niveau': classe
+        }
     )
 
 def contenu_chapitre(request, classe, matiere, numero):
     chapitre = get_object_or_404(Chapitre, niveau=classe, matiere=matiere, numero=numero)
-    chapitres = get_list_or_404(Chapitre, niveau=classe)
+    chapitres = Chapitre.objects.filter(niveau=classe)
     activites = Activite.objects.filter(chapitre__id=chapitre.id)
     return render(
         request,
