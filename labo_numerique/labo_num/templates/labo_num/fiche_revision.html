@@ -6,7 +6,7 @@
 {% endblock head %}
 
 {% block pagetitle %}
-<h1>Chapitre {{ chapitre }} - {{ chapitre.titre }}</h1>
+<h1>Chapitre {{ chapitre|safe }} - {{ chapitre.titre }}</h1>
 {% endblock %}
 
 {% block content %}
