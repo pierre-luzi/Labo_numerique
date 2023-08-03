@@ -118,11 +118,11 @@ main {
     background-color: rgba(0, 195, 20, 0.8);
     padding: 10px;
     margin-right: 20px;
+    cursor: pointer;
 }
 
-#button:hover {
+#button:active {
     background-color: green;
-    cursor: pointer;
 }
 
 .settings_inputs {
