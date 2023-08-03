@@ -212,6 +212,7 @@ document.querySelector("#components_yes").addEventListener(
     "change",
     function(event) {
         if (this.checked) {
+            showComponents = true;
             if (xEnd != xStart && yEnd != yStart) {
                 drawVector(xStart, yStart, xEnd, yStart, 'purple', dashed=true);
                 drawVector(xEnd, yStart, xEnd, yEnd, 'purple', dashed=true);
@@ -224,6 +225,7 @@ document.querySelector("#components_yes").addEventListener(
 document.querySelector("#components_no").addEventListener(
     "change",
     function(event) {
+        showComponents = false;
         if (this.checked) {
             clearVector();
             drawVector(xStart, yStart, xEnd, yEnd, 'blue');
