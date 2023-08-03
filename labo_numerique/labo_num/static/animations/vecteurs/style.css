@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Boogaloo&family=Calistoga&family=Kalam&family=Quicksand:wght@500&family=Titan+One&display=swap');
+  
+body {
+    height: calcul(100vh - 10px);
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 500;
+}
+
+h1 {
+    margin: 10px 0;
+    padding: 0px 0;
+    text-align: center;
+    font-size: 260%;
+    font-family: 'Boogaloo', cursive;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.notification {
+    border: solid black 2px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: white;
+    padding: 30px;
+    font-size: 2em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.hidden_notification {
+    display: none;
+}
+
+.visible_notification {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.notification span {
+    margin-left: 10px;
+}
+
+#canvas {
+    margin-left: 30px;
+}
+
+#working_zone {
+    width: 330px;
+    margin-left: 50px;
+}
+
+#exercise, #settings {
+    border: solid white 1px;
+    border-radius: 10px;
+    padding: 0 20px;
+}
+
+#exercise {
+    background-color: #ccccee;
+    margin-bottom: 30px;
+}
+
+#settings {
+    background-color: #eecccc;
+}
+
+#question {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+#question label {
+    display: inline-block;
+    width: 30px;
+}
+
+#answer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#inputs {
+    display: block;
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+#inputs span {
+    display: inline-block;
+    margin: 5px 0;
+}
+
+#inputs input {
+    width: 100px;
+}
+
+.button_container {
+    text-align: right;
+    width: 100%;
+}
+
+#button {
+    color: white;
+    border-radius: 5px;
+    background-color: rgba(0, 195, 20, 0.8);
+    padding: 10px;
+    margin-right: 20px;
+}
+
+#button:hover {
+    background-color: green;
+    cursor: pointer;
+}
+
+.settings_inputs {
+    width: 70%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+#origin_form {
+    margin-bottom: 20px;
+}
