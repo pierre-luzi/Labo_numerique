@@ -2,14 +2,14 @@
 {% load static %}
 
 {% block head %}
-        <link rel="stylesheet" href="{% static 'animations/battements/style.css' %}" />
-        <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
-        <script defer src="{% static 'animations/battements/script.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'animations/battements/style.css' %}" />
+    <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+    <script defer src="{% static 'animations/battements/script.js' %}"></script>
 {% endblock %}
 
 {% block content %}
-<div id="zoneCanvas">
-    <canvas id="canvasCurseurs" width="550" height="540" margin="auto"></canvas>
-    <canvas id="canvasGraphes" width="650" height="540" margin="auto"></canvas>
-</div>
+    <div id="zoneCanvas">
+        <canvas id="canvasCurseurs" width="550" height="540" margin="auto"></canvas>
+        <canvas id="canvasGraphes" width="650" height="540" margin="auto"></canvas>
+    </div>
 {% endblock %}

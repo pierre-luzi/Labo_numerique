@@ -64,10 +64,23 @@ class Chapitre(models.Model):
     
     def __str__(self):
         """Fonction définissant l'affichage du chapitre."""
-        if self.matiere == 'phy':
-            return f'{self.niveau_formatte()} - P{self.numero}'
-        elif self.matiere == 'chi':
-            return f'{self.niveau_formatte()} - C{self.numero}'
+        niveau = self.niveau        
+        matiere = self.matiere
+        if niveau == '1ES':
+            return f'1<sup>re</sup> enseignement scientifique - Chapitre {self.numero}'
+        elif niveau == 'TES':
+            return f'Terminale enseignement scientifique - Chapitre {self.numero}'
+        else:
+            if niveau == '2e':
+                niveau = '2<sup>e</sup'
+            elif niveau == '1re':
+                niveau = '1<sup>re</sup>'
+            elif niveau == 'Term':
+                niveau = 'Terminale'
+            if self.matiere == 'phy':
+                return f'{niveau} - P{self.numero}'
+            elif self.matiere == 'chi':
+                return f'{niveau} - C{self.numero}'
         return self.__str__
 
 class Activite(models.Model):
