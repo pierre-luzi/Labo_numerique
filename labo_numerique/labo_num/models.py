@@ -72,7 +72,7 @@ class Chapitre(models.Model):
             return f'Terminale enseignement scientifique - Chapitre {self.numero}'
         else:
             if niveau == '2e':
-                niveau = '2<sup>e</sup'
+                niveau = '2<sup>e</sup>'
             elif niveau == '1re':
                 niveau = '1<sup>re</sup>'
             elif niveau == 'Term':
