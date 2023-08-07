@@ -163,6 +163,14 @@ xAnswer = document.querySelector("#x_answer");
 yAnswer = document.querySelector("#y_answer");
 button.addEventListener("mousedown", validate);
 
+for (input of document.querySelectorAll('input[type="text"]')) {
+    input.addEventListener("keypress", function(event) {
+        if (event.key == 'Enter') {
+            validate();
+        }
+    });
+}
+
 function validate() {
     if (
         parseFloat(xAnswer.value.replace(",", ".") * 40) == (xEnd - xStart)
