@@ -1,8 +1,10 @@
 from django import forms
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator, RegexValidator
-from django.utils.formats import date_format
 from datetime import datetime
+from django.utils.formats import date_format
+from django.utils import timezone
+import pytz
 import json
 
 class Chapitre(models.Model):
@@ -188,7 +190,7 @@ class Punition(models.Model):
     type_punition = models.fields.CharField(choices=Type.choices, max_length=20, default='addition')
     nom = models.fields.CharField(max_length=30, null=False, verbose_name='Nom')
     prenom = models.fields.CharField(max_length=30, null=False, verbose_name='Prénom')
-    date = models.fields.DateTimeField(default=datetime.now)
+    date = models.fields.DateTimeField(default=timezone.now)
     
     def __str__(self):
         texte = 'Punition : '
