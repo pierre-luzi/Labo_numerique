@@ -1,6 +1,6 @@
 const questionnaire = document.getElementById("questionnaire");
 
-function randomNumber(maxNumber=10) {
+function randomNumber(maxNumber=10000) {
     /*
         Renvoie un nombre compris entre 1 et maxNumber.
     */
