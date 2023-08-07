@@ -92,36 +92,6 @@ function clearVector() {
     vector.graphics.ss(3, 1, 1);
 }
 
-// function drawVector(xstart, ystart, xend, yend, color, dashed=false) {
-//     if (dashed) {
-//         vector.graphics.setStrokeDash([10,8]);
-//     } else {
-//         vector.graphics.setStrokeDash([1,0]);
-//     }
-//     vector.graphics.s(color);
-//
-//     // tracé du corps du vecteur
-//     vector.graphics.mt(xstart, -ystart).lt(xend, -yend);
-//
-//     // calcul de l'angle polaire du vecteur
-//     let angle = Math.atan((yend - ystart)/(xend - xstart));
-//     if (xend - xstart < 0) {
-//         angle = Math.PI + angle;
-//     }
-//
-//     // tracé de l'extrémité fléchée
-//     vector.graphics.mt(xend, -yend);
-//     vector.graphics.lt(
-//         xend + 10 * Math.cos(angle + 3/4 * Math.PI),
-//         -yend - 10 * Math.sin(angle + 3/4 * Math.PI)
-//     );
-//     vector.graphics.mt(xend, -yend);
-//     vector.graphics.lt(
-//         xend + 10 * Math.cos(angle - 3/4 * Math.PI),
-//         -yend - 10 * Math.sin(angle - 3/4 * Math.PI)
-//     );
-// }
-
 function newExercise() {
     clearVector();
         
