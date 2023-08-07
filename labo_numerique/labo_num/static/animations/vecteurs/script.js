@@ -92,35 +92,35 @@ function clearVector() {
     vector.graphics.ss(3, 1, 1);
 }
 
-function drawVector(xstart, ystart, xend, yend, color, dashed=false) {
-    if (dashed) {
-        vector.graphics.setStrokeDash([10,8]);
-    } else {
-        vector.graphics.setStrokeDash([1,0]);
-    }
-    vector.graphics.s(color);
-    
-    // tracé du corps du vecteur
-    vector.graphics.mt(xstart, -ystart).lt(xend, -yend);
-    
-    // calcul de l'angle polaire du vecteur
-    let angle = Math.atan((yend - ystart)/(xend - xstart));
-    if (xend - xstart < 0) {
-        angle = Math.PI + angle;
-    }
-    
-    // tracé de l'extrémité fléchée
-    vector.graphics.mt(xend, -yend);
-    vector.graphics.lt(
-        xend + 10 * Math.cos(angle + 3/4 * Math.PI),
-        -yend - 10 * Math.sin(angle + 3/4 * Math.PI)
-    );    
-    vector.graphics.mt(xend, -yend);
-    vector.graphics.lt(
-        xend + 10 * Math.cos(angle - 3/4 * Math.PI),
-        -yend - 10 * Math.sin(angle - 3/4 * Math.PI)
-    );
-}
+// function drawVector(xstart, ystart, xend, yend, color, dashed=false) {
+//     if (dashed) {
+//         vector.graphics.setStrokeDash([10,8]);
+//     } else {
+//         vector.graphics.setStrokeDash([1,0]);
+//     }
+//     vector.graphics.s(color);
+//
+//     // tracé du corps du vecteur
+//     vector.graphics.mt(xstart, -ystart).lt(xend, -yend);
+//
+//     // calcul de l'angle polaire du vecteur
+//     let angle = Math.atan((yend - ystart)/(xend - xstart));
+//     if (xend - xstart < 0) {
+//         angle = Math.PI + angle;
+//     }
+//
+//     // tracé de l'extrémité fléchée
+//     vector.graphics.mt(xend, -yend);
+//     vector.graphics.lt(
+//         xend + 10 * Math.cos(angle + 3/4 * Math.PI),
+//         -yend - 10 * Math.sin(angle + 3/4 * Math.PI)
+//     );
+//     vector.graphics.mt(xend, -yend);
+//     vector.graphics.lt(
+//         xend + 10 * Math.cos(angle - 3/4 * Math.PI),
+//         -yend - 10 * Math.sin(angle - 3/4 * Math.PI)
+//     );
+// }
 
 function newExercise() {
     clearVector();
@@ -139,13 +139,13 @@ function newExercise() {
         yEnd = (Math.floor(Math.random() * 20) - 10) * 20;
     }
     
-    drawVector(xStart, yStart, xEnd, yEnd, 'blue');
     if (showComponents) {
         if (xEnd != xStart && yEnd != yStart) {
-            drawVector(xStart, yStart, xEnd, yStart, 'purple', dashed=true);
-            drawVector(xEnd, yStart, xEnd, yEnd, 'purple', dashed=true);
+            drawVector(vector, xStart, -yStart, xEnd, -yStart, 'purple', dashed=true);
+            drawVector(vector, xEnd, -yStart, xEnd, -yEnd, 'purple', dashed=true);
         }
     }
+    drawVector(vector, xStart, -yStart, xEnd, -yEnd, 'blue');
     
     stage.update();
 }
@@ -222,8 +222,8 @@ document.querySelector("#components_yes").addEventListener(
         if (this.checked) {
             showComponents = true;
             if (xEnd != xStart && yEnd != yStart) {
-                drawVector(xStart, yStart, xEnd, yStart, 'purple', dashed=true);
-                drawVector(xEnd, yStart, xEnd, yEnd, 'purple', dashed=true);
+                drawVector(vector, xStart, -yStart, xEnd, -yStart, 'purple', dashed=true);
+                drawVector(vector, xEnd, -yStart, xEnd, -yEnd, 'purple', dashed=true);
             }
             stage.update();
         }
@@ -236,7 +236,7 @@ document.querySelector("#components_no").addEventListener(
         showComponents = false;
         if (this.checked) {
             clearVector();
-            drawVector(xStart, yStart, xEnd, yEnd, 'blue');
+            drawVector(vector, xStart, -yStart, xEnd, -yEnd, 'blue');
             stage.update();
         }
     }
