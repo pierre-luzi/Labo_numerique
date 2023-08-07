@@ -1,0 +1,34 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+	<title>Punition : {{ type_punition }}</title>
+    <link rel="stylesheet" href="{% static 'labo_num/css/punitions.css' %}" />
+    <script>
+        const type_punition = '{{ type_punition }}';
+    </script>
+</head>
+<body>
+    <h1>Punition - <span style="text-transform: capitalize;">{{ type_punition }}</span></h1>
+	<div id="container">
+		<form action="" method="post" id="formulaire">
+            <div id="identite">
+                <!-- Formulaire pour indiquer le nom et le prénom de l'élève -->
+                {% csrf_token %}
+                {{ form.as_p }}
+            </div>
+            <p style="margin: auto; margin-top: 30px; margin-bottom: 20px; width: 600px; font-size: 120%;">
+                Donner les résultats des opérations suivantes puis valider le travail :
+            </p>
+            <div id="questionnaire">
+                <!-- Questionnaire généré par le javascript -->
+            </div>
+            <div id="bouton">
+                <!-- Bouton d'envoi du questionnaire -->
+            </div>
+		</form>
+	</div>
+    <script src="{% static 'labo_num/js/punition.js' %}"></script>
+</body>
+</html>

@@ -55,3 +55,7 @@ class AnimationCategoryAdmin(admin.ModelAdmin):
 class GeniallyAdmin(admin.ModelAdmin):
     list_display = ('titre',)
     prepopulated_field = {'slug': ('titre',)}
+
+@admin.register(Punition)
+class PunitionAdmin(admin.ModelAdmin):
+    readonly_fields = ('nom', 'prenom', 'type_punition', 'date',)

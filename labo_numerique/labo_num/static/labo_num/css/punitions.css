@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Boogaloo&family=Calistoga&family=Kalam&family=Titan+One&display=swap');
+
+h1 {
+    margin: 10px 0;
+    padding: 0px 0;
+    text-align: center;
+    font-size: 260%;
+    font-family: 'Boogaloo', cursive;
+}
+
+input {
+	border: 1px solid #CCC;
+	border-radius: 2px;
+}
+
+input:focus {
+	border-color: rgba(82, 168, 236, 0.75);
+	box-shadow: 0 0 8px rgba(82, 168, 236, 0.5);
+}
+
+
+
+#formulaire {
+    text-align: center;
+}
+
+
+
+#identite{
+    width: 600px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+
+#questionnaire {
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    width: 1200px;
+}
+
+#questionnaire label {
+	display: inline-block;
+	width: 150px;
+	text-align:right;
+	margin-right: 10px;
+}
+
+#questionnaire input {
+    width:100px;
+}
+
+
+
+.correct {
+	border-color: rgba(68, 191, 68, 0.75);
+}
+
+.correct:focus {
+	border-color: rgba(68, 191, 68, 0.75);
+	box-shadow: 0 0 8px rgba(68, 191, 68, 0.5);
+}
+
+.incorrect {
+	border-color: rgba(191, 68, 68, 0.75);
+}
+
+.incorrect:focus {
+	border-color: rgba(191, 68, 68, 0.75);
+	box-shadow: 0 0 8px rgba(191, 68, 68, 0.5);
+}
+
+.hidden_button {
+    visibility: hidden;
+}
+
+.visible_button {
+    padding: 5px;
+    visibility: visible;
+    margin: auto;
+}
+
+
+
+#bouton {
+    height: 100px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+}
+
+
+
+footer {
+    text-align: center;
+}

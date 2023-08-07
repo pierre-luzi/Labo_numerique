@@ -1,6 +1,7 @@
 from django import forms
 from django.db import models
-from django.core.validators import MaxValueValidator, MinValueValidator
+from django.core.validators import MaxValueValidator, MinValueValidator, RegexValidator
+from django.utils.formats import date_format
 from datetime import datetime
 import json
 
@@ -173,3 +174,25 @@ class Genially(models.Model):
     
     def __str__(self):
         return self.titre
+
+class Punition(models.Model):
+    """Modèle pour enregistrer une punition."""
+    
+    class Type(models.TextChoices):
+        ADDITION = 'addition'
+        MULTIPLICATION = 'multiplication'
+        SCIENTIFIQUE = 'scientifique'
+    
+    # alpha_validator = RegexValidator(r'^[a-zA-Z]*$', 'Seules les lettres sont acceptées')
+    
+    type_punition = models.fields.CharField(choices=Type.choices, max_length=20, default='addition')
+    nom = models.fields.CharField(max_length=30, null=False, verbose_name='Nom')
+    prenom = models.fields.CharField(max_length=30, null=False, verbose_name='Prénom')
+    date = models.fields.DateTimeField(default=datetime.now)
+    
+    def __str__(self):
+        texte = 'Punition : '
+        texte += self.type_punition
+        texte += ' réalisée par ' + self.prenom + ' ' + self.nom
+        texte += ' le ' + self.date.strftime("%d/%m/%Y") + ' à ' + self.date.strftime("%Hh%M")
+        return texte

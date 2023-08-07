@@ -1,6 +1,7 @@
-from django.shortcuts import render, get_object_or_404, get_list_or_404
-from labo_num.models import *
+from django.shortcuts import render, redirect, get_object_or_404
 from django.http import Http404
+from labo_num.models import *
+from labo_num.forms import *
 
 def accueil(request):
     chapitres = Chapitre.objects.all()
@@ -70,3 +71,19 @@ def liste_geniallies(request):
 def genially(request, slug):
     genially = get_object_or_404(Genially, slug=slug)
     return render(request, 'labo_num/genially.html', {'genially': genially})
+
+def punition(request, type_punition):
+    if not type_punition in Punition.Type:
+        raise Http404
+
+    if request.method == 'POST':    # réponse lorsque le formulaire est envoyé
+        form = PunitionForm(request.POST)
+        if form.is_valid():
+            punition = form.save()
+            return redirect('confirmer_punition')
+    else:                           # réponse lorsque la page est appelée
+        form = PunitionForm()
+    return render(request, 'labo_num/punition.html', {'form': form, 'type_punition': type_punition})
+
+def punition_valide(request):
+    return render(request, 'labo_num/punition_valide.html')
