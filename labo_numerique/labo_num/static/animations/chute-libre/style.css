@@ -1,0 +1,52 @@
+@import url('https://fonts.googleapis.com/css2?family=Boogaloo&family=Calistoga&family=Kalam&family=Quicksand:wght@500&family=Titan+One&display=swap');
+  
+body {
+    height: calcul(100vh - 10px);
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 500;
+}
+
+h1 {
+    margin: 10px 0;
+    padding: 0px 0;
+    text-align: center;
+    font-size: 260%;
+    font-family: 'Boogaloo', cursive;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+canvas {
+    border-radius: 30px;
+}
+
+#canvas_trajectory {
+    margin-right: 30px;
+    background-color: #eeeeff;
+    border-radius: 30px;
+}
+
+#side_div {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 480px;
+}
+
+#canvas_cursors {
+    background-color: #eeffee;
+}
+
+#canvas_plots {
+    background-color: #ffeeee;
+}

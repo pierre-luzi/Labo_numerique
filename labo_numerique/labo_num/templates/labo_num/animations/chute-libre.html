@@ -1,0 +1,17 @@
+{% extends 'labo_num/base_animation.html' %}
+{% load static %}
+
+{% block head %}
+	<link rel="stylesheet" href="{% static 'animations/chute-libre/style.css' %}" />
+	<script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+    <script src="{% static 'animations/js-utils.js' %}"></script>
+	<script defer src="{% static 'animations/chute-libre/script.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+        <canvas id="canvas_trajectory" width="610px" height="480px"></canvas>
+        <div id="side_div">
+            <canvas id="canvas_cursors" width="530px" height="100px"></canvas>
+            <canvas id="canvas_plots" width="530px" height="350px"></canvas>
+        </div>
+{% endblock %}
