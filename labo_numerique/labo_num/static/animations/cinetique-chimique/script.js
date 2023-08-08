@@ -2,102 +2,81 @@
 //       Canvas curseurs
 //==============================
 
-canvasCurseurs = document.getElementById("canvasCurseurs");
-stageCurseurs = new createjs.Stage(canvasCurseurs);
-stageCurseurs.enableMouseOver();
-createjs.Touch.enable(stageCurseurs);
-stageCurseurs.mouseMoveOutside = true;
+cursorsCanvas = document.getElementById("cursors_canvas");
+cursorsStage = new createjs.Stage(cursorsCanvas);
+cursorsStage.enableMouseOver();
+createjs.Touch.enable(cursorsStage);
+cursorsStage.mouseMoveOutside = true;
+
+const xminCursor = 260;    // position de l'extrémité gauche des curseurs
+const xmaxCursor = xminCursor + lineLength;
+let C0 = 0.6;
+let k = 0.02;
 
 
-// ===== Fonctions de création des curseurs =====
 
-class Curseur {
-    constructor(x, y, name, couleur, legende, valeur, unite) {
-        this.ligne = ShapeFond(x, y);
-        this.bouton = ShapeBouton(name + "_bouton", couleur, x+150, y);
-        this.legende = Texte(name + "_legende", legende, x-230, y);
-        this.texteValeur = Texte(name + "_valeur", valeur.toLocaleString('fr-FR', {maximumFractionDigits: 3}), x+320, y);
-        this.unite = Texte(name + "_unite", unite, x+390, y);
-    }
-}
+// ===== Curseur pour la concentration initiale =====
 
-function ShapeFond(x, y) {
+const yC0 = 30;     // position verticale du curseur
+
+// création du curseur
+cursorLine(xminCursor, yC0, cursorsStage);
+cursorText("Concentration initiale C₀", xminCursor-240, yC0, cursorsStage);
+cursorText("mol.L⁻¹", xmaxCursor+78, yC0, cursorsStage);
+const C0Button = cursorButton('blue', xminCursor+0.5*lineLength, yC0, cursorsStage);
+const C0Text = cursorText("", xmaxCursor+75, yC0, cursorsStage);
+C0Text.textAlign = 'right';
+
+// valeurs limites
+const minC0 = 0.2;
+const maxC0 = 1;
+getC0();
+
+function getC0() {
     /*
-        Cette fonction trace une barre horizontale de longueur 300 px.
-        La barre est tracée à la position (x, y).
+        Récupère la valeur de C0 à partir de la position du curseur
+        et met à jour l'affichage de la valeur.
     */
-    fond = new createjs.Shape();
-    stageCurseurs.addChild(fond);
-    fond.graphics.ss(4, 1, 1).s('#333').mt(0, 0).lt(300, 0);
-    fond.x = x;
-    fond.y = y;
-    return fond;
+    C0 = (C0Button.x - xminCursor) / lineLength * (maxC0 - minC0) + minC0;
+    C0Text.text = C0.toLocaleString('fr-FR', {maximumFractionDigits: 2});
 }
 
-function ShapeBouton(name, couleur, x, y) {
+
+
+// ===== Curseur pour la concentration initiale =====
+
+const yK = 60;     // position verticale du curseur
+
+// création du curseur
+cursorLine(xminCursor, yK, cursorsStage);
+cursorText("Constante de vitesse k", xminCursor-240, yK, cursorsStage);
+const kUnitText = cursorText("s⁻¹", xmaxCursor+78, yK, cursorsStage);
+const kButton = cursorButton('orange', xminCursor+0.5*lineLength, yK, cursorsStage);
+const kText = cursorText("", xmaxCursor+75, yK, cursorsStage);
+kText.textAlign = 'right';
+
+// valeurs limites
+const minK = 0.002;
+const maxK = 0.02;
+getK();
+
+function getK() {
     /*
-        Cette fonction trace un bouton à la position (x ,y).
-        Le bouton a un nom et une couleur.
+        Récupère la valeur de k à partir de la position du curseur
+        et met à jour l'affichage de la valeur.
     */
-    btn = new createjs.Shape();
-    stageCurseurs.addChild(btn)
-    btn.cursor = 'pointer';
-    btn.graphics.f(couleur).dc(0, 0, 10).ef().es();
-    btn.name = name;
-    btn.shadow = new createjs.Shadow("#000", 4, 4, 5);
-    btn.x = x;
-    btn.y = y;
-    return btn
+    k = (kButton.x - xminCursor) / lineLength * (maxK - minK) + minK;
+    kText.text = k.toLocaleString('fr-FR', {maximumFractionDigits: 4});
 }
 
-function Texte(name, valeur, x, y) {
-    /*
-        Cette fonction crée une légende pour indiquer, à la position (x, y), la valeur du curseur.
-        La légende a un nom et une valeur.
-    */
-    texte = new createjs.Text(valeur, "20px Quicksand", "#333");
-    texte.x = x;
-    texte.y = y;
-    texte.name = name;
-    texte.textBaseline = "middle"
-    stageCurseurs.addChild(texte);
-    return texte;
-}
-
-const xminCurseur = 250;    // position de l'extrémité gauche des curseurs
-curseur1 = new Curseur(xminCurseur, 50, "curseur_constante_vitesse", 'red', "Constante de vitesse k", 0.002 + 0.5 * (0.02 - 0.002), "s⁻¹");
-curseur2 = new Curseur(xminCurseur, 100, "curseur_concentration_initiale", 'red', "Concentration initiale", 0.2 + 0.5 * (1 - 0.2), "mol.L⁻¹");
 
 
-// ===== Mise à jour des curseurs =====
-
-function maj(bouton) {
-    /*
-        Cette fonction met à jour les graphes lorsqu'un curseur est déplacé.
-    */
-    let valeur = 0;
-    
-    switch (bouton.name) {
-        case "curseur_constante_vitesse_bouton":
-            valeur = (bouton.x - xminCurseur) / 300. * 0.018 + 0.002;
-            constante_vitesse = valeur;
-            stageCurseurs.getChildByName("curseur_constante_vitesse_valeur").text = valeur.toLocaleString('fr-FR', {maximumFractionDigits: 4});
-            break;
-        case "curseur_concentration_initiale_bouton":
-            valeur = (bouton.x - xminCurseur) / 300. * 0.8 + 0.2;
-            concentration_initiale = valeur;
-            stageCurseurs.getChildByName("curseur_concentration_initiale_valeur").text = valeur.toLocaleString('fr-FR', {maximumFractionDigits: 2});
-            break;
-    }
-    
-    traceCourbe();
-    tracePointeur();
-}
+// ===== Fonctions de mise à jour =====
 
 function onMouseDown(event) {
     /*
-        Cette fonction calcule le décalage entre l'objet
-        et la position de l'évènement lors d'un clic.
+        Lors d'un clic sur un bouton, enregistre l'offset entre
+        la position du clic et du bouton.
     */
     object = event.currentTarget;
     object.offsetX = object.x - event.stageX;
@@ -105,23 +84,37 @@ function onMouseDown(event) {
 
 function onPressMove(event) {
     /*
-        Cette fonction met à jour le curseur et
-        les graphes lors du déplacement d'un bouton.
+        Action lors du déplacement d'un curseur.
     */
-    bouton = event.currentTarget;
-    bouton.x = Math.min(Math.max(xminCurseur, event.stageX + bouton.offsetX), xminCurseur+300);
-    maj(bouton);
-    stageCurseurs.update();
-    stageGraphe.update();
+    button = event.currentTarget;
+    button.x = Math.min(Math.max(xminCursor, event.stageX + button.offsetX), xminCursor+lineLength);
+    getC0();
+    getK();
+    cursorsStage.update();
+    drawPlot();
+    drawPointer();
+    updateConcentrationEquation();
+    plotsStage.update();
 }
 
-// actions lors d'une modification du curseur 1
-curseur1.bouton.addEventListener("mousedown", onMouseDown);
-curseur1.bouton.addEventListener("pressmove", onPressMove);
+function updateConcentrationEquation() {
+    for (C0Span of document.querySelectorAll(".C0")) {
+        C0Span.innerText = C0Text.text;
+    }
+    
+    for (kSpan of document.querySelectorAll(".k")) {
+        kSpan.innerText = kText.text;
+    }
+}
 
-// actions lors d'une modification du curseur 2
-curseur2.bouton.addEventListener("mousedown", onMouseDown);
-curseur2.bouton.addEventListener("pressmove", onPressMove);
+// écouteurs
+C0Button.addEventListener("mousedown", onMouseDown);
+C0Button.addEventListener("pressmove", onPressMove);
+
+kButton.addEventListener("mousedown", onMouseDown);
+kButton.addEventListener("pressmove", onPressMove);
+
+
 
 
 
@@ -129,70 +122,84 @@ curseur2.bouton.addEventListener("pressmove", onPressMove);
 //       Canvas graphiques
 //==============================
 
-canvasGraphe = document.getElementById("canvasGraphe");
-stageGraphe = new createjs.Stage(canvasGraphe);
+canvasGraphe = document.getElementById("plot_canvas");
+plotsStage = new createjs.Stage(canvasGraphe);
 
-// ===== Tracé de la courbe =====
 
-// Limites du graphe
+
+// ===== Création du graphe =====
+
 const xmax = 550;
 
-graphe = new createjs.Container();
-stageGraphe.addChild(graphe);
-graphe.x = 100;
-graphe.y = 300;
+plot = new createjs.Container();
+plotsStage.addChild(plot);
+plot.x = 100;
+plot.y = 300;
 
-// Tracé des axes
 axes = new createjs.Shape();
-graphe.addChild(axes);
-axes.graphics.ss(3, 1, 1).s('#000').mt(0, 0).lt(xmax, 0).mt(xmax-10, -10).lt(xmax, 0).lt(xmax-10, 10);      // axe horizontal
-axes.graphics.ss(3, 1, 1).s('#000').mt(0, 0).lt(0, -240).mt(-10, -230).lt(0, -240).lt(10, -230);            // axe vertical
+plot.addChild(axes);
+axes.graphics.ss(3, 1, 1).s('#000')
 
-// Légende de l'axe des abscisses
+
+
+// ===== Axe des abscisses =====
+
+axes.graphics.mt(0, 0).lt(xmax, 0);
+axes.graphics.mt(xmax-10, -10).lt(xmax, 0).lt(xmax-10, 10);
+
 xlegend = new createjs.Text("temps", "20px Quicksand", 'black');
 xlegend.x = xmax + 60;
 xlegend.y = 320;
 xlegend.name = "xlegend";
 xlegend.textBaseLine = "middle";
-stageGraphe.addChild(xlegend);
+plotsStage.addChild(xlegend);
 
-// Légende de l'axe des ordonnées
+
+
+// ===== Axe des ordonnées =====
+
+axes.graphics.mt(0, 0).lt(0, -240);
+axes.graphics.mt(-10, -230).lt(0, -240).lt(10, -230);
+
 ylegend = new createjs.Text("concentration", "20px Quicksand", 'black');
 ylegend.x = 50;
 ylegend.y = 25;
 ylegend.name = "ylegend";
-stageGraphe.addChild(ylegend);
+plotsStage.addChild(ylegend);
 
-// Tracé de la courbe
+
+
+// ===== Tracé de la courbe =====
+
 courbe = new createjs.Shape();
-graphe.addChild(courbe);
+plot.addChild(courbe);
 
-function traceCourbe() {
+function drawPlot() {
     /*
         Cette fonction trace la courbe représentant la concentration
         du réactif en fonction du temps.
     */
     courbe.graphics.clear();
     
-    let amplitude = concentration_initiale * facteur_concentration;
+    let amplitude = C0 * facteur_concentration;
     courbe.graphics.ss(3).s('red').mt(0, -amplitude);
     
     switch (ordre) {
         case 0:
             for (i = 1; i < xmax; i++) {
-                y = facteur_concentration * (concentration_initiale - constante_vitesse * i);
+                y = facteur_concentration * (C0 - k * i);
                 courbe.graphics.lt(i, -y);
                 if (y < 0) { break; }
             }
             break;
         case 1:
             for (i = 1; i < xmax; i++) {
-                courbe.graphics.lt(i, -amplitude * Math.exp(-constante_vitesse * i));
+                courbe.graphics.lt(i, -amplitude * Math.exp(-k * i));
             }
             break;
         case 2:
             for (i = 1; i < xmax; i++) {
-                courbe.graphics.lt(i, -facteur_concentration * concentration_initiale / (1 + 2 * concentration_initiale * constante_vitesse * i));
+                courbe.graphics.lt(i, -facteur_concentration * C0 / (1 + 2 * C0 * k * i));
             }
             break;
     }
@@ -201,19 +208,20 @@ function traceCourbe() {
 }
 
 
+
 // ===== Tracé du pointeur =====
 
 pointeur = new createjs.Shape();
-graphe.addChild(pointeur);
+plot.addChild(pointeur);
 
 pointeurXLabel = new createjs.Text("t", "20px Quicksand", 'green');
-graphe.addChild(pointeurXLabel);
+plot.addChild(pointeurXLabel);
 
 pointeurXLabel2 = new createjs.Text("1/2", "12px Quicksand", 'green');
-graphe.addChild(pointeurXLabel2);
+plot.addChild(pointeurXLabel2);
 
 pointeurYLabel = new createjs.Text("C₀/2", "20px Quicksand", 'green');
-graphe.addChild(pointeurYLabel);
+plot.addChild(pointeurYLabel);
 
 function tempsDemiReaction() {
     /*
@@ -222,24 +230,24 @@ function tempsDemiReaction() {
     */
     switch (ordre) {
         case 0:
-            return concentration_initiale / (2 * constante_vitesse);
+            return C0 / (2 * k);
         case 1:
-            return Math.log(2) / constante_vitesse;
+            return Math.log(2) / k;
         case 2:
-            return 1. / (2 * constante_vitesse * concentration_initiale);
+            return 1. / (2 * k * C0);
     }
 }
 
-function tracePointeur() {
+function drawPointer() {
     /*
-        Cette fonction trace deux droites sur le graphique permettant
-        de repérer le point de la courbe correspond à la demi-réaction.
+        Trace deux droites sur le graphique permettant de repérer
+        le point de la courbe correspond à la demi-réaction.
     */
     
     // calcul des coordonnées
     temps_demi_reaction = tempsDemiReaction();
     x = temps_demi_reaction;
-    y = -concentration_initiale * facteur_concentration * 0.5;
+    y = -C0 * facteur_concentration * 0.5;
     
     // tracé des deux droites
     pointeur.graphics.clear();
@@ -258,41 +266,86 @@ function tracePointeur() {
 
 
 
+
+
 //==============================
-//       Section ordre
+//          Ordre
 //==============================
 
-function majUnite() {
-    /*
-        Cette fonction met à jour l'unité de la constante
-        de vitesse, en fonction de l'ordre de réaction.
-    */
-    switch (ordre) {
-        case 0:
-            curseur1.unite.text = "mol.L⁻¹.s⁻¹";
-            break;
-        case 1:
-            curseur1.unite.text = "s⁻¹";
-            break;
-        case 2:
-            curseur1.unite.text = "L.mol⁻¹.s⁻¹";
-            break;
-    }
-}
-
-const lois_vitesse = [
-    document.getElementById("loi_vitesse0"),
-    document.getElementById("loi_vitesse1"),
-    document.getElementById("loi_vitesse2"),
-];
-
-const lois_concentration = [
+const concentrationEquations = [
     document.getElementById("loi_concentration0"),
     document.getElementById("loi_concentration1"),
     document.getElementById("loi_concentration2"),
 ]
 
+function updateUnit() {
+    /*
+        Met à jour l'unité de la constante de vitesse,
+        en fonction de l'ordre de réaction.
+    */
+    switch (ordre) {
+        case 0:
+            kUnitText.text = "mol.L⁻¹.s⁻¹";
+            break;
+        case 1:
+            kUnitText.text = "s⁻¹";
+            break;
+        case 2:
+            kUnitText.text = "L.mol⁻¹.s⁻¹";
+            break;
+    }
+}
+
+const rateEquation = document.querySelector("#rate_equation");
+
+function updateRateLaw() {
+    /*
+        Met à jour la formule de la loi de vitesse.
+    */
+    switch (ordre) {
+        case 0:
+            rateEquation.innerHTML = "v = k";
+            break;
+        case 1:
+            rateEquation.innerHTML = "v = k &times; C";
+            break;
+        case 2:
+            rateEquation.innerHTML = "v = k &times; C<sup>2</sup>";
+            break;
+    }
+}
+
+const halfLifeNumerator = document.querySelector("#half_life_numerator");
+const halfLifeDenominator = document.querySelector("#half_life_denominator");
+
+function updateHalfLifeEquation() {
+    /*
+        Met à jour la formule du temps de demi-réaction.
+    */
+    switch (ordre) {
+        case 0:
+            halfLifeNumerator.innerHTML = "C₀";
+            halfLifeDenominator.innerHTML = "2 &times; k";
+            halfLifeNumerator.style.borderBottom = 'solid black 0';
+            halfLifeDenominator.style.borderTop = 'solid black 2px';
+            break;
+        case 1:
+            halfLifeNumerator.innerHTML = "ln 2";
+            halfLifeDenominator.innerHTML = "k";
+            halfLifeNumerator.style.borderBottom = 'solid black 2px';
+            halfLifeDenominator.style.borderTop = 'solid black 0';
+            break;
+        case 2:
+            halfLifeNumerator.innerHTML = "1";
+            halfLifeDenominator.innerHTML = "2 &times; k &times; C₀";
+            halfLifeNumerator.style.borderBottom = 'solid black 0';
+            halfLifeDenominator.style.borderTop = 'solid black 2px';
+            break;
+    }
+}
+
 const inputs = document.querySelectorAll("input");
+inputs[1].checked = true;
 
 for (input of inputs) {
     /*
@@ -306,21 +359,23 @@ for (input of inputs) {
             for (let i = 0; i < 3; i++) {
                 if (i == ordre) {
                     // rend visible les textes pour l'ordre sélectionné
-                    lois_vitesse[i].setAttribute("class", "visible");
-                    lois_concentration[i].setAttribute("class", "loi_concentration visible");
+                    // lois_vitesse[i].setAttribute("class", "visible");
+                    concentrationEquations[i].style.display = 'flex';
                 } else {
                     // rend invisible les textes pour les autres ordres
-                    lois_vitesse[i].setAttribute("class", "hidden");
-                    lois_concentration[i].setAttribute("class", "loi_concentration hidden");
+                    // lois_vitesse[i].setAttribute("class", "hidden");
+                    concentrationEquations[i].style.display = 'none';
                 }
             }
         }
         
-        majUnite();
-        traceCourbe();
-        tracePointeur();
-        stageCurseurs.update();
-        stageGraphe.update();
+        updateUnit();
+        updateRateLaw();
+        updateHalfLifeEquation();
+        drawPlot();
+        drawPointer();
+        cursorsStage.update();
+        plotsStage.update();
     });
 }
 
@@ -329,13 +384,14 @@ for (input of inputs) {
 // ===== Initialisation =====
 
 let ordre = 1;
-let constante_vitesse = 0.002 + 0.5 * (0.02 - 0.002);
-let temps_demi_reaction = Math.log(2) / constante_vitesse;
-let concentration_initiale = 0.2 + 0.5 * (1 - 0.2);
+let temps_demi_reaction = Math.log(2) / k;
 
 const facteur_concentration = 220;          // facteur multiplicatif pour tracer le graphe
-traceCourbe();
-tracePointeur();
+drawPlot();
+drawPointer();
+updateConcentrationEquation();
+updateRateLaw();
+updateHalfLifeEquation();
 
-stageCurseurs.update();
-stageGraphe.update();
+cursorsStage.update();
+plotsStage.update();

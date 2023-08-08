@@ -1,6 +1,6 @@
- @import url('https://fonts.googleapis.com/css2?family=Boogaloo&family=Calistoga&family=Kalam&family=Quicksand:wght@500&family=Titan+One&display=swap');
-  
- body {
+@import url('https://fonts.googleapis.com/css2?family=Boogaloo&family=Calistoga&family=Kalam&family=Quicksand:wght@500&family=Titan+One&display=swap');
+
+body {
     height: calcul(100vh - 10px);
     margin: 0px;
     padding: 0px;
@@ -16,53 +16,92 @@ h1 {
     font-family: 'Boogaloo', cursive;
 }
 
-.row {
+main {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
 }
 
 #zoneCanvas {
     margin: auto;
 }
 
-#graphes {
-    width: 800px;
+#plot {
+    width: 750px;
+    position: relative;
 }
 
-#canvasGraphe {
+#plot_canvas {
     position: relative;
     left: 10px;
+    border-radius: 10px;
+    background-color: #eeeeff;
+    padding-bottom: 20px;
 }
 
-#canvasCurseurs {
+.loi_concentration {
+    position: absolute;
+    left: 300px;
+    top: 50px;
+    font-size: 1.5em;
+    font-family: 'Quicksand', sans-serif;
+    width: 400px;
+}
+
+.C0 {
+    color: blue;
+    margin: 0 5px;
+}
+
+.k {
+    color: orange;
+    margin: 0 5px;
+}
+
+#loi_concentration2 {
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.fraction {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 5px;
+}
+
+#cursors_canvas {
     position: relative;
     left: 10px;
+    border-radius: 10px;
+    background-color: #eeffee;
+    margin-top: 10px;
 }
 
 #informations {
     width: 400px;
-    font: 30px Arial;
+    height: 320px;
+    font: 1.5em 'Quicksand';
+    background-color: #ffeeee;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
-#choix_ordre {
-    position: relative;
-    left: 30px;
-    top: 40px;
-}
-
-#titre_ordre {
-    font-family: 'Quicksand', sans-serif;
+#informations p {
     margin-bottom: 10px;
+    margin-top: 0;
 }
 
 #inputs_ordre {
     display: flex;
     justify-content: space-around;
     width: 60%;
-}
-
-#inputs_ordre p {
-    margin-top: 0;
-    margin-bottom: 0;
 }
 
 input {
@@ -74,39 +113,36 @@ label {
     font-family: 'Quicksand', sans-serif;
 }
 
-#div_loi_vitesse {
+sup {
     position: relative;
-    left: 30px;
-    top: 30px;
+    bottom: 5px;
 }
 
-#div_loi_vitesse p {
+.loi_concentration {
     position: absolute;
-    top: 0;
-    left: 0;
+    left: 400px;
+    top: 50px;
+    font-size: 1.5em;
     font-family: 'Quicksand', sans-serif;
 }
 
-#div_loi_concentration {
-    position: relative;
-    left: 30px;
-    top: 100px;
+#rate_equation {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+    text-align: center;
 }
 
-#div_loi_concentration p {
-    position: absolute;
-    top: 0;
-    left: 0;
-    font-family: 'Quicksand', sans-serif;
+#half_life {
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
 
-.hidden {
-    visibility: hidden;
-}
-
-.visible {
-    visibility: visible;
-}
+/*#half_life_numerator, #half_life_denominator {
+    width: 100%;
+    text-align:center;
+}*/
 
 footer {
     text-align: center;
