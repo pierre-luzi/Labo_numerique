@@ -30,6 +30,11 @@ main {
 #plot {
     width: 750px;
     position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 5px;
 }
 
 #plot_canvas {
@@ -83,6 +88,7 @@ main {
 #informations {
     width: 400px;
     height: 320px;
+    margin-left: 5px;
     font: 1.5em 'Quicksand';
     background-color: #ffeeee;
     border-radius: 10px;
