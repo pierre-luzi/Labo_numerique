@@ -1,3 +1,25 @@
+/*
+    -------------------
+    |   Chute libre   |
+    -------------------
+
+    Ce script simule la chute libre d'une balle.
+    La chute est animée est et le vecteur vitesse représenté. Les
+    graphes de x, y, vx et vy en fonction du temps sont également
+    représentés.
+
+    Paramètres :
+        - y0 : hauteur initiale de la balle ;
+        - v0 : vitesse initiale de la balle ;
+        - alpha : angle initial du vecteur vitesse avec l'horizontale.
+
+    Option : les composantes du vecteur vitesse peuvent être affichés.
+*/
+
+
+
+
+
 //==============================
 //         Curseurs
 //==============================

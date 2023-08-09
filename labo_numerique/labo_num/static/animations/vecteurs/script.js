@@ -1,3 +1,20 @@
+/*
+    ----------------
+    |   Vecteurs   |
+    ----------------
+
+    Ce script produit un exercice interactif sur les vecteurs.
+    Un vecteur de coordonnées entières ou demi-entières est affiché
+    sur une grille. L'élève doit donner les coordonnées du vecteur.
+    Options :
+        - afficher ou non les composantes du vecteur ;
+        - placer le vecteur à l'origine du repère.
+*/
+
+
+
+
+
 //==============================
 //       Canvas graphique
 //==============================

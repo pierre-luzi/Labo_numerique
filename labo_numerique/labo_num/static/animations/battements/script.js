@@ -1,3 +1,22 @@
+/*
+    ------------------
+    |   Battements   |
+    ------------------
+
+    Ce script simule le phénomène de battements entre deux signaux
+    sinusoïdaux de fréquence voisine.
+    Les deux signaux sont représentés et leurs fréquences peuvent être
+    choisies grâce à des curseurs.
+    La somme des deux signaux est représentée, ainsi que son
+    enveloppe.
+    Les formules des deux signaux et de leur somme est indiquée, avec
+    la valeur des fréquences mises en jeu.
+*/
+
+
+
+
+
 //==============================
 //       Canvas graphiques
 //==============================
@@ -264,9 +283,3 @@ f2Button.addEventListener("pressmove", onPressMove);
 // ===== Initialisation =====
 
 update();
-// traceSignal(signal1, f1, 'red');
-// traceSignal(signal2, f2, 'blue');
-// traceSomme();
-
-// cursorsStage.update();
-// stageGraphes.update();

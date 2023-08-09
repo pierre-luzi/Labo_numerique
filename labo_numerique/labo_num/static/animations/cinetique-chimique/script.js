@@ -1,3 +1,24 @@
+/*
+    --------------------------
+    |   Cinétique chimique   |
+    --------------------------
+
+    Ce script représente l'évolution temporelle de la concentration d'un
+    réactif au cours du temps.
+    Deux curseurs permettent de modifier respectivement la concentration
+    initiale et la constante de vitesse. L'ordre de la réaction peut
+    être choisi parmi les ordres 0, 1 et 2.
+    La loi de vitesse, l'équation d'évolution de la concentration en
+    fonction du temps et l'expression du temps de demi-réaction sont
+    affichées.
+    Un pointeur repère graphiquement le temps de demi-réaction sur le
+    graphe.
+*/
+
+
+
+
+
 //==============================
 //       Canvas curseurs
 //==============================
