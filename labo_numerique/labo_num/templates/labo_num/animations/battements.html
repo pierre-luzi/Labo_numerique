@@ -4,12 +4,31 @@
 {% block head %}
     <link rel="stylesheet" href="{% static 'animations/battements/style.css' %}" />
     <script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+    <script defer src="{% static 'animations/js-utils.js' %}"></script>
     <script defer src="{% static 'animations/battements/script.js' %}"></script>
 {% endblock %}
 
 {% block content %}
     <div id="zoneCanvas">
-        <canvas id="canvasCurseurs" width="550" height="540" margin="auto"></canvas>
-        <canvas id="canvasGraphes" width="650" height="540" margin="auto"></canvas>
+        <div>
+            <canvas id="cursors_canvas" width="550" height="270" margin="auto"></canvas>
+            <div id="formulas">
+                <div id="signals">
+                    <p class="signal">
+                        s<sub>1</sub>(t) = sin(<span id="freq1"></span> &times; t)
+                    </p>
+                    <p class="signal">
+                        s<sub>2</sub>(t) = sin(<span id="freq2"></span> &times; t)
+                    </p>
+                </div>
+                <p>
+                    La somme des deux signaux est le produit d'un signal dont la fréquence est la moyenne des deux fréquences, et d'un signal dont la fréquence est la demi-différence des deux fréquences :
+                </p>
+                <p style="text-align: center;">
+                    s(t) = 2 &times; sin(<span id="fm"></span> &times; t) &times; sin(<span id="df"></span> &times; t)
+                </p>
+            </div>
+        </div>
+        <canvas id="plots_canvas" width="650" height="500" margin="auto"></canvas>
     </div>
 {% endblock %}

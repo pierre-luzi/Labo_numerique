@@ -1,139 +1,12 @@
 //==============================
-//       Canvas curseurs
-//==============================
-
-canvasCurseurs = document.getElementById("canvasCurseurs");
-stageCurseurs = new createjs.Stage(canvasCurseurs);
-stageCurseurs.enableMouseOver();
-createjs.Touch.enable(stageCurseurs);
-stageCurseurs.mouseMoveOutside = true;
-
-
-// ===== Fonctions de création des curseurs =====
-
-class Curseur {
-    /*
-        Classe définissant des curseurs, auxquels sont associés une
-        ligne, un bouton, une légende, une valeur affichée et l'unité
-        de la grandeur.
-    */
-    constructor(x, y, name, couleur, legende) {
-        this.ligne = ShapeFond(x, y);
-        this.bouton = ShapeBouton(name + "_bouton", couleur, x+150, y);
-        this.legende = Texte(name + "_legende", legende, x-90, y);
-        this.texteValeur = Texte(name + "_valeur", "440", x+320, y);
-        this.unite = Texte(name + "_unite", "Hz", x+360, y);
-    }
-}
-
-function ShapeFond(x, y) {
-    /*
-    Cette fonction trace une barre horizontale de longueur 300 px.
-    La barre est tracée à la position (x, y).
-    */
-    fond = new createjs.Shape();
-    stageCurseurs.addChild(fond);
-    fond.graphics.ss(4, 1, 1).s('#333').mt(0, 0).lt(300, 0);
-    fond.x = x;
-    fond.y = y;
-    return fond;
-}
-
-function ShapeBouton(name, couleur, x, y) {
-    /*
-    Cette fonction trace un bouton à la position (x ,y).
-    Le bouton a un nom et une couleur.
-    */
-    btn = new createjs.Shape();
-    stageCurseurs.addChild(btn)
-    btn.cursor = 'pointer';
-    btn.graphics.f(couleur).dc(0, 0, 10).ef().es();
-    btn.name = name;
-    btn.shadow = new createjs.Shadow("#000", 4, 4, 5);
-    btn.x = x;
-    btn.y = y;
-    return btn
-}
-
-function Texte(name, valeur, x, y) {
-    /*
-    Cette fonction crée une légende pour indiquer, à la position (x, y), la valeur du curseur.
-    La légende a un nombre et une valeur.
-    */
-    texte = new createjs.Text(valeur, "64px sans-serif Quicksand", "#333");
-    texte.x = x;
-    texte.y = y;
-    texte.name = name;
-    texte.textBaseline = "middle"
-    stageCurseurs.addChild(texte);
-    return texte;
-}
-
-// Création des curseurs
-const xminCurseur = 130;    // position de l'extrémité gauche des curseurs
-curseur1 = new Curseur(xminCurseur, 70, "curseur1", 'red', "Signal 1");
-curseur2 = new Curseur(xminCurseur, 200, "curseur2", 'blue', "Signal 2");
-
-
-// ===== Mise à jour des curseurs =====
-
-function maj(bouton) {
-    /*
-    Cette fonction met à jour les graphes lorsqu'un curseur est déplacé.
-    */
-    valeur = (bouton.x - xminCurseur) / 300. * 400 + 240;   // renvoie une valeur comprise entre 240 et 640
-    numero = bouton.name.substr(7, 1);                      // renvoie le numéro du curseur
-    stageCurseurs.getChildByName("curseur" + numero + "_valeur").text = valeur.toLocaleString('fr-FR', {maximumFractionDigits: 0});
-    // écriture de la valeur sans décimale
-    
-    switch (numero) {
-        case "1": 
-            frequence1 = valeur;
-            traceSignal(signal1, frequence1, 'red');
-            break;
-        case "2":
-            frequence2 = valeur;
-            traceSignal(signal2, frequence2, 'blue');
-            break;
-    }
-    traceSomme();
-}
-
-function onMouseDown(event) {
-    object = event.currentTarget;
-    object.offsetX = object.x - event.stageX;
-}
-
-function onPressMove(event) {
-    /*
-    Cette fonction met à jour le curseur et les graphes lors du déplacement d'un bouton.
-    */
-    bouton = event.currentTarget;
-    bouton.x = Math.min(Math.max(xminCurseur, event.stageX + bouton.offsetX), xminCurseur+300);
-    maj(bouton);
-    stageCurseurs.update();
-    stageGraphes.update();
-}
-
-// actions lors d'une modification du curseur 1
-curseur1.bouton.addEventListener("mousedown", onMouseDown);
-curseur1.bouton.addEventListener("pressmove", onPressMove);
-
-// actions lors d'une modification du curseur 2
-curseur2.bouton.addEventListener("mousedown", onMouseDown);
-curseur2.bouton.addEventListener("pressmove", onPressMove);
-
-
-
-//==============================
 //       Canvas graphiques
 //==============================
 
-canvasGraphes = document.getElementById("canvasGraphes");
+canvasGraphes = document.getElementById("plots_canvas");
 stageGraphes = new createjs.Stage(canvasGraphes);
 
 function xlegend(y, name) {
-    legend = new createjs.Text("temps", "64px sans-serif Quicksand", "#333");
+    legend = new createjs.Text("temps", "20px Quicksand", "#333");
     legend.x = xmax + 60;
     legend.y = y;
     legend.name = name;
@@ -145,23 +18,23 @@ function xlegend(y, name) {
 const xmax = 500;
 
 // ===== Premier signal =====
-graphe1 = new createjs.Container();
+let graphe1 = new createjs.Container();
 stageGraphes.addChild(graphe1);
 graphe1.x = 50;
 graphe1.y = 70;
 
-axes = new createjs.Shape();
+let axes = new createjs.Shape();
 graphe1.addChild(axes);
 axes.graphics.ss(3, 1, 1).s('#000').mt(-10, 0).lt(xmax, 0).mt(xmax-10, -10).lt(xmax, 0).lt(xmax-10, 10);    // axe horizontal
 axes.graphics.ss(3, 1, 1).s('#000').mt(0, -60).lt(0, 60).mt(-10, -50).lt(0, -60).lt(10, -50);               // axe vertical
 
 xlegend(70, "xlegend1");
 
-signal1 = new createjs.Shape();
+let signal1 = new createjs.Shape();
 graphe1.addChild(signal1);
 
 // ===== Second signal =====
-graphe2 = new createjs.Container();
+let graphe2 = new createjs.Container();
 stageGraphes.addChild(graphe2);
 graphe2.x = 50;
 graphe2.y = 200;
@@ -173,46 +46,52 @@ axes.graphics.ss(3, 1, 1).s('#000').mt(0, -60).lt(0, 60).mt(-10, -50).lt(0, -60)
 
 xlegend(200, "xlegend2");
 
-signal2 = new createjs.Shape();
+let signal2 = new createjs.Shape();
 graphe2.addChild(signal2);
 
 // ===== Somme des signaux =====
-grapheSomme = new createjs.Container();
+let grapheSomme = new createjs.Container();
 stageGraphes.addChild(grapheSomme);
 grapheSomme.x = 50;
-grapheSomme.y = 390;
+grapheSomme.y = 370;
 
 axes = new createjs.Shape();
 grapheSomme.addChild(axes);
-axes.graphics.ss(3, 1, 1).s('#000').mt(-10, 0).lt(xmax, 0).mt(xmax-10, -10).lt(xmax, 0).lt(xmax-10, 10);    // axe horizontal
-axes.graphics.ss(3, 1, 1).s('#000').mt(0, -120).lt(0, 120).mt(-10, -110).lt(0, -120).lt(10, -110);          // axe vertical
+axes.graphics.ss(3, 1, 1).s('#000');
+axes.graphics.mt(-10, 0).lt(xmax, 0).mt(xmax-10, -10).lt(xmax, 0).lt(xmax-10, 10);    // axe horizontal
+axes.graphics.ss(3, 1, 1).s('#000').mt(0, -100).lt(0, 100);
+axes.graphics.mt(-10, -90).lt(0, -100).lt(10, -90);          // axe vertical
 
-xlegend(390, "xlegend_somme");
+xlegend(370, "xlegend_somme");
 
 
 // somme des signaux 1 et 2
-somme = new createjs.Shape();
+let somme = new createjs.Shape();
 grapheSomme.addChild(somme);
 
 // enveloppes de la somme des signaux 1 et 2
-enveloppe1 = new createjs.Shape();
+let enveloppe1 = new createjs.Shape();
 grapheSomme.addChild(enveloppe1);
 
-enveloppe2 = new createjs.Shape();
+let enveloppe2 = new createjs.Shape();
 grapheSomme.addChild(enveloppe2);
 
 const amplitude = 40;
 
-function traceSignal(signal, frequence, couleur) {
+function traceSignal(signal, frequence, color) {
     /*
-        Cette fonction trace une fonction sinus de fréquence donnée,
-        à la couleur indiquée.
-        Elle prend en argument l'un des deux signaux harmoniques.
+        Trace une fonction sinus de fréquence donnée,
+        à la color indiquée.
+        Arguments :
+            - signal : l'élément Shape contenant le signal à tracer ;
+            - frequence : la fréquence du signal ;
+            - color : la color du signal.
     */
     signal.graphics.clear();
-    signal.graphics.ss(3).s(couleur).mt(0, amplitude * Math.sin(2 * Math.PI * frequence * 0 / xmax * 0.020));
+    signal.graphics.ss(3).s(color);
+    signal.graphics.mt(0, -amplitude * Math.sin(2 * Math.PI * frequence * 0 / xmax * 0.020));
     for (i = 1; i < xmax; i++) {
-        signal.graphics.lt(i, amplitude * Math.sin(2 * Math.PI * frequence * i / xmax * 0.020));
+        signal.graphics.lt(i, -amplitude * Math.sin(2 * Math.PI * frequence * i / xmax * 0.020));
     }
     signal.graphics.es();
 }
@@ -226,39 +105,168 @@ function traceSomme() {
     enveloppe1.graphics.clear();
     enveloppe2.graphics.clear();
         
-    somme.graphics.ss(3).s('purple').mt(
+    somme.graphics.ss(3).s('purple');
+    somme.graphics.mt(
         0,
-        amplitude * Math.sin(2 * Math.PI * frequence1 * 0 / (2 * xmax) * 0.050)
-        + amplitude * Math.sin(2 * Math.PI * frequence2 * 0 / (2 * xmax) * 0.050)
+        -amplitude * Math.sin(2 * Math.PI * f1 * 0 / (2 * xmax) * 0.050)
+        - amplitude * Math.sin(2 * Math.PI * f2 * 0 / (2 * xmax) * 0.050)
     );
     for (i = 1; i < xmax; i++) {
         somme.graphics.lt(
             i,
-            amplitude * Math.sin(2 * Math.PI * frequence1 * i / (2 * xmax) * 0.050)
-            + amplitude * Math.sin(2 * Math.PI * frequence2 * i / (2 * xmax) * 0.050)
+            -amplitude * Math.sin(2 * Math.PI * f1 * i / (2 * xmax) * 0.050)
+            - amplitude * Math.sin(2 * Math.PI * f2 * i / (2 * xmax) * 0.050)
         );
     }
     
-    enveloppe1.graphics.ss(1).s('green').mt(0, 2 * amplitude * Math.cos(Math.PI * (frequence1 - frequence2) * 0 / (2 * xmax) * 0.050));
+    enveloppe1.graphics.ss(1).s('green');
+    enveloppe1.graphics.setStrokeDash([5,6]);
+    enveloppe1.graphics.mt(0, 2 * amplitude * Math.cos(Math.PI * (f1 - f2) * 0 / (2 * xmax) * 0.050));
     for (i = 1; i < xmax; i++) {
-        enveloppe1.graphics.lt(i, 2 * amplitude * Math.cos(Math.PI * (frequence1 - frequence2) * i / (2 * xmax) * 0.050));
+        enveloppe1.graphics.lt(i, 2 * amplitude * Math.cos(Math.PI * (f1 - f2) * i / (2 * xmax) * 0.050));
     }
     
-    enveloppe2.graphics.ss(1).s('green').mt(0, -2 * amplitude * Math.cos(Math.PI * (frequence1 - frequence2) * 0 / (2 * xmax) * 0.050));
+    enveloppe2.graphics.ss(1).s('green');
+    enveloppe2.graphics.setStrokeDash([5,6]);
+    enveloppe2.graphics.mt(0, -2 * amplitude * Math.cos(Math.PI * (f1 - f2) * 0 / (2 * xmax) * 0.050));
     for (i = 1; i < xmax; i++) {
-        enveloppe2.graphics.lt(i, -2 * amplitude * Math.cos(Math.PI * (frequence1 - frequence2) * i / (2 * xmax) * 0.050));
+        enveloppe2.graphics.lt(i, -2 * amplitude * Math.cos(Math.PI * (f1 - f2) * i / (2 * xmax) * 0.050));
     }
 }
 
 
 
+
+
+//==============================
+//       Canvas curseurs
+//==============================
+
+canvasCurseurs = document.getElementById("cursors_canvas");
+cursorsStage = new createjs.Stage(canvasCurseurs);
+cursorsStage.enableMouseOver();
+createjs.Touch.enable(cursorsStage);
+cursorsStage.mouseMoveOutside = true;
+
+const xminCursor = 130;    // position de l'extrémité gauche des curseurs
+const xmaxCursor = xminCursor + lineLength;
+let f1 = 440;
+let f2 = 440;
+
+
+
+// ===== Curseur pour la fréqence du signal 1 =====
+
+const yF1 = 70;     // position verticale du curseur
+
+// création du curseur
+cursorLine(xminCursor, yF1, cursorsStage);
+cursorText("Signal 1", xminCursor-90, yF1, cursorsStage);
+cursorText("Hz", xmaxCursor+60, yF1, cursorsStage);
+const f1Button = cursorButton('red', xminCursor+0.5*lineLength, yF1, cursorsStage);
+const f1Text = cursorText("", xmaxCursor+50, yF1, cursorsStage);
+f1Text.textAlign = 'right';
+
+const f1Span = document.querySelector("#freq1");
+
+// valeurs limites
+const minF1 = 240;
+const maxF1 = 640;
+getF1();
+
+function getF1() {
+    /*
+        Récupère la valeur de C0 à partir de la position du curseur
+        et met à jour l'affichage de la valeur.
+    */
+    f1 = (f1Button.x - xminCursor) / lineLength * (maxF1 - minF1) + minF1;
+    text = f1.toLocaleString('fr-FR', {maximumFractionDigits: 0});
+    f1Text.text = text;
+    f1Span.innerText = text;
+    traceSignal(signal1, f1, 'red');
+}
+
+
+
+// ===== Curseur pour la fréqence du signal 2 =====
+
+const yF2 = 200;     // position verticale du curseur
+
+// création du curseur
+cursorLine(xminCursor, yF2, cursorsStage);
+cursorText("Signal 2", xminCursor-90, yF2, cursorsStage);
+cursorText("Hz", xmaxCursor+60, yF2, cursorsStage);
+const f2Button = cursorButton('blue', xminCursor+0.5*lineLength, yF2, cursorsStage);
+const f2Text = cursorText("", xmaxCursor+50, yF2, cursorsStage);
+f2Text.textAlign = 'right';
+
+const f2Span = document.querySelector("#freq2");
+
+// valeurs limites
+const minF2 = 240;
+const maxF2 = 640;
+getF2();
+
+function getF2() {
+    /*
+        Récupère la valeur de C0 à partir de la position du curseur
+        et met à jour l'affichage de la valeur.
+    */
+    f2 = (f2Button.x - xminCursor) / lineLength * (maxF2 - minF2) + minF2;
+    text = f2.toLocaleString('fr-FR', {maximumFractionDigits: 0});
+    f2Text.text = text;
+    f2Span.innerText = text;
+    traceSignal(signal2, f2, 'blue');
+}
+
+
+
+// ===== Mise à jour =====
+
+function onMouseDown(event) {
+    object = event.currentTarget;
+    object.offsetX = object.x - event.stageX;
+}
+
+function onPressMove(event) {
+    /*
+    Cette fonction met à jour le curseur et les graphes lors du déplacement d'un bouton.
+    */
+    button = event.currentTarget;
+    button.x = Math.min(Math.max(xminCursor, event.stageX + button.offsetX), xmaxCursor);
+    update();
+}
+
+const fmSpan = document.querySelector("#fm");
+const dfSpan = document.querySelector("#df");
+
+function update() {
+    getF1();
+    getF2();
+    fmSpan.innerText = ((f1+f2)/2).toLocaleString('fr-FR', {maximumFractionDigits: 0});
+    dfSpan.innerText = (Math.abs(f1-f2)/2).toLocaleString('fr-FR', {maximumFractionDigits: 0});
+    traceSomme();
+    cursorsStage.update();
+    stageGraphes.update();
+}
+
+// ajout des écouteurs
+f1Button.addEventListener("mousedown", onMouseDown);
+f1Button.addEventListener("pressmove", onPressMove);
+
+f2Button.addEventListener("mousedown", onMouseDown);
+f2Button.addEventListener("pressmove", onPressMove);
+
+
+
+
+
 // ===== Initialisation =====
 
-frequence1 = 440;
-traceSignal(signal1, frequence1, 'red');
-frequence2 = 440;
-traceSignal(signal2, frequence2, 'blue');
-traceSomme();
+update();
+// traceSignal(signal1, f1, 'red');
+// traceSignal(signal2, f2, 'blue');
+// traceSomme();
 
-stageCurseurs.update();
-stageGraphes.update();
+// cursorsStage.update();
+// stageGraphes.update();
