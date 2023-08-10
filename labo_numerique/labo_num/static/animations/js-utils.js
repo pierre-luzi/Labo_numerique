@@ -113,3 +113,57 @@ function drawVector(shape, xstart, ystart, xend, yend, color, dashed=false) {
         yend + 10 * Math.sin(angle - 3/4 * Math.PI)
     );
 }
+
+
+
+
+
+//==============================
+//     Couleurs spectrales
+//==============================
+
+function wavelengthToRGB(wavelength, gamma=0.8) {
+    /*
+        Cette fonction convertit une longueur d'onde 
+        en une couleur au format RGB. La longueur d'onde
+        doit être exprimée en nanomètres et comprise entre
+        380 et 750 (789 THz - 400 THz).
+
+        Based on code by Dan Bruton
+        http://www.physics.sfasu.edu/astro/color/spectra.html
+    */
+    
+    let R = 0.0;
+    let G = 0.0;
+    let B = 0.0;
+    
+    if (wavelength >= 380 && wavelength <= 440) {
+        let attenuation = 0.3 + 0.7 * (wavelength - 380) / (440 - 380);
+        R = ((-(wavelength - 440) / (440 - 380)) * attenuation) ** gamma;
+        G = 0.0;
+        B = (1.0 * attenuation) ** gamma;
+    } else if (wavelength >= 440 && wavelength <= 490) {
+        R = 0.0;
+        G = ((wavelength - 440) / (490 - 440)) ** gamma;
+        B = 1.0;
+    } else if (wavelength >= 490 && wavelength <= 510) {
+        R = 0.0;
+        G = 1.0;
+        B = (-(wavelength - 510) / (510 - 490)) ** gamma;
+    } else if (wavelength >= 510 && wavelength <= 580) {
+        R = ((wavelength - 510) / (580 - 510)) ** gamma;
+        G = 1.0;
+        B = 0.0;
+    } else if (wavelength >= 580 && wavelength <= 645) {
+        R = 1.0;
+        G = (-(wavelength - 645) / (645 - 580)) ** gamma;
+        B = 0.0;
+    } else if (wavelength >= 645 && wavelength <= 750) {
+        let attenuation = 0.3 + 0.7 * (750 - wavelength) / (750 - 645);
+        R = (1.0 * attenuation) ** gamma;
+        G = 0.0;
+        B = 0.0;
+    }
+    
+    return [R*255, G*255, B*255];
+}
