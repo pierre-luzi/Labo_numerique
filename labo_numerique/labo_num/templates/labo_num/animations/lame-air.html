@@ -3,7 +3,8 @@
 
 {% block head %}
 	<link rel="stylesheet" href="{% static 'animations/lame-air/style.css' %}" />
-	<script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+	<script defer src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+    <script defer src="{% static 'animations/js-utils.js' %}"></script>
 	<script defer src="{% static 'animations/lame-air/script.js' %}"></script>
 {% endblock %}
 

@@ -1,103 +1,32 @@
-function wavelengthToRGB(wavelength, gamma=0.8) {
-    /*
-        Cette fonction convertit une longueur d'onde 
-        en une couleur au format RGB. La longueur d'onde
-        doit être exprimée en nanomètres et comprise entre
-        380 et 750 (789 THz - 400 THz).
+/*
+    -----------------------------------
+    |   Franges d'égale inclinaison   |
+    -----------------------------------
 
-        Based on code by Dan Bruton
-        http://www.physics.sfasu.edu/astro/color/spectra.html
-    */
-    
-    let R = 0.0;
-    let G = 0.0;
-    let B = 0.0;
-    
-    if (wavelength >= 380 && wavelength <= 440) {
-        let attenuation = 0.3 + 0.7 * (wavelength - 380) / (440 - 380);
-        R = ((-(wavelength - 440) / (440 - 380)) * attenuation) ** gamma;
-        G = 0.0;
-        B = (1.0 * attenuation) ** gamma;
-    } else if (wavelength >= 440 && wavelength <= 490) {
-        R = 0.0;
-        G = ((wavelength - 440) / (490 - 440)) ** gamma;
-        B = 1.0;
-    } else if (wavelength >= 490 && wavelength <= 510) {
-        R = 0.0;
-        G = 1.0;
-        B = (-(wavelength - 510) / (510 - 490)) ** gamma;
-    } else if (wavelength >= 510 && wavelength <= 580) {
-        R = ((wavelength - 510) / (580 - 510)) ** gamma;
-        G = 1.0;
-        B = 0.0;
-    } else if (wavelength >= 580 && wavelength <= 645) {
-        R = 1.0;
-        G = (-(wavelength - 645) / (645 - 580)) ** gamma;
-        B = 0.0;
-    } else if (wavelength >= 645 && wavelength <= 750) {
-        let attenuation = 0.3 + 0.7 * (750 - wavelength) / (750 - 645);
-        R = (1.0 * attenuation) ** gamma;
-        G = 0.0;
-        B = 0.0;
-    }
-    
-    return [R*255, G*255, B*255];
-}
+    Ce script simule les franges d'égale inclinaison produites par un
+    interféromètre de Michelson réglé en lame d'air.
+    Un curseur permet de régler l'épaisseur de la lame d'air. Un autre
+    curseur permet de choisir la longueur d'onde.
+    Un schéma du montage est représenté, ainsi que deux rayons lumineux
+    secondaires issus d'un rayon primaire.
+*/
+
+
+
+
 
 //==============================
 //       Canvas curseurs
 //==============================
 
 canvasCurseurs = document.getElementById("canvasCurseurs");
-stageCurseurs = new createjs.Stage(canvasCurseurs);
-stageCurseurs.enableMouseOver();
-createjs.Touch.enable(stageCurseurs);
-stageCurseurs.mouseMoveOutside = true;
+cursorsStage = new createjs.Stage(canvasCurseurs);
+cursorsStage.enableMouseOver();
+createjs.Touch.enable(cursorsStage);
+cursorsStage.mouseMoveOutside = true;
 
 
 // ===== Fonctions de création des curseurs =====
-
-const lineLength = 300;
-
-function drawCursorLine(x, y) {
-    /*
-        Cette fonction trace une barre horizontale de longueur lineLength.
-        La barre est tracée à la position (x, y).
-    */
-    line = new createjs.Shape();
-    stageCurseurs.addChild(line);
-    line.graphics.ss(4, 1, 1).s('#333').mt(0, 0).lt(lineLength, 0);
-    line.x = x;
-    line.y = y;
-}
-
-function createCursorButton(color, x, y) {
-    /*
-        Cette fonction trace un bouton à la position (x ,y).
-    */
-    button = new createjs.Shape();
-    stageCurseurs.addChild(button)
-    button.cursor = 'pointer';
-    button.graphics.f(color).dc(0, 0, 10).ef().es();
-    button.name = name;
-    button.shadow = new createjs.Shadow("#000", 4, 4, 5);
-    button.x = x;
-    button.y = y;
-    return button
-}
-
-function writeCursorText(valeur, x, y) {
-    /*
-        Cette fonction crée un texte à la position (x, y).
-    */
-    text = new createjs.Text(valeur, "20px Asul", "#333");
-    text.x = x;
-    text.y = y;
-    text.name = name;
-    text.textBaseline = "middle"
-    stageCurseurs.addChild(text);
-    return text;
-}
 
 const xminCursor = 130;    // position de l'extrémité gauche des curseurs
 
@@ -107,12 +36,12 @@ const xminCursor = 130;    // position de l'extrémité gauche des curseurs
 
 const yWidth = 30;      // position verticale
 
-drawCursorLine(xminCursor, yWidth);
-writeCursorText("e", xminCursor-30, yWidth);
-writeCursorText("µm", xminCursor+360, yWidth);
+cursorLine(xminCursor, yWidth, cursorsStage);
+cursorText("e", xminCursor-30, yWidth, cursorsStage);
+cursorText("µm", xminCursor+360, yWidth, cursorsStage);
 
-const buttonWidth = createCursorButton('gray', xminCursor+0.5*lineLength, yWidth);
-const widthText = writeCursorText("", xminCursor+320, yWidth);
+const buttonWidth = cursorButton('gray', xminCursor+0.5*lineLength, yWidth, cursorsStage);
+const widthText = cursorText("", xminCursor+320, yWidth, cursorsStage);
 const minWidth = -500;
 const maxWidth = 500;
 let width = 0;
@@ -136,12 +65,12 @@ function getWidth() {
 
 const yWavelength = 70;    // position verticale
 
-drawCursorLine(xminCursor, yWavelength);
-writeCursorText("λ", xminCursor-30, yWavelength);
-writeCursorText("nm", xminCursor+360, yWavelength);
+cursorLine(xminCursor, yWavelength, cursorsStage);
+cursorText("λ", xminCursor-30, yWavelength, cursorsStage);
+cursorText("nm", xminCursor+360, yWavelength, cursorsStage);
 
-const buttonWavelength = createCursorButton('red', xminCursor+0.7*lineLength, yWavelength);
-const wavelengthText = writeCursorText("", xminCursor+320, yWavelength);
+const buttonWavelength = cursorButton('red', xminCursor+0.7*lineLength, yWavelength, cursorsStage);
+const wavelengthText = cursorText("", xminCursor+320, yWavelength, cursorsStage);
 const minWavelength = 400;
 const maxWavelength = 750;
 let wavelength = minWavelength;
@@ -190,7 +119,7 @@ function onPressMove(event) {
     button.x = Math.min(Math.max(xminCursor, event.stageX + button.offsetX), xminCursor+lineLength);
     getWidth();
     getWavelength();
-    stageCurseurs.update();
+    cursorsStage.update();
     drawInterferenceFigure();
     stageGraphes.update();
 }
@@ -262,7 +191,7 @@ function drawInterferenceFigure() {
 //==============================
 
 const schemaContainer = new createjs.Container();
-stageCurseurs.addChild(schemaContainer);
+cursorsStage.addChild(schemaContainer);
 schemaContainer.x = 300;
 schemaContainer.y = 220;
 
@@ -299,7 +228,7 @@ function drawMovingMirror() {
     
     movingMirror.graphics.mt(distMirrorSep + width*0.05, -60);
     movingMirror.graphics.lt(distMirrorSep + width*0.05, 60);
-    stageCurseurs.update();
+    cursorsStage.update();
 }
 
 const movingRay = new createjs.Shape();
@@ -332,7 +261,7 @@ function drawMovingRay() {
         distLensSep + distLensScreen
     );
     schemaContainer.setChildIndex(fixedElements, schemaContainer.getNumChildren()-1);
-    stageCurseurs.update();
+    cursorsStage.update();
 }
 
 const fixedRay = new createjs.Shape();
@@ -360,7 +289,7 @@ function drawFixedRay() {
         distLensSep + distLensScreen
     );
     schemaContainer.setChildIndex(fixedElements, schemaContainer.getNumChildren()-1);
-    stageCurseurs.update();
+    cursorsStage.update();
 }
 
 
@@ -374,5 +303,5 @@ drawInterferenceFigure();
 drawMovingMirror();
 drawMovingRay();
 drawFixedRay();
-stageCurseurs.update();
+cursorsStage.update();
 stageGraphes.update();
