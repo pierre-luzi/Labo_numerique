@@ -9,4 +9,21 @@
 
 {% block content %}
     <canvas id="canvas" width="1200px" height="800px"></canvas>
+    <div id="config">
+        <span style="font-size: 28px; font-weight: bold;">Configuration électronique :</span>
+        <p id="subshells">
+            <span id="shell1" class="shell">
+                <span id="1s" class="subshell"></span>
+            </span>
+            <span id="shell2" class="shell">
+                <span id="2s" class="subshell"></span>
+                <span id="2p" class="subshell"></span>
+            </span>
+            <span id="shell3" class="shell">
+                <span id="3s" class="subshell"></span>
+                <span id="3p" class="subshell"></span>
+            </span>
+        </p>
+    </div>
+    <div id="valence">Couche de valence</div>
 {% endblock %}

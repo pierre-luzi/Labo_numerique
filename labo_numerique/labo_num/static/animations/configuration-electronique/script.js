@@ -23,13 +23,13 @@ electronsNumberContainer.y = 20;
 // ===== Affichage du nombre d'électrons =====
 
 // Titre "Nombre d'électrons"
-electronsNumberTitle = new createjs.Text("Nombre d'électrons", "bold 28px Quicksand", "#C00");
+let electronsNumberTitle = new createjs.Text("Nombre d'électrons", "bold 28px Quicksand", "#C00");
 electronsNumberContainer.addChild(electronsNumberTitle);
 electronsNumberTitle.x = 0;
 electronsNumberTitle.y = 30;
 
 // Texte
-electronsNumberText = new createjs.Text(electronsNumber, "bold 50px Quicksand", "#C00");
+let electronsNumberText = new createjs.Text(electronsNumber, "bold 50px Quicksand", "#C00");
 electronsNumberContainer.addChild(electronsNumberText);
 electronsNumberText.textAlign = "right";
 electronsNumberText.x = 350;
@@ -37,7 +37,7 @@ electronsNumberText.y = 20;
 
 function displayElectronsNumber() {
     /*
-        Cette fonction met à jour l'affichage du nombre d'électrons.
+        Met à jour l'affichage du nombre d'électrons.
     */
     electronsNumberText.text = electronsNumber;
 }
@@ -46,7 +46,7 @@ function displayElectronsNumber() {
 
 // ===== Augmentation du nombre d'électrons =====
 
-increaseButton = new createjs.Shape();
+let increaseButton = new createjs.Shape();
 electronsNumberContainer.addChild(increaseButton);
 increaseButton.x = 400;
 increaseButton.y = 20;
@@ -56,7 +56,7 @@ increaseButton.graphics.mt(-15, 0).lt(15, 0);
 increaseButton.shadow = new createjs.Shadow("#000000", 2, 2, 8);
 increaseButton.cursor = "pointer";
 
-increaseLegend = new createjs.Text("Augmenter", "bold 14px Quicksand", "#cc0000");
+let increaseLegend = new createjs.Text("Augmenter", "bold 14px Quicksand", "#cc0000");
 electronsNumberContainer.addChild(increaseLegend);
 increaseLegend.x = 440;
 increaseLegend.y = 15;
@@ -66,27 +66,21 @@ increaseButton.on("mousedown", function (event) {
     this.y = this.y + 2;
     this.shadow.offsetY -= 2;
     stage.update();
-})
+});
 
 increaseButton.on("pressup", function(event) {
     this.x = this.x - 1;
     this.y = this.y - 2;
     this.shadow.offsetY += 2;
-    stage.update();
-})
-
-increaseButton.on("click", function(event) {
     electronsNumber = Math.min(18, electronsNumber + 1);
-    displayElectronsNumber();
-    affiche_texte_config();
-    displayElectrons();
-})
+    update();
+});
 
 
 
 // ===== Diminution du nombre d'électrons =====
 
-decreaseButton = new createjs.Shape();
+let decreaseButton = new createjs.Shape();
 electronsNumberContainer.addChild(decreaseButton);
 decreaseButton.x = 400;
 decreaseButton.y = 70;
@@ -95,7 +89,7 @@ decreaseButton.graphics.mt(-15, 0).lt(15, 0);
 decreaseButton.shadow = new createjs.Shadow("#000000", 2, 2, 8);
 decreaseButton.cursor = "pointer";
 
-decreaseLegend = new createjs.Text("Diminuer", "bold 14px Quicksand", "#cc0000");
+let decreaseLegend = new createjs.Text("Diminuer", "bold 14px Quicksand", "#cc0000");
 electronsNumberContainer.addChild(decreaseLegend);
 decreaseLegend.x = 440;
 decreaseLegend.y = 65;
@@ -104,21 +98,28 @@ decreaseButton.on("mousedown", function(event) {
     this.y = this.y + 3;
     this.shadow.offsetY -= 2;
     stage.update();
-})
+});
 
 decreaseButton.on("pressup", function(event) {
     this.y = this.y - 3;
     this.shadow.offsetY += 2;
     electronsNumber = Math.max(0, electronsNumber - 1);
+    update();
+});
+
+
+
+function update() {
+    /*
+        Met à jour le nombre d'électrons, le schéma
+        et la configuration électronique.
+    */
     displayElectronsNumber();
-    affiche_texte_config();
+    displayConfiguration();
     displayElectrons();
+    displayValenceShell();
     stage.update();
-})
-
-decreaseButton.on("click", function(event) {
-
-})
+}
 
 
 
@@ -130,19 +131,19 @@ decreaseButton.on("click", function(event) {
     
 const atomContainer = new createjs.Container();
 stage.addChild(atomContainer);
-atomContainer.x = 850;
+atomContainer.x = 880;
 atomContainer.y = 260;
 
 
 
 // ===== Noyau =====
 
-nucleus = new createjs.Shape();
+let nucleus = new createjs.Shape();
 atomContainer.addChild(nucleus);
 nucleus.graphics.beginRadialGradientFill(['#a0a0a0', '#303030'], [0, 1], 0, 0, 0, 0, 0, 40);
 nucleus.graphics.drawCircle(0, 0, 40);
 
-nucleusText = new createjs.Text("Noyau", "bold 20px Quicksand", 'white');
+let nucleusText = new createjs.Text("Noyau", "bold 20px Quicksand", 'white');
 atomContainer.addChild(nucleusText);
 nucleusText.textAlign = "center";
 nucleusText.x = 0;
@@ -154,28 +155,24 @@ nucleusText.y = -10;
 // ===== Sous-couches électroniques =====
 
 subshells = [
-    {nom: '1s', contenance: 2, rayon: 60, couleur: 'red'},
-    {nom: '2s', contenance: 2, rayon: 120, couleur: 'blue'},
-    {nom: '2p', contenance: 6, rayon: 150, couleur: 'blue'},
-    {nom: '3s', contenance: 2, rayon: 220, couleur: 'green'},
-    {nom: '3p', contenance: 6, rayon: 250, couleur: 'green'},
+    {name: '1s', capacity: 2, radius: 60, color: 'red'},
+    {name: '2s', capacity: 2, radius: 120, color: 'blue'},
+    {name: '2p', capacity: 6, radius: 150, color: 'blue'},
+    {name: '3s', capacity: 2, radius: 220, color: 'green'},
+    {name: '3p', capacity: 6, radius: 250, color: 'green'},
 ]
 
 for (subshell of subshells) {
-    let color = subshell['couleur'];
-    let radius = subshell['rayon'];
+    let color = subshell['color'];
+    let radius = subshell['radius'];
 
     let subshellShape = new createjs.Shape();
     subshellShape.graphics.beginStroke(color);
     subshellShape.graphics.drawCircle(0, 0, radius);
     subshellShape.graphics.endStroke();
-    // subshellShape.graphics.beginRadialGradientFill(['white', 'yellow'], [0, 1], 0, 0, radius-20, 0, 0, radius+50);
-    // subshellShape.graphics.drawCircle(0, 0, radius);
-    // subshellShape.graphics.beginRadialGradientFill(['yellow', 'white'], [0, 1], 0, 0, radius-50, 0, 0, radius+20);
-    // subshellShape.graphics.drawCircle(0, 0, radius);
     atomContainer.addChild(subshellShape);
 
-    textesubshell = new createjs.Text(subshell['nom'], "bold 20px Quicksand", color);
+    let textesubshell = new createjs.Text(subshell['name'], "bold 20px Quicksand", color);
     textesubshell.x = (radius + 15) * Math.cos(-Math.PI/4);
     textesubshell.y = (radius + 15) * Math.sin(-Math.PI/4);
     atomContainer.addChild(textesubshell);
@@ -211,7 +208,7 @@ const electronsList = [
     ['green', 250, 11*Math.PI/6],
 ];
 
-electronsContainer = new createjs.Container();
+let electronsContainer = new createjs.Container();
 atomContainer.addChild(electronsContainer);
 
 function createElectron(color, radius, angle) {
@@ -248,43 +245,79 @@ function displayElectrons() {
 //     Configuration électronique
 //======================================
 
-container_config_electronique = new createjs.Container();
+let container_config_electronique = new createjs.Container();
 stage.addChild(container_config_electronique);
 container_config_electronique.x = 80;
 container_config_electronique.y = 100;
 
-// Titre "Configuration électronique"
-titre_config_electronique = new createjs.Text("Configuration électronique :", "bold 28px Quicksand", "#00F");
-container_config_electronique.addChild(titre_config_electronique);
-titre_config_electronique.x = 0;
-titre_config_electronique.y = 25;
-
 // Texte
-texte_config_electronique = new createjs.Text("", "bold 50px Quicksand", "#00F");
+let texte_config_electronique = new createjs.Text("", "bold 50px Quicksand", "#00F");
 container_config_electronique.addChild(texte_config_electronique);
 texte_config_electronique.textAlign = "left";
 texte_config_electronique.x = 0;
 texte_config_electronique.y = 80;
 
-function affiche_texte_config() {
-    exposants = ['¹', '²', '³', '⁴', '⁵', '⁶'];
-    texte = "";
-    reste = electronsNumber;
-    subshell = 0;
-    while (reste > 0) {
-        nom = subshells[subshell]['nom'];
-        contenance = subshells[subshell]['contenance'];
-        if (reste > contenance) {
-            texte = texte + nom + exposants[contenance-1];
-            reste = reste - contenance;
-        } else {
-            texte = texte + nom + exposants[reste-1];
-            reste = 0;
-        }
-        texte = texte + " ";
-        subshell++;
+const subshellSpans = document.querySelectorAll(".subshell");
+const shellSpans = document.querySelectorAll(".shell");
+
+let valenceShell = null;
+const valenceDiv = document.querySelector("#valence");
+
+function clearConfiguration() {
+    /*
+        Remet à zéro la configuration électronique.
+    */
+    for (span of subshellSpans) {
+        span.innerHTML = "";
     }
-    texte_config_electronique.text = texte;
+    
+    for (span of shellSpans) {
+        span.style.backgroundColor = "rgba(0, 0, 0, 0)";
+    }
+}
+
+function displayConfiguration() {
+    /*
+        Affiche la configuration électronique correspondant au
+        nombre d'électrons.
+    */
+    clearConfiguration();
+    
+    let remainder = electronsNumber;
+    let i = 0;
+    
+    while (remainder > 0) {
+        let text = "";
+        subshellName = subshells[i]['name'];
+        capacity = subshells[i]['capacity'];
+        if (remainder > capacity) {
+            text = subshellName + "<sup>" + capacity + "</sup>";
+            remainder = remainder - capacity;
+        } else {
+            text = subshellName + "<sup>" + remainder + "</sup>";
+            remainder = 0;
+            valenceShell = subshellSpans[i].parentNode;
+            valenceShell.style.backgroundColor = "#F0ECB0";
+        }
+        subshellSpans[i].innerHTML = text;
+        i++;
+    }
+}
+
+function displayValenceShell() {
+    if (electronsNumber == 0) {
+        valenceDiv.style.display = "none";
+    } else {
+        console.log(valenceShell);
+        valenceDiv.style.color = window.getComputedStyle(valenceShell).getPropertyValue('color');
+        valenceDiv.style.display = "block";
+        valenceDiv.style.left = (
+            valenceShell.getBoundingClientRect().left
+            + 0.5*valenceShell.getBoundingClientRect().width
+            - 0.5*valenceDiv.getBoundingClientRect().width
+        ) + "px";
+        valenceDiv.style.top = (valenceShell.getBoundingClientRect().top + 80) + "px";
+    }
 }
 
 
