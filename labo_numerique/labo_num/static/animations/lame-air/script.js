@@ -19,8 +19,8 @@
 //       Canvas curseurs
 //==============================
 
-canvasCurseurs = document.getElementById("canvasCurseurs");
-cursorsStage = new createjs.Stage(canvasCurseurs);
+cursorsCanvas = document.getElementById("cursors_canvas");
+cursorsStage = new createjs.Stage(cursorsCanvas);
 cursorsStage.enableMouseOver();
 createjs.Touch.enable(cursorsStage);
 cursorsStage.mouseMoveOutside = true;
@@ -115,13 +115,12 @@ function onPressMove(event) {
         et la figure d'interférence est tracée.
     */
     button = event.currentTarget;
-    console.log(button);
     button.x = Math.min(Math.max(xminCursor, event.stageX + button.offsetX), xminCursor+lineLength);
     getWidth();
     getWavelength();
     cursorsStage.update();
     drawInterferenceFigure();
-    stageGraphes.update();
+    graphicStage.update();
 }
 
 buttonWidth.addEventListener('mousedown', onMouseDown);
@@ -137,11 +136,11 @@ buttonWavelength.addEventListener('pressmove', onPressMove);
 //       Canvas graphique
 //==============================
 
-canvasGraphes = document.getElementById("canvasGraphes");
-stageGraphes = new createjs.Stage(canvasGraphes);
+graphicCanvas = document.getElementById("graphic_canvas");
+graphicStage = new createjs.Stage(graphicCanvas);
 
 graphicContainer = new createjs.Container();
-stageGraphes.addChild(graphicContainer);
+graphicStage.addChild(graphicContainer);
 graphicContainer.x = 300;
 graphicContainer.y = 240;
 
@@ -304,4 +303,4 @@ drawMovingMirror();
 drawMovingRay();
 drawFixedRay();
 cursorsStage.update();
-stageGraphes.update();
+graphicStage.update();

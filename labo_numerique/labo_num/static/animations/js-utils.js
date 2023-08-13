@@ -2,7 +2,8 @@
 //     Tracé des curseurs
 //==============================
 
-const lineLength = 300;
+let lineLength = 300;
+let cursorFont = "20px Quicksand";
 
 function cursorLine(x, y, stage) {
     /*
@@ -56,7 +57,7 @@ function cursorText(valeur, x, y, stage) {
     /*
         Cette fonction crée un texte à la position (x, y).
     */
-    text = new createjs.Text(valeur, "20px Quicksand", "#333");
+    text = new createjs.Text(valeur, cursorFont, "#333");
     text.x = x;
     text.y = y;
     text.textBaseline = "middle"
