@@ -148,6 +148,7 @@ decimalLabel.setAttribute("for", "decimal");
 // input pour la partie décimale (niveau 3)
 const decimalInput = document.createElement("input");
 decimalInput.setAttribute("type", "text");
+decimalInput.setAttribute("inputmode", "decimal");
 decimalInput.setAttribute("name", "decimal");
 decimalInput.setAttribute("id", "decimal_input");
 
@@ -159,6 +160,7 @@ exponentLabel.setAttribute("for", "exponent");
 // input pour l'exposant (niveaux 2 et 3)
 const exponentInput = document.createElement("input");
 exponentInput.setAttribute("type", "text");
+exponentInput.setAttribute("inputmode", "decimal");
 exponentInput.setAttribute("name", "exponent");
 exponentInput.setAttribute("id", "exponent_input");
 

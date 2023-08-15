@@ -33,6 +33,7 @@ function createInput(result, i) {
     */
     let calculInput = document.createElement("input");
     calculInput.setAttribute("type", "text");
+    calculInput.setAttribute("inputmode", "decimal");
     calculInput.setAttribute("name", "calcul" + i);
     calculInput.setAttribute("id", "calcul" + i);
     
