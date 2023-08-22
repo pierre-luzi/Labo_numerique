@@ -1,0 +1,46 @@
+{% extends 'labo_num/base_animation.html' %}
+{% load static %}
+{% load labo_num_extras %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'labo_num/css/flashcards.css' %}" />
+    <script defer src="{% static 'animations/js-utils.js' %}"></script>
+    <script defer src="{% static 'labo_num/js/flashcards.js' %}"></script>
+{% endblock head %}
+
+{% block pagetitle %}
+    <h1>Flashcards</h1>
+{% endblock %}
+
+{% block content %}
+    <main>
+        <img src="{% static 'labo_num/images/wrong.png' %}" id="wrong" />
+        <div id=cards>
+            {% for flashcard in flashcards %}
+                <div class="flashcard">
+                    <div class="front">
+                        <p>{{ flashcard.question }}</p>
+                    </div>
+                    <div class="back">
+                        <p>{{ flashcard.reponse }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <img src="{% static 'labo_num/images/correct.png' %}" id="correct" />
+    </main>
+    <div id="guidelines">
+        <p>Propose une réponse à la question posée (face blanche).</p>
+        <p>Clique sur la carte pour vérifier la réponse.</p>
+        <p>Si tu avais la bonne réponse, clique sur le bouton <img src="{% static 'labo_num/images/wrong.png' %}" /></p>
+        <p>Si tu n'avais pas la bonne réponse, clique sur le bouton <img src="{% static 'labo_num/images/correct.png' %}" /></p>
+    </div>
+    <div class="score" id="wrong_score"></div>
+    <div class="score" id="correct_score"></div>
+{% endblock content %}
+
+{% block footer %}
+    <footer>
+       Réalisé par P. Luzi - CC <strong>BY-NC-SA</strong>
+    </footer>
+{% endblock %}

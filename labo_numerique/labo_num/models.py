@@ -102,6 +102,11 @@ class Activite(models.Model):
     contenu = models.TextField(max_length=500, null=True, blank=True)
     fichier = models.FileField(upload_to='uploads/activites/', null=True, blank=True)
     chapitre = models.ForeignKey(Chapitre, on_delete=models.CASCADE, null=True)
+        
+class Flashcard(models.Model):
+    question = models.fields.TextField(max_length=500, default="");
+    reponse = models.fields.TextField(max_length=500, default="");
+    chapitre = models.ForeignKey(Chapitre, on_delete=models.CASCADE, null=True)
 
 class Annale(models.Model):
     """Modèle pour créer un sujet d'annale.

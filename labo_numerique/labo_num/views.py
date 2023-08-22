@@ -40,6 +40,15 @@ def fiche_revision(request, classe, matiere, numero):
         {'chapitre': chapitre}
     )
 
+def flashcards(request, classe, matiere, numero):
+    chapitre = get_object_or_404(Chapitre, niveau=classe, matiere=matiere, numero=numero)
+    flashcards = Flashcard.objects.filter(chapitre__id=chapitre.id)
+    return render(
+        request,
+        'labo_num/flashcards.html',
+        {'chapitre': chapitre, 'flashcards': flashcards}
+    )
+
 def annales(request):
     chapitres = Chapitre.objects.filter(niveau='TSTL')
     sujets = Annale.objects.filter(sujet_complet=True)

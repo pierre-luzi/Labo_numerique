@@ -1,0 +1,132 @@
+@import url('https://fonts.googleapis.com/css2?family=Boogaloo&family=Calistoga&family=Kalam&family=Quicksand:wght@500&family=Titan+One&display=swap');
+  
+body {
+    height: calcul(100vh - 10px);
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 500;
+    overflow: hidden;
+}
+
+h1 {
+    margin: 10px 0;
+    padding: 0px 0;
+    text-align: center;
+    font-size: 260%;
+    font-family: 'Boogaloo', cursive;
+}
+
+/* Pour ce qui est des propriétés du type perspective, transform, transition ou encore backface et selon les navigateurs Internet, il faut rajouter les préfixes correspondants: -webkit, -moz-, ms- ou -o*/
+main {
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+img {
+    height: 50px;
+    width: auto;
+}
+
+#wrong, #correct {
+    cursor: pointer;
+}
+
+#cards {
+    position: relative;
+    width: 500px;
+    height: 220px;
+    display: inline-block;
+    margin: 0 50px;
+}
+
+.flashcard {
+    height: 100%;
+    width: 100%;
+    perspective-origin: center bottom;
+    position: absolute;
+    display: none;
+    cursor: pointer;
+}
+
+.front, .back {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: justify;
+    font-size: 24px;
+    border: solid black 2px;
+    border-radius: 30px;
+    backface-visibility: hidden;
+    transform-style: preserve-3d;
+    transition-duration: 0.5s;
+    transition-property: transform;
+    transition-timing-function: ease-out;
+}
+
+.front *, .back * {
+    padding: 10px 50px;
+}
+
+.front {
+    background-color: white;
+    z-index: 5;
+}
+
+.back {
+    color: white;
+    background-color: #c0c0c0;
+    z-index: 0;
+    transform: rotateY(-180deg);
+}
+
+.rotated .front {
+    z-index: 5;
+    transform: rotateY(180deg);
+}
+
+.rotated .back {
+    z-index: 10;
+    transform: rotateY(0deg);
+}
+
+#guidelines {
+    margin-top: 50px;
+    text-align: justify;
+}
+
+#guidelines p {
+    margin: 10px auto;
+    width: 500px;
+    height: 2em;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+#guidelines img {
+    height: 30px;
+    width: auto;
+    margin: 10px;
+}
+
+.score {
+    position: absolute;
+    font-size: 24px;
+    z-index: 1;
+    text-align: center;
+}
+
+#wrong_score {
+    color: red;
+}
+
+#correct_score {
+    color: #27b24a;
+}
