@@ -11,12 +11,14 @@
     </head>
     
     <body>
-        <h1>{{ animation.titre }}</h1>
-        <main>
-            {% block content %}{% endblock %}
-        </main>
-       <footer>
-           Réalisé par P. Luzi - {% language 'fr' %}{{ animation.date|date:'F Y'|capfirst }}{% endlanguage %} - CC <strong>BY-NC-SA</strong>
-       </footer>
+        {% block pagetitle %}
+            <h1>{{ animation.titre }}</h1>
+        {% endblock %}
+        {% block content %}{% endblock %}
+        {% block footer %}
+            <footer>
+               Réalisé par P. Luzi - {% language 'fr' %}{{ animation.date|date:'F Y'|capfirst }}{% endlanguage %} - CC <strong>BY-NC-SA</strong>
+            </footer>
+        {% endblock %}
     </body>
 </html>
