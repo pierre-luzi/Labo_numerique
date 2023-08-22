@@ -9,52 +9,54 @@
 {% endblock %}
 
 {% block content %}
-    <div id="plot">
-        <canvas id="plot_canvas" width="730" height="340" margin="auto"></canvas>
-        <!-- Lois de concentration -->
-        <p style="display: none;" class="loi_concentration" id="loi_concentration0">
-            C(t) = <span class="C0"></span> - <span class="k"></span>&times; t
-        </p>
-        <p style="display: block;" class="loi_concentration" id="loi_concentration1">
-            C(t) = <span class="C0"></span> &times; e<sup>-<span class="k"></span> &times; t</sup>
-        </p>
-        <div style="display: none;" class="loi_concentration" id="loi_concentration2">
-            <span>C(t) = </span>
-            <div class="fraction" style="display: flex; flex-direction: column;">
-                <div>
-                    <span class="C0"></span>
-                </div>
-                <div style="border-top: solid black 2px;">
-                    1 + 2 &times; <span class="k"></span> &times; <span class="C0"></span> &times; t
-                </div>
-            </div>
-        </div>
-        <!---->
-        <canvas id="cursors_canvas" width="730" height="90" margin="auto"></canvas>
-    </div>
-    <div id="informations">
-        <form id="choix_ordre">
-            <p id="titre_ordre">Ordre de la réaction :</span>
-            <div id="inputs_ordre">
-                <p><input name="input_ordre" id="ordre0" value="0" type="radio"/><label for="ordre0">0</label></p>
-                <p><input name="input_ordre" id="ordre1" value="1" type="radio" checked /><label for="ordre1">1</label></p>
-                <p><input name="input_ordre" id="ordre2" value="2" type="radio"/><label for="ordre2">2</label></p>
-            </div>
-        </form>
-        <div>
-            Loi de vitesse :
-            <p id="rate_equation"></p>
-        </div>
-        <div>
-            Temps de demi-réaction :
-            <div id="half_life" style="display: flex;">
-                <span>t<sub style="font-size: 0.5em;">1/2</sub> = </span>
+    <main>
+        <div id="plot">
+            <canvas id="plot_canvas" width="730" height="340" margin="auto"></canvas>
+            <!-- Lois de concentration -->
+            <p style="display: none;" class="loi_concentration" id="loi_concentration0">
+                C(t) = <span class="C0"></span> - <span class="k"></span>&times; t
+            </p>
+            <p style="display: block;" class="loi_concentration" id="loi_concentration1">
+                C(t) = <span class="C0"></span> &times; e<sup>-<span class="k"></span> &times; t</sup>
+            </p>
+            <div style="display: none;" class="loi_concentration" id="loi_concentration2">
+                <span>C(t) = </span>
                 <div class="fraction" style="display: flex; flex-direction: column;">
-                        <span id="half_life_numerator"></span>
-                        <span id="half_life_denominator"></span>
+                    <div>
+                        <span class="C0"></span>
+                    </div>
+                    <div style="border-top: solid black 2px;">
+                        1 + 2 &times; <span class="k"></span> &times; <span class="C0"></span> &times; t
+                    </div>
+                </div>
+            </div>
+            <!---->
+            <canvas id="cursors_canvas" width="730" height="90" margin="auto"></canvas>
+        </div>
+        <div id="informations">
+            <form id="choix_ordre">
+                <p id="titre_ordre">Ordre de la réaction :</span>
+                <div id="inputs_ordre">
+                    <p><input name="input_ordre" id="ordre0" value="0" type="radio"/><label for="ordre0">0</label></p>
+                    <p><input name="input_ordre" id="ordre1" value="1" type="radio" checked /><label for="ordre1">1</label></p>
+                    <p><input name="input_ordre" id="ordre2" value="2" type="radio"/><label for="ordre2">2</label></p>
+                </div>
+            </form>
+            <div>
+                Loi de vitesse :
+                <p id="rate_equation"></p>
+            </div>
+            <div>
+                Temps de demi-réaction :
+                <div id="half_life" style="display: flex;">
+                    <span>t<sub style="font-size: 0.5em;">1/2</sub> = </span>
+                    <div class="fraction" style="display: flex; flex-direction: column;">
+                            <span id="half_life_numerator"></span>
+                            <span id="half_life_denominator"></span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 {% endblock %}

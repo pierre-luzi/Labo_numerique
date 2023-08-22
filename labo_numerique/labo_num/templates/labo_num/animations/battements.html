@@ -9,26 +9,28 @@
 {% endblock %}
 
 {% block content %}
-    <div id="zoneCanvas">
-        <div>
-            <canvas id="cursors_canvas" width="550" height="270" margin="auto"></canvas>
-            <div id="formulas">
-                <div id="signals">
-                    <p class="signal">
-                        s<sub>1</sub>(t) = sin(<span id="freq1"></span> &times; t)
+    <main>
+        <div id="zoneCanvas">
+            <div>
+                <canvas id="cursors_canvas" width="550" height="270" margin="auto"></canvas>
+                <div id="formulas">
+                    <div id="signals">
+                        <p class="signal">
+                            s<sub>1</sub>(t) = sin(<span id="freq1"></span> &times; t)
+                        </p>
+                        <p class="signal">
+                            s<sub>2</sub>(t) = sin(<span id="freq2"></span> &times; t)
+                        </p>
+                    </div>
+                    <p>
+                        La somme des deux signaux est le produit d'un signal dont la fréquence est la moyenne des deux fréquences, et d'un signal dont la fréquence est la demi-différence des deux fréquences :
                     </p>
-                    <p class="signal">
-                        s<sub>2</sub>(t) = sin(<span id="freq2"></span> &times; t)
+                    <p style="text-align: center;">
+                        s(t) = 2 &times; sin(<span id="fm"></span> &times; t) &times; sin(<span id="df"></span> &times; t)
                     </p>
                 </div>
-                <p>
-                    La somme des deux signaux est le produit d'un signal dont la fréquence est la moyenne des deux fréquences, et d'un signal dont la fréquence est la demi-différence des deux fréquences :
-                </p>
-                <p style="text-align: center;">
-                    s(t) = 2 &times; sin(<span id="fm"></span> &times; t) &times; sin(<span id="df"></span> &times; t)
-                </p>
             </div>
+            <canvas id="plots_canvas" width="650" height="500" margin="auto"></canvas>
         </div>
-        <canvas id="plots_canvas" width="650" height="500" margin="auto"></canvas>
-    </div>
+    </main>
 {% endblock %}

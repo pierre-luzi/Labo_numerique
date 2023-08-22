@@ -9,49 +9,51 @@
 {% endblock %}
 
 {% block content %}
-    <div id="correct" class="notification hidden_notification">
-        <img src="{% static 'labo_num/images/correct.png' %}" height="40px" width="auto"/>
-        <span>Bonne réponse !</span>
-    </div>
-    <div id="wrong" class="notification hidden_notification">
-        <img src="{% static 'labo_num/images/wrong.png' %}" height="40px" width="auto"/>
-        <span>Mauvaise réponse... Réessaie !</span>
-    </div>
-    <canvas id="canvas" width="800px" height="510px"></canvas>
-    <div id="working_zone">
-        <div id="exercise">
-            <form id="question">
-                <p>Les coordonnées du vecteur sont :</p>
-                <div id="answer">
-                    <div id="inputs">
-                        <span>
-                            <label for="x_answer">x =</label><input type="text" name="x_answer" id="x_answer" />
-                        </span>
-                        <span>
-                            <label for="y_answer">y =</label><input type="text" name="y_answer" id="y_answer" />
-                        </span>
-                    </div>
-                    <div class="button_container">
-                        <span id="button">Valider</span>
-                    </div>
-                </div>
-            </form>
+    <main>
+        <div id="correct" class="notification hidden_notification">
+            <img src="{% static 'labo_num/images/correct.png' %}" height="40px" width="auto"/>
+            <span>Bonne réponse !</span>
         </div>
-        <div id="settings">
-            <form id="components_form">
-                <p>Montrer les composantes du vecteur ?</p>
-                <div class="settings_inputs">
-                    <span><input type="radio" name="components" id="components_yes" checked /><label for="components_yes">Oui</label></span>
-                    <span><input type="radio" name="components" id="components_no" /><label for="components_no">Non</label></span>
-                </div>
-            </form>
-            <form id="origin_form">
-                <p>Placer le vecteur à l'origine ?</p>
-                <div class="settings_inputs">
-                    <span><input type="radio" name="origin" id="origin_yes" /><label for="origin_yes">Oui</label></span>
-                    <span><input type="radio" name="origin" id="origin_no" checked /><label for="origin_no">Non</label></span>
-                </div>
-            </form>
+        <div id="wrong" class="notification hidden_notification">
+            <img src="{% static 'labo_num/images/wrong.png' %}" height="40px" width="auto"/>
+            <span>Mauvaise réponse... Réessaie !</span>
         </div>
-    </div>
+        <canvas id="canvas" width="800px" height="510px"></canvas>
+        <div id="working_zone">
+            <div id="exercise">
+                <form id="question">
+                    <p>Les coordonnées du vecteur sont :</p>
+                    <div id="answer">
+                        <div id="inputs">
+                            <span>
+                                <label for="x_answer">x =</label><input type="text" name="x_answer" id="x_answer" />
+                            </span>
+                            <span>
+                                <label for="y_answer">y =</label><input type="text" name="y_answer" id="y_answer" />
+                            </span>
+                        </div>
+                        <div class="button_container">
+                            <span id="button">Valider</span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div id="settings">
+                <form id="components_form">
+                    <p>Montrer les composantes du vecteur ?</p>
+                    <div class="settings_inputs">
+                        <span><input type="radio" name="components" id="components_yes" checked /><label for="components_yes">Oui</label></span>
+                        <span><input type="radio" name="components" id="components_no" /><label for="components_no">Non</label></span>
+                    </div>
+                </form>
+                <form id="origin_form">
+                    <p>Placer le vecteur à l'origine ?</p>
+                    <div class="settings_inputs">
+                        <span><input type="radio" name="origin" id="origin_yes" /><label for="origin_yes">Oui</label></span>
+                        <span><input type="radio" name="origin" id="origin_no" checked /><label for="origin_no">Non</label></span>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
 {% endblock %}
