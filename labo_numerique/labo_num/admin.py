@@ -8,6 +8,17 @@ from jsoneditor.forms import JSONEditor
 class ActiviteInline(admin.StackedInline):
     model = Activite
     extra = 0
+    formfield_overrides = {
+        models.TextField: {'widget': Textarea(attrs={'rows':5, 'cols':100})},
+    }
+
+class FlashcardInline(admin.StackedInline):
+    model = Flashcard
+    extra = 0
+    formfield_overrides = {
+        models.TextField: {'widget': Textarea(attrs={'rows':5, 'cols':100})},
+        JSONField: {'widget': JSONEditor(attrs={'style': 'height: 300px;'})}
+    }
 
 @admin.register(Chapitre)
 class ChapitreAdmin(admin.ModelAdmin):
@@ -27,9 +38,11 @@ class ChapitreAdmin(admin.ModelAdmin):
     list_filter = ('matiere', 'niveau',)
     inlines = [
         ActiviteInline,
+        FlashcardInline,
     ]
     formfield_overrides = {
-        JSONField: {'widget': JSONEditor(attrs={'style': 'height: 600px;'})}
+        models.TextField: {'widget': Textarea(attrs={'rows':5, 'cols':100})},
+        JSONField: {'widget': JSONEditor(attrs={'style': 'height: 300px;'})}
     }
 
 @admin.register(Annale)
