@@ -90,6 +90,7 @@ aside a:hover {
 
 .description {
     width: 75%;
+    text-align: justify;
 }
 
 .description p {

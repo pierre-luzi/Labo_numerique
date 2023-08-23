@@ -43,7 +43,7 @@ img {
     margin: 0 50px;
 }
 
-.flashcard {
+.flashcard, .last_card_wrong, .last_card_correct {
     height: 100%;
     width: 100%;
     perspective-origin: center bottom;
@@ -95,6 +95,18 @@ img {
     z-index: 10;
     transform: rotateY(0deg);
 }
+
+.last_card_wrong .front {
+    color: red;
+    border-color : red;
+}
+
+.last_card_correct .front {
+    color: #27b24a;
+    border-color: #27b24a;
+}
+
+
 
 #guidelines {
     margin-top: 50px;

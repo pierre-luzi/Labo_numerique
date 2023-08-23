@@ -1,9 +1,14 @@
+//==============================
+//      Gestion des cartes
+//==============================
+
 const cardsContainer = document.querySelector("#cards");
 const cards = [];
 for (card of document.querySelectorAll(".flashcard")) {
     cards.push(card);
     card.addEventListener("click", flipCard);
 }
+cardsNumber = cards.length;
 
 function flipCard() {
     /*
@@ -21,10 +26,30 @@ let currentIndex = 0;
 let currentCard = cards[0];
 currentCard.style.display = 'inline-block';
 
+
+
+//==============================
+//          Validation
+//==============================
+
 const wrong = document.querySelector("#wrong");
 const correct = document.querySelector("#correct");
-let wrongNumber = 0;
-let correctNumber = 0;
+// let wrongNumber = 0;
+// let correctNumber = 0;
+
+let wrongScore = document.querySelector("#wrong_score");
+wrongScore.innerText = 0;
+wrongRect = wrong.getBoundingClientRect();
+wrongScore.style.width = wrongRect.width + "px";
+wrongScore.style.top = (wrongRect.top - 40) + "px";
+wrongScore.style.left = wrongRect.left + "px";
+
+let correctScore = document.querySelector("#correct_score");
+correctScore.innerText = 0;
+correctRect = correct.getBoundingClientRect();
+correctScore.style.width = correctRect.width + "px";
+correctScore.style.top = (correctRect.top - 40) + "px";
+correctScore.style.left = correctRect.left + "px";
 
 let interval = null;
 
@@ -36,22 +61,31 @@ function nextCard(correct) {
     
     // incrémente le score
     if (correct) {
-        correctNumber++;
-        correctScore.innerText = correctNumber;
+        // correctNumber++;
+        // correctScore.innerText = correctNumber;
+        correctScore.innerText++;
     } else {
-        wrongNumber++;
-        wrongScore.innerText = wrongNumber;
+        // wrongNumber++;
+        // wrongScore.innerText = wrongNumber;
+        wrongScore.innerText++;
     }
     
     // passage à la carte suivante
     let oldCard = currentCard;
-    if (currentIndex+1 < cards.length) {
-        currentIndex++;
+    currentIndex++;
+    if (currentIndex < cardsNumber) {
         currentCard = cards[currentIndex];
-        currentCard.style.display = 'inline-block';
-        oldCard.style.zIndex = 15;
-        currentCard.style.zIndex = 10;
+    } else {
+        if (wrongScore.innerText != 0) {
+            currentCard = document.querySelector(".last_card_wrong");
+        } else {
+            currentCard = document.querySelector(".last_card_correct");
+        }
     }
+    currentCard.style.display = 'inline-block';
+    oldCard.style.zIndex = 15;
+    currentCard.style.zIndex = 10;
+    
     
     // initialisation de l'animation
     let deltaTime = 10;
@@ -74,7 +108,14 @@ function nextCard(correct) {
         if (time > 0.8 * window.screen.width) {
             clearInterval(interval);
             oldCard.style.display = 'none';
-            addSwipeListeners();
+            console.log(currentIndex+1);
+            console.log(cardsNumber);
+            if (currentIndex < cardsNumber) {
+                console.log(currentIndex + " " + cardsNumber);
+                addSwipeListeners();
+            } else {
+                removeSwipeListeners();
+            }
         }
     }
 }
@@ -99,20 +140,3 @@ function removeSwipeListeners() {
 }
 
 addSwipeListeners();
-
-
-
-
-let wrongScore = document.querySelector("#wrong_score");
-wrongRect = wrong.getBoundingClientRect();
-wrongScore.style.width = wrongRect.width + "px";
-wrongScore.style.top = (wrongRect.top - 40) + "px";
-wrongScore.style.left = wrongRect.left + "px";
-wrongScore.innerText = wrongNumber;
-
-let correctScore = document.querySelector("#correct_score");
-correctScore.innerText = correctNumber;
-correctRect = correct.getBoundingClientRect();
-correctScore.style.width = correctRect.width + "px";
-correctScore.style.top = (correctRect.top - 40) + "px";
-correctScore.style.left = correctRect.left + "px";
