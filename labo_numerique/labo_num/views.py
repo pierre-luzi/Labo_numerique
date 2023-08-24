@@ -26,10 +26,14 @@ def contenu_chapitre(request, classe, matiere, numero):
     chapitre = get_object_or_404(Chapitre, niveau=classe, matiere=matiere, numero=numero)
     chapitres = Chapitre.objects.filter(niveau=classe)
     activites = Activite.objects.filter(chapitre__id=chapitre.id)
+    if not Flashcard.objects.filter(chapitre__id=chapitre.id):
+        flashcards = False
+    else:
+        flashcards = True        
     return render(
         request,
         'labo_num/contenu_chapitre.html',
-        {'chapitre': chapitre, 'chapitres': chapitres, 'activites': activites}
+        {'chapitre': chapitre, 'chapitres': chapitres, 'activites': activites, 'flashcards': flashcards}
     )
 
 def fiche_revision(request, classe, matiere, numero):

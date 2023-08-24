@@ -22,33 +22,41 @@
         <h1>{{ chapitre|safe }} : {{ chapitre.titre }}</h1>
         
         <div id="div_notions">
-            <div id="notions">
+            <!-- <div id="notions">
                 <h3>Notions abordées :</h3>
                 <ul>
                     {% for notion in chapitre.notions %}
                         <li>{{ notion }}</li>
                     {% endfor %}
                 </ul>
-            </div>
+            </div> -->
             {% if chapitre.cours %}
             <div id="cours" class="lien_icone">
                 <a href="{{ chapitre.cours.url }}" target=_blank>
-                    <img src ="{% static 'labo_num/images/book.png' %}" style="height: 80px; position: relative; top: 5px; margin-right: 5px; margin-left: 10px" />
+                    <img src="{% static 'labo_num/images/book.png' %}" style="height: 80px; position: relative; top: 5px; margin-right: 5px; margin-left: 10px" />
                     <h3>Cours</h3>
+                </a>
+            </div>
+            {% endif %}
+            {% if flashcards %}
+            <div id="flashcards" class="lien_icone">
+                <a href="{% url 'flashcards' chapitre.niveau chapitre.matiere chapitre.numero %}">
+                    <img src="{% static 'labo_num/images/cards.png' %}" style="height: 80px; position: relative; top: 5px; marign-right: 5px;">
+                    <h3>Flashcards</h3>
                 </a>
             </div>
             {% endif %}
             {% if chapitre.exercices %}
             <div id="exercices" class="lien_icone">
                 <a href="{{ chapitre.exercices.url }}" target=_blank>
-                    <img src ="{% static 'labo_num/images/brain_workout.png' %}" style="height: 80px; position: relative; top: 5px; margin-right: 5px;" />
+                    <img src="{% static 'labo_num/images/brain_workout.png' %}" style="height: 80px; position: relative; top: 5px; margin-right: 5px;" />
                     <h3>Exercices</h3>
                 </a>
             </div>
             {% endif %}
             <div id="fiche_revision" class="lien_icone">
                 <a href="{% url 'fiche_revision' chapitre.niveau chapitre.matiere chapitre.numero %}">
-                    <img src ="{% static 'labo_num/images/brain.png' %}" style="height: 80px; position: relative; top: 5px; margin-right: 5px;" />
+                    <img src="{% static 'labo_num/images/brain.png' %}" style="height: 80px; position: relative; top: 5px; margin-right: 5px;" />
                     <h3>Fiche de révision</h3>
                 </a>
             </div>

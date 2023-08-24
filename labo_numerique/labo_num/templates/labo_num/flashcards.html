@@ -34,11 +34,11 @@
                 </a>
             </div>
             <div class="last_card_correct">
-                <a href="{{ chapitre.exercices.url }}">
+                {% if chapitre.exercices %}<a href="{{ chapitre.exercices.url }}">{% endif %}
                     <div class="front">
                         <p>Félicitations, tu connais bien le cours ! Entraîne-toi à refaire les exercices pour être prêt pour l'évaluation !</p>
                     </div>
-                </a>
+                {% if chapitre.exercices %}</a>{% endif %}
             </div>
         </div>
         <img src="{% static 'labo_num/images/correct.png' %}" id="correct" />
