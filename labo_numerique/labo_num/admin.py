@@ -11,6 +11,7 @@ class ActiviteInline(admin.StackedInline):
     formfield_overrides = {
         models.TextField: {'widget': Textarea(attrs={'rows':5, 'cols':100})},
     }
+    classes = ('collapse',)
 
 class FlashcardInline(admin.StackedInline):
     model = Flashcard
@@ -19,6 +20,7 @@ class FlashcardInline(admin.StackedInline):
         models.TextField: {'widget': Textarea(attrs={'rows':5, 'cols':100})},
         JSONField: {'widget': JSONEditor(attrs={'style': 'height: 300px;'})}
     }
+    classes = ('collapse',)
 
 @admin.register(Chapitre)
 class ChapitreAdmin(admin.ModelAdmin):
