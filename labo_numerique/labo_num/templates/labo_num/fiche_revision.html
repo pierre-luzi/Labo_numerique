@@ -33,7 +33,7 @@
         </div>
     </div>
     <script>
-        const entrees = {{ chapitre.fiche_revision|safe }}
+        const entrees = {{ chapitre.fiche_revision|safe }};
         
         // Séparation des notions et des capacités
         const notions = [];
@@ -50,9 +50,6 @@
         const formulaire = document.getElementById("formulaire");
         const divNotions = document.getElementById("div_notions");
         const divCapacites = document.getElementById("div_capacites");
-
-        // Niveaux de maîtrise
-        const maitrises = ['A', 'B', 'C']
 
         // Création des entrées pour les notions
         for(let i in notions) {
@@ -123,27 +120,31 @@
             divCommentaire.setAttribute("class", "commentaire");
             divCommentaire.setAttribute("id", `comment${typeEntree}${i}`);
             div.appendChild(divCommentaire);
-    
-            // Affichage du commentaire pour le niveau A
-            inputA.addEventListener('change', function(event) {
-                if(this.checked) {
-                    divCommentaire.innerHTML = entree.textA;
-                }
-            });
-    
-            // Affichage du commentaire pour le niveau B
-            inputB.addEventListener('change', function(event) {
-                if(this.checked) {
-                    divCommentaire.innerHTML = entree.textB;
-                }
-            });
-    
-            // Affichage du commentaire pour le niveau C
-            inputC.addEventListener('change', function(event) {
-                if(this.checked) {
-                    divCommentaire.innerHTML = entree.textC;
-                }
-            });
+            
+            // ajout des écouteurs sur les radio buttons
+            inputA.addEventListener('change', displayComment.bind(null, typeEntree, i, "A", divCommentaire));
+            inputB.addEventListener('change', displayComment.bind(null, typeEntree, i, "B", divCommentaire));
+            inputC.addEventListener('change', displayComment.bind(null, typeEntree, i, "C", divCommentaire));
+        }
+        
+        function displayComment(typeEntree, i, value, divCommentaire) {
+            /*
+                Affiche le commentaire approprié.
+                Arguments :
+                    - typeEntree : le type d'entrée (notion ou capacite) ;
+                    - i : l'indice de l'élément dans la liste notions ou capacites ;
+                    - value : "A", "B" ou "C" ;
+                    - divCommentaire : l'élément div contenant le commentaire.
+            */
+            let text = "";
+            if (value == "A") {
+                text = typeEntree == "notion" ? notions[i].textA : capacites[i].textA;
+            } else if (value == "B") {
+                text = typeEntree == "notion" ? notions[i].textB : capacites[i].textB;
+            } else if (value == "C") {
+                text = typeEntree == "notion" ? notions[i].textC : capacites[i].textC;
+            }
+            divCommentaire.innerHTML = text;
         }
     </script>
 {% endblock content %}
