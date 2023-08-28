@@ -19,10 +19,10 @@
             {% for flashcard in flashcards %}
                 <div class="flashcard">
                     <div class="front">
-                        <p>{{ flashcard.question|safe }}</p>
+                        <div class="content">{{ flashcard.question|safe }}</div>
                     </div>
                     <div class="back">
-                        <p>{{ flashcard.reponse|safe }}</p>
+                        <div class="content">{{ flashcard.reponse|safe }}</div>
                     </div>
                 </div>
             {% endfor %}

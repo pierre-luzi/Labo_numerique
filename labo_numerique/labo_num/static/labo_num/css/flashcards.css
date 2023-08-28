@@ -57,6 +57,7 @@ img {
     width: 100%;
     position: absolute;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: justify;
@@ -70,7 +71,7 @@ img {
     transition-timing-function: ease-out;
 }
 
-.front *, .back * {
+.content {
     padding: 10px 50px;
 }
 
