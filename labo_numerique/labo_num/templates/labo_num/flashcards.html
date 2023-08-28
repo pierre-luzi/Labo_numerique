@@ -29,14 +29,14 @@
             <div class="last_card_wrong">
                 <a href="{% url 'flashcards' chapitre.niveau chapitre.matiere chapitre.numero %}">
                     <div class="front">
-                        <p>Entraîne-toi de nouveau pour essayer d'améliorer ton score !</p>
+                        <div class="content">Entraîne-toi de nouveau pour essayer d'améliorer ton score !</div>
                     </div>
                 </a>
             </div>
             <div class="last_card_correct">
                 {% if chapitre.exercices %}<a href="{{ chapitre.exercices.url }}">{% endif %}
                     <div class="front">
-                        <p>Félicitations, tu connais bien le cours ! Entraîne-toi à refaire les exercices pour être prêt pour l'évaluation !</p>
+                        <div class="content">Félicitations, tu connais bien le cours ! Entraîne-toi à refaire les exercices pour être prêt pour l'évaluation !</div>
                     </div>
                 {% if chapitre.exercices %}</a>{% endif %}
             </div>
