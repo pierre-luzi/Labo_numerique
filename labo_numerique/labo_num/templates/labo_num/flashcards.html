@@ -16,7 +16,10 @@
 
 {% block content %}
     <main>
-        <img src="{% static 'labo_num/images/wrong.png' %}" id="wrong" />
+        <div class="swipe">
+            <div class="score" id="wrong_score"></div>
+            <img src="{% static 'labo_num/images/wrong.png' %}" id="wrong" />
+        </div>
         <div id=cards>
             {% for flashcard in flashcards %}
                 <div class="flashcard">
@@ -43,7 +46,10 @@
                 {% if chapitre.exercices %}</a>{% endif %}
             </div>
         </div>
-        <img src="{% static 'labo_num/images/correct.png' %}" id="correct" />
+        <div class="swipe">
+            <div class="score" id="correct_score"></div>
+            <img src="{% static 'labo_num/images/correct.png' %}" id="correct" />
+        </div>
     </main>
     <div id="guidelines">
         <p>Propose une réponse à la question posée (face blanche).</p>
@@ -51,8 +57,6 @@
         <p>Si tu avais la bonne réponse, clique sur le bouton <img src="{% static 'labo_num/images/wrong.png' %}" /></p>
         <p>Si tu n'avais pas la bonne réponse, clique sur le bouton <img src="{% static 'labo_num/images/correct.png' %}" /></p>
     </div>
-    <div class="score" id="wrong_score"></div>
-    <div class="score" id="correct_score"></div>
 {% endblock content %}
 
 {% block footer %}

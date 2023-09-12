@@ -39,17 +39,17 @@ const correct = document.querySelector("#correct");
 
 let wrongScore = document.querySelector("#wrong_score");
 wrongScore.innerText = 0;
-wrongRect = wrong.getBoundingClientRect();
-wrongScore.style.width = wrongRect.width + "px";
-wrongScore.style.top = (wrongRect.top - 40) + "px";
-wrongScore.style.left = wrongRect.left + "px";
+// wrongRect = wrong.getBoundingClientRect();
+// wrongScore.style.width = wrongRect.width + "px";
+// wrongScore.style.top = (wrongRect.top - 40) + "px";
+// wrongScore.style.left = wrongRect.left + "px";
 
 let correctScore = document.querySelector("#correct_score");
 correctScore.innerText = 0;
-correctRect = correct.getBoundingClientRect();
-correctScore.style.width = correctRect.width + "px";
-correctScore.style.top = (correctRect.top - 40) + "px";
-correctScore.style.left = correctRect.left + "px";
+// correctRect = correct.getBoundingClientRect();
+// correctScore.style.width = correctRect.width + "px";
+// correctScore.style.top = (correctRect.top - 40) + "px";
+// correctScore.style.left = correctRect.left + "px";
 
 let interval = null;
 
