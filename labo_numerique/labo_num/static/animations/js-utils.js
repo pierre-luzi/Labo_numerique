@@ -120,6 +120,40 @@ function drawVector(shape, xstart, ystart, xend, yend, color, dashed=false) {
 
 
 //==============================
+//          Géométrie
+//==============================
+
+function computeAngle(x, y) {
+    /*
+        Renvoie la valeur de l'angle polaire d'un point situé aux
+        coordonnées (x, y).
+    */
+    let angle = 0;
+    if (x == 0) {
+        if (y > 0) {
+            angle = Math.PI/2;
+        } else if (y < 0) {
+            angle = -Math.PI/2;
+        }
+    }
+    if (x != 0) {
+        angle = Math.atan(y/x);
+        if (x < 0) {
+            angle += Math.PI;
+        }
+    }
+    return angle;
+}
+
+function computeDistance(x1, y1, x2, y2) {
+    return Math.sqrt((x1-x2)**2 + (y1-y2)**2);
+}
+
+
+
+
+
+//==============================
 //           Listes
 //==============================
 
