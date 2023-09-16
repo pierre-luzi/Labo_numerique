@@ -1,0 +1,30 @@
+{% extends 'labo_num/base_animation.html' %}
+{% load static %}
+
+{% block head %}
+	<link rel="stylesheet" href="{% static 'animations/cinetique-chimique/style.css' %}" />
+	<script defer src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+    <script defer src="{% static 'animations/js-utils.js' %}"></script>
+	<script defer src="{% static 'animations/champ-electrique/script.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <main>
+        <div id="menu">
+            <form>
+                <div class="charges">
+                    <canvas id="positive_charge" width="20px" height="20px"></canvas>
+                    <p id="add_positive">Ajouter une</p>
+                    <p id="delete_positive">Supprimer une</p>
+                </div>
+                <div class="charges">
+                    <canvas id="negative_charge" width="20px" height="20px"></canvas>
+                    <p id="add_negative">Ajouter une</p>
+                    <p id="delete_negative">Supprimer une</p>
+                </div>
+                <p><input type="checkbox" id="display_field" /><label for="display_field">Afficher le champ électrique</label></p>
+            </form>
+        </div>
+        <canvas id="canvas" width="900px" height="510px"></canvas>
+    </main>
+{% endblock %}
