@@ -1,0 +1,33 @@
+{% extends 'labo_num/base_animation.html' %}
+{% load static %}
+
+{% block head %}
+	<link rel="stylesheet" href="{% static 'animations/lignes-champ/style.css' %}" />
+	<script defer src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+    <script defer src="{% static 'animations/js-utils.js' %}"></script>
+	<script defer src="{% static 'animations/lignes-champ/script.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <main>
+        <canvas id="canvas" width="800px" height="430px"></canvas>
+        <div id="menu">
+            <div class="choice" id="dipole">
+                <img src="images/dipole.png" height="45px" width="auto"/>
+                Champ magnétique d'un dipôle
+            </div>
+            <div class="choice" id="corner">
+                <img src="images/corner.png" height="45px" width="auto"/>
+                Fluide dans un coin
+            </div>
+            <div class="choice" id="cylinder">
+                <img src="images/cylinder.png" height="45px" width="auto"/>
+                Fluide autour d'un cylindre
+            </div>
+            <div class="choice" id="charge">
+                <img src="images/corner.png" height="45px" width="auto"/>
+                Champ électrique d'une charge
+            </div>
+        </div>
+    </main>
+{% endblock %}
