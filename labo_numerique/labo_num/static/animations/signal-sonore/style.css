@@ -1,10 +1,10 @@
- @import url('https://fonts.googleapis.com/css2?family=Boogaloo&family=Quicksand&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Boogaloo&family=Quicksand&display=swap');
  
- body {
+body {
     height: calcul(100vh - 10px);
     margin: 0px;
     padding: 0px;
-    font-family: 'Boogaloo', cursive;
+    font-family: 'Quicksand', cursive;
 }
 
 h1 {
