@@ -437,7 +437,7 @@ function drawLevel() {
     levelBar.graphics.ss(1, 1, 1).f('green');
     levelBar.graphics.drawRect(1, 340, 28, -(6 + Math.log10(amplitude))*34);
     
-    levelValue.text = (60 + 10*Math.log10(amplitude)).toLocaleString('fr-FR', {maximumFractionDigits: 0});
+    levelValue.text = (60 + 10*Math.log10(amplitude)).toLocaleString('fr-FR', {maximumFractionDigits: 1});
 }
 
 
