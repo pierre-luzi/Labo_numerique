@@ -1,0 +1,41 @@
+{% extends 'labo_num/base_animation.html' %}
+{% load static %}
+
+{% block head %}
+	<link rel="stylesheet" href="{% static 'animations/retogradation-mars/style.css' %}" />
+	<script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+    <script src="{% static 'animations/js-utils.js' %}"></script>
+	<script defer src="{% static 'animations/retrogradation-mars/script.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <main>
+        <div id="animation">
+            <div id="menu">
+                <form id="celestial">
+                    <p>Afficher les astres :</p>
+                    <p><input type="checkbox" id="sun" name="sun" checked /><label for="sun">Soleil</label></p>
+                    <p><input type="checkbox" id="earth" name="earth" checked /><label for="earth">Terre</label></p>
+                    <p><input type="checkbox" id="mars" name="mars" checked /><label for="mars">Mars</label></p>
+                </form>
+                <form id="trajectories">
+                    <p>Afficher les trajectoires :</p>
+                    <p><input type="checkbox" id="sun_trajectory" name="sun_trajectory" checked /><label for="sun_trajectory">Soleil</label></p>
+                    <p><input type="checkbox" id="earth_trajectory" name="earth_trajectory" checked /><label for="earth_trajectory">Terre</label></p>
+                    <p><input type="checkbox" id="mars_trajectory" name="mars_trajectory" checked /><label for="mars_trajectory">Mars</label></p>
+                </form>
+                <form id="vectors">
+                    <p>Afficher les vecteurs :</p>
+                    <p><input type="checkbox" id="sun_earth" name="sun_earth" checked /><label for="sun_earth">Soleil-Terre</label></p>
+                    <p><input type="checkbox" id="sun_mars" name="sun_mars" checked /><label for="sun_mars">Soleil-Mars</label></p>
+                    <p><input type="checkbox" id="earth_mars" name="earth_mars" checked /><label for="earth_mars">Terre-Mars</label></p>
+                </form>
+            </div>
+            <canvas id="heliocentric" style="border: solid black 1px;"></canvas>
+            <canvas id="geocentric" style="border: solid black 1px;"></canvas>
+        </div>
+            <div class="button_container">
+                <span id="button">Mettre en pause</span>
+            </div>
+    </main>
+{% endblock %}
