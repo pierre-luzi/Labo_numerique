@@ -149,6 +149,14 @@ function computeDistance(x1, y1, x2, y2) {
     return Math.sqrt((x1-x2)**2 + (y1-y2)**2);
 }
 
+function computeX(radius, angle) {
+    return radius * Math.cos(angle);
+}
+
+function computeY(radius, angle) {
+    return radius * Math.sin(angle);
+}
+
 
 
 
