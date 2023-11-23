@@ -1,0 +1,16 @@
+{% extends 'labo_num/base_animation.html' %}
+{% load static %}
+
+{% block head %}
+	<link rel="stylesheet" href="{% static 'animations/longueur-onde-ultrasons/style.css' %}" />
+	<script defer src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+    <script defer src="{% static 'animations/js-utils.js' %}"></script>
+	<script defer src="{% static 'animations/longueur-onde-ultrasons/script.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <main>
+        <canvas id="wave_canvas"></canvas>
+        <canvas id="plot_canvas"></canvas>
+    </main>
+{% endblock %}

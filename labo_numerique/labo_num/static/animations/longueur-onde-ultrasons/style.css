@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Boogaloo&family=Quicksand&display=swap');
+
+body {
+    height: calcul(100vh - 10px);
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Boogaloo', cursive;
+}
+
+h1 {
+    margin: 10px 0;
+    padding: 0px 0;
+    text-align: center;
+    font-size: 260%;
+}
+
+main {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+}
+
+canvas {
+    margin: auto;
+}
+
+#plot_canvas {
+    margin-top: 20px;
+}
