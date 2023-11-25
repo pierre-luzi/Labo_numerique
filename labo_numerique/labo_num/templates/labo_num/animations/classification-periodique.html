@@ -1,0 +1,95 @@
+{% extends 'labo_num/base_animation.html' %}
+{% load static %}
+
+{% block head %}
+	<link rel="stylesheet" href="{% static 'animations/classification-periodique/style.css' %}" />
+	<script defer src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+    <script defer src="{% static 'animations/js-utils.js' %}"></script>
+	<script defer src="{% static 'animations/classification-periodique/elements_list.js' %}"></script>
+	<script defer src="{% static 'animations/classification-periodique/element_container.js' %}"></script>
+	<script defer src="{% static 'animations/classification-periodique/script.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <main>
+        <div id="consignes" class="consignes">
+            <p>
+                La première idée pour classer les éléments chimiques consistait simplement à les classer par masse atomique
+                croissante.
+            </p>
+            <p>                
+                Placer les 14 éléments chimiques dans le tableau ci-dessous, par masse atomique croissante.
+            </p>
+            <div id="validate_container" class="button_container">
+                <span id="validate" class="button">Valider</span>
+            </div>
+            <div class="famille" id="alcalins">
+                <h2>1<sup>re</sup> famille : les alcalins</h2>
+                <p>
+                    À l'aide de la vidéo sur les alcalins et des bulles d'information figurant sur les éléments chimiques,
+                    sélectionner les deux éléments appartenant à la famille des alcalins, puis valider.
+                </p>
+            </div>
+            <div class="famille" id="alcalino-terreux">
+                <h2>2<sup>e</sup> famille : les alcalino-terreux</h2>
+                <p>
+                    À l'aide des bulles d'information figurant sur les éléments chimiques, sélectionner
+                    les deux éléments appartenant à la famille des alcalino-terreux, puis valider.
+                </p>
+            </div>
+            <div class="famille" id="halogenes">
+                <h2>3<sup>e</sup> famille : les halogènes</h2>
+                <p>
+                    Les éléments de la famille des halogènes forment des anions avec une seule charge
+                    négative. Il peuvent aussi former des gaz diatomiques, ou s'associer à un unique atome
+                    d'hydrogène pour former un acide.
+                </p>
+                <p>
+                    À l'aide des bulles d'information figurant sur les éléments chimiques, sélectionner
+                    les deux éléments appartenant à la famille des halogènes, puis valider.
+                </p>
+            </div>
+            <div class="famille" id="carbone">
+                <h2>4<sup>e</sup> famille</h2>
+                <p>
+                    Les éléments de cette famille peuvent former des molécules en s'associant à 4 atomes
+                    d'hydrogène, ou en s'associant à 2 atomes d'oxygène.
+                </p>
+                <p>
+                    À l'aide des bulles d'information figurant sur les éléments chimiques, sélectionner
+                    les deux éléments appartenant à cette famille chimique, puis valider.
+                </p>
+            </div>
+            <div class="famille" id="oxygene">
+                <h2>5<sup>e</sup> famille</h2>
+                <p>
+                    Les éléments de cette famille peuvent s'associer à 2 atomes d'hydrogène. Ils peuvent
+                    également former des anions avec 2 charges négatives.
+                </p>
+                <p>
+                    À l'aide des bulles d'information figurant sur les éléments chimiques, sélectionner
+                    les deux éléments appartenant à cette famille chimique, puis valider.
+                </p>
+            </div>
+            <div class="famille" id="azote">
+                <h2>6<sup>e</sup> famille</h2>
+                <p>
+                    Les éléments de cette famille peuvent former des anions avec 3 charges négatives ou
+                    former des molécules en s'associant à 3 atomes d'hydrogène.
+                </p>
+                <p>
+                    À l'aide des bulles d'information figurant sur les éléments chimiques, sélectionner
+                    les deux éléments appartenant à cette famille chimique, puis valider.
+                </p>
+            </div>
+        </div>
+        <div id="alert_div" class="alert_div">
+            <p></p>
+            <div class="button_container">
+                <span class="button" id="alert_button">Je réessaie</span>
+            </div>
+        </div>
+        <!-- Fin des consignes pour la sélection des familles -->
+        <canvas id="workCanvas" width="1200px" height="470" margin="auto" z-index="10"></canvas>
+    </main>
+{% endblock %}
