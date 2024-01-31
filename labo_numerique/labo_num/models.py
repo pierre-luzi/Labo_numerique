@@ -116,6 +116,7 @@ class Annale(models.Model):
     grâce à un ManyToManyField."""
     class Lieu(models.TextChoices):
         MÉTROPOLE = 'métropole'
+        RÉUNION = 'réunion'
         POLYNÉSIE = 'polynésie'
         MAYOTTE = 'mayotte'
         AMÉRIQUE_DU_SUD = 'amérique_du_sud'
