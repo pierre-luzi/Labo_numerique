@@ -1,0 +1,43 @@
+{% extends 'labo_num/base_animation.html' %}
+{% load static %}
+
+{% block head %}
+	<link rel="stylesheet" href="{% static 'animations/planetes/style.css' %}" />
+	<script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+    <script src="{% static 'animations/js-utils.js' %}"></script>
+	<script defer src="{% static 'animations/planetes/planets_list.js' %}"></script>
+	<script defer src="{% static 'animations/planetes/script.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <main>
+        <div id="control">
+            <div id="menu">
+                <div>
+                    <label for="planets">Planète :</label>
+                    <select name="planets" id="planets"></select>
+                </div>
+                <div>
+                   <p>200 s plus tôt :</p>
+                   <p>v<sub>x</sub> = <span class="velocity" id="previous_vx"></span> m/s</p>
+                   <p>v<sub>y</sub> = <span class="velocity" id="previous_vy"></span> m/s</p>
+                </div>
+                <div>
+                    <p>Actuellement :</p>
+                    <p>v<sub>x</sub> = <span class="velocity" id="vx"></span> m/s</p>
+                    <p>v<sub>y</sub> = <span class="velocity" id="vy"></span> m/s</p>
+                </div>
+                <div>
+                    <p>200 s plus tard :</p>
+                    <p>v<sub>x</sub> = <span class="velocity" id="next_vx"></span> m/s</p>
+                    <p>v<sub>y</sub> = <span class="velocity" id="next_vy"></span> m/s</p>
+                </div>
+            </div>
+            <div class="button_container">
+                <span id="button">Mettre en pause</span>
+            </div>
+        </div>
+        <canvas id="movement" style="border: solid black 1px;"></canvas>
+
+    </main>
+{% endblock %}
