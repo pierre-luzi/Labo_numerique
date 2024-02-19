@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Boogaloo&family=Calistoga&family=Kalam&family=Quicksand:wght@500&family=Titan+One&display=swap');
+  
+body {
+    height: calcul(100vh - 10px);
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 500;
+/*    text-align: center;*/
+}
+
+h1 {
+    margin: 10px 0;
+    padding: 0px 0;
+    text-align: center;
+    font-size: 260%;
+    font-family: 'Boogaloo', cursive;
+}
+
+main {
+    width: 80%;
+    margin: auto;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+}
+
+#equation {
+    margin: 40px 0;
+}
+
+.eq_span {
+    display: inline-block;
+    width: 80px;
+}
+
+.eq_sign {
+    margin-right: 10px;
+}
+
+input {
+    font-size: 100%;
+    width: 50px;
+}
+
+#button {
+    color: white;
+    border-radius: 5px;
+    background-color: rgba(0, 195, 20, 0.8);
+    padding: 10px;
+    margin-right: 20px;
+}
+
+#button:hover {
+    background-color: green;
+    cursor: pointer;
+}
+
+#method {
+    margin-top: 30px;
+    padding: 10px 20px;
+    border: solid black 1px;
+    border-radius: 20px;
+}
+
+h2 {
+    margin: 0;
+}
+
+p {
+    margin: 5px;
+}
+
+#element_method, #number1, #number1p {
+    color: orange;
+}
+
+#oxygen_method, #number2 {
+    color: red;
+}
+
+#hydrogen_method, #number3 {
+    color: blue;
+}
+
+#electron_method, #number4 {
+    color: green;
+}
+
+.number {
+    position: absolute;
+}
+
+.notification {
+    border: solid black 2px;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: white;
+    padding: 30px;
+    font-size: 2em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.hidden_notification {
+    display: none;
+}
+
+.visible_notification {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.notification span {
+    margin-left: 10px;
+}

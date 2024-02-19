@@ -1,0 +1,69 @@
+{% extends 'labo_num/base_animation.html' %}
+{% load static %}
+
+{% block head %}
+	<link rel="stylesheet" href="{% static 'animations/demi-equations/style.css' %}" />
+	<script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+    <script src="{% static 'animations/js-utils.js' %}"></script>
+	<script defer src="{% static 'animations/demi-equations/list.js' %}"></script>
+	<script defer src="{% static 'animations/demi-equations/script.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <main>
+        <p id="guildeines">
+            Ajuste la demi-équation électronique suivante :
+        </p>
+        <div id="equation">
+            <input type="number" min="1" max="15" id="ox_input" />
+            <span class="eq_span" id="oxydant"></span>
+            <span class="eq_sign" id="hydrogen_plus">+</span>
+            <input type="number" min="0" max="15" id="H_input" />
+            <span class="eq_span" id="hydrogen">H<sup>+</sup></span>
+            <span class="eq_sign">+</span>
+            <input type="number" min="0" max="15" id="electron_input" />
+            <span class="eq_span">e<sup>-</sup></span>
+            <span class="eq_sign">=</span>
+            <input type="number" min="1" max="15" id="red_input" />
+            <span class="eq_span"><span id="reductant"></span></span>
+            <span class="eq_sign" id="oxygen_plus">+</span>
+            <input type="number" min="0" max="15" id="H2O_input" />
+            <span class="eq_span">H<sub>2</sub>O</span>
+        </div>
+        <div style="text-align: center;">
+            <span id="button">Valider</span>
+        </div>
+        <div id="method">
+            <h2><img src="{% static 'labo_num/images/gears.png' %}" height="24px" width="auto"/> Méthode</h2>
+            <p class="method" id="element_method">
+                &#9312; Ajuster l'élément chimique commun à l'oxydant et au réducteur (autre que O et H).
+            </p>
+            <p class="method" id="oxygen_method">
+                &#9313; Ajuster l'élément oxygène en ajoutant la quantité nécessaire d'eau.
+            </p>
+            <p class="method" id="hydrogen_method">
+                &#9314; Ajuster l'élément hydrogène en ajoutant le nombre nécessaire d'ion hydrogène. 
+            </p>
+            <p class="method" id="electron_method">
+                &#9315; Ajuster la charge électrique en ajoutant le nombre nécessaire d'électrons.
+            </p>
+        </div>
+        <span class="number" id="number1">&#9312;</span>
+        <span class="number" id="number1p">&#9312;</span>
+        <span class="number" id="number2">&#9313;</span>
+        <span class="number" id="number3">&#9314;</span>
+        <span class="number" id="number4">&#9315;</span>
+        <div id="correct" class="notification hidden_notification">
+            <img src="{% static 'labo_num/images/correct.png' %}" height="40px" width="auto"/>
+            <span>Bonne réponse !</span>
+        </div>
+        <div id="wrong" class="notification hidden_notification">
+            <img src="{% static 'labo_num/images/wrong.png' %}" height="40px" width="auto"/>
+            <span>Mauvaise réponse... Réessaie !</span>
+        </div>
+        <div id="congrats" class="notification hidden_notification">
+            <img src="{% static 'labo_num/images/correct.png' %}" height="40px" width="auto"/>
+            <span>Félicitations ! Tu as ajusté toutes les demi-équations électroniques !</span>
+        </div>
+    </main>
+{% endblock %}
