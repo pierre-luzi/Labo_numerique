@@ -1,0 +1,101 @@
+{% extends 'labo_num/base_animation.html' %}
+{% load static %}
+
+{% block head %}
+	<link rel="stylesheet" href="{% static 'animations/demi-equations/style.css' %}" />
+	<script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+    <script src="{% static 'animations/js-utils.js' %}"></script>
+	<script defer src="{% static 'animations/demi-equations/list.js' %}"></script>
+	<script defer src="{% static 'animations/demi-equations/script.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <main>
+        <div id="table">
+            <table>
+                <tr>
+                    <!-- Équation de réaction -->
+                    <td style="border-top-style: none; border-left-style: none"></td>
+                    <td class="fixed_cell" style="border-right-style: none;"></td>
+                    <td class="no_border">
+                        <span class="coeff coeff_Fe">3</span> Fe (s)
+                    </td>
+                    <td colspan="2" class="sign_cell" style="text-align:center">
+                        +
+                    </td>
+                    <td class="no_border">
+                        <span class="coeff coeff_O2">2</span> O<sub>2</sub> (g)
+                    </td>
+                    <td colspan="2" class="no_border" style="text-align:center">
+                        &rarr;
+                    </td>
+                    <td class="no_border">
+                        Fe<sub>3</sub>O<sub>4</sub> (s)
+                    </td>
+                    <td class="fixed_cell" style="border-left-style: none;"></td>
+                </tr>
+                <tr>
+                    <!-- État initial -->
+                    <td style="text-align: left;">
+                        État initial
+                    </td>
+                    <td colspan="3" class="large_cell">
+                        <input type="number" value="4" min="1" max="15" step="0.5" class="mol_input ini_Fe" id="Fe_input" /> mol
+                    </td>
+                    <td colspan="3" class="large_cell">
+                        <input type="number" value="2" min="1" max="15" step="0.5" class="mol_input ini_O2" id="O2_input" /> mol
+                    </td>
+                    <td colspan="3" class="large_cell">
+                        <span class="ini ini_Fe2O3">0</span> mol
+                    </td>
+                </tr>
+                <tr>
+                    <!-- En cours -->
+                    <td style="text-align: left;">
+                        En cours
+                    </td>
+                    <td colspan="3" class="large_cell">
+                        <span class="ini ini_Fe">4,5</span> - <span class="coeff coeff_Fe">3</span> x mol
+                    </td>
+                    <td colspan="3" class="large_cell">
+                        <span class="ini ini_O2">3</span> - <span class="coeff coeff_O2">2</span> x mol
+                    </td>
+                    <td colspan="3" class="large_cell">
+                        x
+                    </td>
+                </tr>
+                <tr>
+                    <!-- État final -->
+                    <td style="text-align: left;">
+                        État final
+                    </td>
+                    <td colspan="3" class="large_cell">
+                        <span class="ini ini_Fe">4,5</span> - <span class="coeff coeff_Fe">3</span> x<sub>max</sub> mol
+                    </td>
+                    <td colspan="3" class="large_cell">
+                        <span class="ini ini_O2">3</span> - <span class="coeff coeff_O2">2</span> x<sub>max</sub> mol
+                    </td>
+                    <td colspan="3" class="large_cell">
+                        x<sub>max</sub>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="below">
+            <div id="text">
+                <p>
+                    Avec <span class="ini ini_Fe">4,5</span> mol de fer Fe, la réaction peut se poursuivre jusqu'à un avancement x = <span id="xmax_Fe"></span> mol.
+                </p>
+                <p>
+                    Avec <span class="ini ini_O2">3</span> mol de dioxygène O<sub>2</sub>, la réaction peut se poursuivre jusqu'à un avancement x = <span id="xmax_O2"></span> mol.
+                </p>
+                <p style="text-align: center; margin-top: 30px">
+                    Avancement maximal : <span id="result">x<sub>max</sub> = <span id="xmax"></span> mol</span>
+                </p>
+            </div>
+            <div>
+                <canvas id="canvas" width="430px" height="280px"></canvas>
+            </div>
+        </div>
+    </main>
+{% endblock %}
