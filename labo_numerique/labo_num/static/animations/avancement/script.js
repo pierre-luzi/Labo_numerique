@@ -78,9 +78,6 @@ function changeInitialConditions() {
     /*
         Change les conditions initiales.
     */
-    setIronInitialConditions();
-    setDioxygenInitialConditions();
-    
     computeXMax();
     
     drawFePlot();
@@ -320,4 +317,5 @@ function writeMaxExtentLegend() {
 
 Fe_input.value = n0_Fe;
 O2_input.value = n0_O2;
-changeInitialConditions();
+setIronInitialConditions();
+setDioxygenInitialConditions();
