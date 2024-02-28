@@ -78,6 +78,9 @@ function changeInitialConditions() {
     /*
         Change les conditions initiales.
     */
+    setIronInitialConditions();
+    setDioxygenInitialConditions();
+    
     computeXMax();
     
     drawFePlot();
