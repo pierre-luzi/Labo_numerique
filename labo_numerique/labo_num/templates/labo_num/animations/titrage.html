@@ -5,6 +5,10 @@
 	<link rel="stylesheet" href="{% static 'animations/titrage/style.css' %}" />
 	<script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
     <script src="{% static 'animations/js-utils.js' %}"></script>
+    <script defer>
+        const image = new Image();
+        image.src = "{% static 'animations/titrage/img/drop.png' %}";
+    </script>
 	<script defer src="{% static 'animations/titrage/list.js' %}"></script>
 	<script defer src="{% static 'animations/titrage/script.js' %}"></script>
 {% endblock %}
