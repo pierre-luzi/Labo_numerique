@@ -1,0 +1,117 @@
+{% extends 'labo_num/base_animation.html' %}
+{% load static %}
+
+{% block head %}
+	<link rel="stylesheet" href="{% static 'animations/titrage/style.css' %}" />
+	<script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+    <script src="{% static 'animations/js-utils.js' %}"></script>
+	<script defer src="{% static 'animations/titrage/list.js' %}"></script>
+	<script defer src="{% static 'animations/titrage/script.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <main>
+        <div id="setup_div">
+            <canvas width="150px" id="setup">
+            </canvas>
+            <a id="icon_copyright" href="https://www.freepik.com/icon/drop_427112#fromView=keyword&page=1&position=1">Drop icon by Vectors Market</a>
+        </div>
+        <div id="results">
+            <div id="menu">
+                <div id="select">
+                    <p>
+                        Solution titrée :
+                        <select name="select_titrated" id="select_titrated">
+                        </select>
+                    </p>
+                    <p>
+                        Solution titrante : <span id="titrant_solution">Thiosulfate de sodium</span>
+                    </p>
+                </div>
+                <div>
+                    Équation de la réaction :
+                    <p id="equation">
+                    I<sub>2</sub> (aq) + 2 S<sub>2</sub>O<sub>3</sub><sup>2-</sup> (aq) &rarr; 2 I<sup>-</sup> (aq) + S<sub>4</sub>O<sub>6</sub><sup>2-</sup> (aq)
+                    </p>
+                </div>
+                <div id="set">
+                    <div id="inputs">
+                        <div class="input_div" id="volume_titrated">
+                            Volume de solution titrée :
+                            <input type="number" min="5" max="25" val="10" step=5 id="V0" /> mL
+                        </div>
+                        <div class="input_div" id="concentration_titrated">
+                            Concentration de la solution titrée :
+                            <input type="number" min="0.5" max="5" val="1.0" step="0.1" id="C0" /> &times; 10<sup>-2</sup> mol.L<sup>-1</sup>
+                        </div>
+                        <div class="input_div" id="concentration_titrant">
+                            Concentration de la solution titrante :
+                            <input type="number" min="0.5" max="5" val="1.0" step="0.1" id="C" /> &times; 10<sup>-2</sup> mol.L<sup>-1</sup>
+                        </div>
+                    </div>
+                    <div style="text-align: center;">
+                        <span id="button">Réinitialiser</span>
+                    </div>
+                </div>
+            </div>
+            <div id="table">
+                <table>
+                    <tr>
+                        <td class="first_col">
+                            Espèce chimique
+                        </td>
+                        <td class="titrated" id="titrated">
+                            I<sub>2</sub>
+                        </td>
+                        <td class="titrant" id="titrant">
+                            S<sub>2</sub>O<sub>3</sub><sup>2-</sup>
+                        </td>
+                        <td class="product1" id="product1">
+                            I<sup>-</sup>
+                        </td>
+                        <td class="product2" id="product2">
+                            S<sub>4</sub>O<sub>6</sub><sup>2-</sup>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="first_col">
+                            Quantité introduite dans l'erlenmeyer
+                        </td>
+                        <td class="titrated">
+                            <span id="ini_titrated"></span> mol
+                        </td>
+                        <td class="titrant">
+                            <span id="ini_titrant">0</span> mol
+                        </td>
+                        <td class="product1">
+                            0 mol
+                        </td>
+                        <td class="product2">
+                            0 mol
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="first_col">
+                            Quantité présente dans l'erlenmeyer
+                        </td>
+                        <td class="titrated">
+                            <span id="n_reactant1"></span> mol
+                        </td>
+                        <td class="titrant">
+                            <span id="n_reactant2"></span> mol
+                        </td>
+                        <td class="product1">
+                            <span id="n_product1"></span> mol
+                        </td>
+                        <td class="product2">
+                            <span id="n_product2"></span> mol
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            
+        </div>
+        <canvas id="plot" width="380px" height="450px" style="border: solid black 1px;">
+        </canvas>
+    </main>
+{% endblock %}
