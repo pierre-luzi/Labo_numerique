@@ -267,7 +267,7 @@ function toExponentialHTML(number) {
     /*
         Écris un nombre en écriture scientifique au format HTML.
     */
-    if (number == 0) {
+    if (number < 1.e6) {
         return 0;
     } else if (number >= 1) {
         return number.toLocaleString('fr-FR', {maximumFractionDigits: 1, minimumFractionDigits: 1});
