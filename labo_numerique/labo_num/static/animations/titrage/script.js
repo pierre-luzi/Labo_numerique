@@ -706,8 +706,8 @@ function drawDrop() {
 }
 
 // logo de la goutte
-const image = new Image();
-image.src = "img/drop.png";
+// const image = new Image();
+// image.src = "img/drop.png";
 
 const dropIcon = new createjs.Bitmap(image);
 setupStage.addChild(dropIcon);
