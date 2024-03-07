@@ -267,7 +267,7 @@ function toExponentialHTML(number) {
     /*
         Écris un nombre en écriture scientifique au format HTML.
     */
-    if (number < 1.e6) {
+    if (number == 0) {
         return 0;
     } else if (number >= 1) {
         return number.toLocaleString('fr-FR', {maximumFractionDigits: 1, minimumFractionDigits: 1});
@@ -338,7 +338,7 @@ function computeNReactant2() {
     /*
         Calcule la quantité de matière de l'espèce titrante dans l'erlenmeyer.
     */
-    if (volume <= Veq) {
+    if (volume - Veq < 0.05) {
         nReactant2 = 0;
     } else {
         nReactant2 = C * (volume - Veq);
