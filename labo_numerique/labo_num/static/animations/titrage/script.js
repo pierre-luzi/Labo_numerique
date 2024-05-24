@@ -711,6 +711,9 @@ function drawDrop() {
 
 const dropIcon = new createjs.Bitmap(image);
 setupStage.addChild(dropIcon);
+dropIcon.image.onload = function() {
+    stage.update();
+}
 // const dropIconBounds = dropIcon.getBounds();
 dropIcon.x = 40-dropIcon.getBounds().width*0.03/2;
 dropIcon.y = 354-dropIcon.getBounds().height*0.03/2;
