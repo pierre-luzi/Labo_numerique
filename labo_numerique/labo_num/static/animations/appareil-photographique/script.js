@@ -391,7 +391,7 @@ function computeXObj2() {
         Calcule la position de l'objet associé à l'image 2.
     */
     if (xImg2 <= xLens + f) {
-        xObj2 = -2000;
+        xObj2 = -1200;
     } else {
         xObj2 = xLens + f * (xImg2 - xLens) / (f + xLens - xImg2);
     }
