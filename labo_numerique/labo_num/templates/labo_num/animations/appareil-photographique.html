@@ -1,0 +1,88 @@
+{% extends 'labo_num/base_animation.html' %}
+{% load static %}
+
+{% block head %}
+	<link rel="stylesheet" href="{% static 'animations/titrage/style.css' %}" />
+	<script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+    <script src="{% static 'animations/js-utils.js' %}"></script>
+	<script defer src="{% static 'animations/appareil-photographique/script.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <main>
+            <canvas id="canvas"></canvas>
+            <div id="footer">
+                <div id="guidelines">
+                    <p>Sur le schéma, on peut déplacer l'objet lumineux A ou l'objectif. L'ouverture du diaphragme peut être modifiée grâce aux flèches de réglage.</p>
+                
+                    <div id="menu">
+                        <div id="settings">
+                            <div class="checkbox">
+                                <input id="construction-cbx" type="checkbox"/>
+                                <label class="cbx" for="construction-cbx">
+                                    <div class="flip">
+                                        <div class="front"></div>
+                                        <div class="back">
+                                        <svg width="16" height="14" viewBox="0 0 16 14">
+                                            <path d="M2 8.5L6 12.5L14 1.5"></path>
+                                        </svg>
+                                        </div>
+                                    </div>
+                                </label>
+                                <span class="cbx-label">
+                                    Montrer les rayons de construction
+                                </span>
+                            </div>
+                            <div class="checkbox">
+                                <input id="field-cbx" type="checkbox"/>
+                                <label class="cbx" for="field-cbx">
+                                    <div class="flip">
+                                        <div class="front"></div>
+                                        <div class="back">
+                                        <svg width="16" height="14" viewBox="0 0 16 14">
+                                            <path d="M2 8.5L6 12.5L14 1.5"></path>
+                                        </svg>
+                                        </div>
+                                    </div>
+                                </label>
+                                <span class="cbx-label">
+                                    Montrer la profondeur de champ
+                                </span>
+                            </div>
+                            <div class="checkbox">
+                                <input id="autofocus-cbx" type="checkbox"/>
+                                <label class="cbx" for="autofocus-cbx">
+                                    <div class="flip">
+                                        <div class="front"></div>
+                                        <div class="back">
+                                        <svg width="16" height="14" viewBox="0 0 16 14">
+                                            <path d="M2 8.5L6 12.5L14 1.5"></path>
+                                        </svg>
+                                        </div>
+                                    </div>
+                                </label>
+                                <span class="cbx-label">
+                                    Mise au point automatique
+                                </span>
+                            </div>
+                        </div>
+                        <div class="button-container">
+                            <span class="button" id="autofocus-button">Mise au point</span>
+                        </div>
+                        <div id="formula">
+                            <p>f' = 100 mm</p>
+                            <p><span style="border-top: solid black 1px; margin: 0;">OA</span> = <span id="obj"></span> mm</p>
+                            <p id="imgP"><span style="border-top: solid black 1px; margin: 0;">OA'</span> = <span id="img"></span> mm</p>
+                            <p id="distP"><span style="border-top: solid black 1px; margin: 0;">OC</span> = <span id="dist"></span> mm</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- <div class="button_container">
+                    <span class="button" id="autofocus-button">Mise au point</span>
+                </div> -->
+            </div>
+            <img id="correct" src="{% static 'labo_num/images/correct.png' %}" style="width: 40px; height: 40px; visibility: visible; position: absolute;" />
+            <img id="wrong" src="{% static 'labo_num/images/wrong.png' %}" style="width: 40px; height: 40px; visibility: hidden; position: absolute;" />
+        </main>
+    </main>
+{% endblock %}
