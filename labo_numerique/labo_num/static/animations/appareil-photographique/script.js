@@ -43,10 +43,11 @@ const correctImg = document.getElementById("correct");
 const wrongImg = document.getElementById("wrong");
 const imgRect = document.getElementById("imgP").getBoundingClientRect();
 const distRect = document.getElementById("distP").getBoundingClientRect();
+const formulaRect = document.getElementById("formula").getBoundingClientRect();
 correctImg.style.top = distRect.top-25 + "px";
-correctImg.style.left = imgRect.right+50 + "px";
+correctImg.style.right = formulaRect.right-50 + "px";
 wrongImg.style.top = distRect.top-25 + "px";
-wrongImg.style.left = imgRect.right+50 + "px";
+wrongImg.style.right = formulaRect.right-50 + "px";
 
 // paramètres d'affichage
 let construction = false;   // afficher les rayons de construction
