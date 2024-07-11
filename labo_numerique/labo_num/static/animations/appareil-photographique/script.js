@@ -18,21 +18,6 @@
 
 let interval = null;
 
-// éléments indiquant les distances
-const objDistance = document.getElementById("obj");
-const imgDistance = document.getElementById("img");
-const distance = document.getElementById("dist");
-
-// affichage d'un logo indiquant si la mise au point est réalisée
-const correctImg = document.getElementById("correct");
-const wrongImg = document.getElementById("wrong");
-const imgRect = document.getElementById("imgP").getBoundingClientRect();
-const distRect = document.getElementById("distP").getBoundingClientRect();
-correctImg.style.top = distRect.top-25 + "px";
-correctImg.style.left = imgRect.right+50 + "px";
-wrongImg.style.top = distRect.top-25 + "px";
-wrongImg.style.left = imgRect.right+50 + "px";
-
 // paramètres de l'objectif
 const f = 100;          // distance focale de l'objectif
 const d = 20;           // distance lentille-diaphragme
@@ -44,6 +29,24 @@ const e = 4;            // rayon max de netteté
 let xObj = -410;    // position de l'objet
 let xImg = 0;       // position de l'image
 let xLens = (xObj + Math.sqrt(xObj**2 + 4*f*xObj))/2;   // position de la lentille
+
+// éléments indiquant les distances
+const objDistance = document.getElementById("obj");
+const imgDistance = document.getElementById("img");
+const distance = document.getElementById("dist");
+objDistance.innerText = xObj.toLocaleString('fr-FR', {maximumFractionDigits: 0});
+imgDistance.innerText = (xImg - xLens).toLocaleString('fr-FR', {maximumFractionDigits: 0});
+distance.innerText = -xLens.toLocaleString('fr-FR', {maximumFractionDigits: 0});
+
+// affichage d'un logo indiquant si la mise au point est réalisée
+const correctImg = document.getElementById("correct");
+const wrongImg = document.getElementById("wrong");
+const imgRect = document.getElementById("imgP").getBoundingClientRect();
+const distRect = document.getElementById("distP").getBoundingClientRect();
+correctImg.style.top = distRect.top-25 + "px";
+correctImg.style.left = imgRect.right+50 + "px";
+wrongImg.style.top = distRect.top-25 + "px";
+wrongImg.style.left = imgRect.right+50 + "px";
 
 // paramètres d'affichage
 let construction = false;   // afficher les rayons de construction
