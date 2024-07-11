@@ -45,7 +45,7 @@ const imgRect = document.getElementById("imgP").getBoundingClientRect();
 const distRect = document.getElementById("distP").getBoundingClientRect();
 const formulaRect = document.getElementById("formula").getBoundingClientRect();
 correctImg.style.top = distRect.top-25 + "px";
-correctImg.style.right = formulaRect.right-50 + "px";
+correctImg.style.left = formulaRect.right-50 + "px";
 wrongImg.style.top = distRect.top-25 + "px";
 wrongImg.style.right = formulaRect.right-50 + "px";
 
