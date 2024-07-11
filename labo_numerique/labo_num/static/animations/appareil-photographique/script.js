@@ -47,7 +47,7 @@ const formulaRect = document.getElementById("formula").getBoundingClientRect();
 correctImg.style.top = distRect.top-25 + "px";
 correctImg.style.left = formulaRect.right-50 + "px";
 wrongImg.style.top = distRect.top-25 + "px";
-wrongImg.style.right = formulaRect.right-50 + "px";
+wrongImg.style.left = formulaRect.right-50 + "px";
 
 // paramètres d'affichage
 let construction = false;   // afficher les rayons de construction
