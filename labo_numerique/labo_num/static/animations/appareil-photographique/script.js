@@ -18,6 +18,21 @@
 
 let interval = null;
 
+// éléments indiquant les distances
+const objDistance = document.getElementById("obj");
+const imgDistance = document.getElementById("img");
+const distance = document.getElementById("dist");
+
+// affichage d'un logo indiquant si la mise au point est réalisée
+const correctImg = document.getElementById("correct");
+const wrongImg = document.getElementById("wrong");
+const imgRect = document.getElementById("imgP").getBoundingClientRect();
+const distRect = document.getElementById("distP").getBoundingClientRect();
+correctImg.style.top = distRect.top-25 + "px";
+correctImg.style.left = imgRect.right+50 + "px";
+wrongImg.style.top = distRect.top-25 + "px";
+wrongImg.style.left = imgRect.right+50 + "px";
+
 // paramètres de l'objectif
 const f = 100;          // distance focale de l'objectif
 const d = 20;           // distance lentille-diaphragme
@@ -446,21 +461,6 @@ function drawDepthOfField() {
 //==============================
 //   Déplacement des éléments
 //==============================
-
-// éléments indiquant les distances
-const objDistance = document.getElementById("obj");
-const imgDistance = document.getElementById("img");
-const distance = document.getElementById("dist");
-
-// affichage d'un logo indiquant si la mise au point est réalisée
-const correctImg = document.getElementById("correct");
-const wrongImg = document.getElementById("wrong");
-const imgRect = document.getElementById("imgP").getBoundingClientRect();
-const distRect = document.getElementById("distP").getBoundingClientRect();
-correctImg.style.top = distRect.top-25 + "px";
-correctImg.style.left = imgRect.right+50 + "px";
-wrongImg.style.top = distRect.top-25 + "px";
-wrongImg.style.left = imgRect.right+50 + "px";
 
 function computeXImg() {
     /*
