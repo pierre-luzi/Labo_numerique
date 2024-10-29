@@ -11,7 +11,8 @@ urlpatterns = [
     path('animations/<slug:slug>/', labo_num.views.animation, name='animation'),
     path('animations/', labo_num.views.liste_animations, name='liste_animations'),
     path('genially/', labo_num.views.liste_geniallies, name='liste_geniallies'),
-    path('genially/<slug:slug>', labo_num.views.genially, name='genially'),
+    path('genially/<slug:slug>/', labo_num.views.genially, name='genially'),
     path('confirmation/punition/', labo_num.views.punition_valide, name='confirmer_punition'),
     path('punition/<str:type_punition>/', labo_num.views.punition, name='punition'),
+    path('articles/<slug:slug>/', labo_num.views.article, name='article'),
 ]

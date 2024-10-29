@@ -71,6 +71,15 @@ class GeniallyAdmin(admin.ModelAdmin):
     list_display = ('titre',)
     prepopulated_field = {'slug': ('titre',)}
 
+@admin.register(Article)
+class ArticleAdmin(admin.ModelAdmin):
+    list_display = ('titre', 'visible',)
+    prepopulated_fields = {'slug': ('titre',)}
+    formfield_overrides = {
+        models.CharField: {'widget': TextInput(attrs={'size':'100'})},
+        models.TextField: {'widget': Textarea(attrs={'rows':4, 'cols':40})},
+    }
+
 @admin.register(Punition)
 class PunitionAdmin(admin.ModelAdmin):
     readonly_fields = ('nom', 'prenom', 'type_punition', 'date',)

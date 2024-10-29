@@ -70,7 +70,6 @@ def annales(request):
 def animation(request, slug):
     animation = get_object_or_404(Animation, slug=slug)
     template_path = 'labo_num/animations/' + slug + '.html'
-    print(template_path)
     return render(request, template_path, {'animation': animation,})
 
 def liste_animations(request):
@@ -84,6 +83,11 @@ def liste_geniallies(request):
 def genially(request, slug):
     genially = get_object_or_404(Genially, slug=slug)
     return render(request, 'labo_num/genially.html', {'genially': genially})
+
+def article(request, slug):
+    article = get_object_or_404(Article, slug=slug)
+    template_path = 'labo_num/articles/' + slug + '.html'
+    return render(request, template_path, {'article': article,})
 
 def punition(request, type_punition):
     if not type_punition in Punition.Type:

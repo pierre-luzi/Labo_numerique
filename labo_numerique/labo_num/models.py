@@ -182,6 +182,17 @@ class Genially(models.Model):
     
     def __str__(self):
         return self.titre
+        
+class Article(models.Model):
+    """Modèle pour publier un article."""
+    titre = models.CharField(max_length=150)
+    description = models.TextField(max_length=300, blank=True, null=True)
+    slug = models.SlugField(null=False, unique=True)
+    visible = models.BooleanField(default=False);
+    date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.titre
 
 class Punition(models.Model):
     """Modèle pour enregistrer une punition."""
