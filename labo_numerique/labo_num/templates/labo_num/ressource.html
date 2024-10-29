@@ -2,7 +2,6 @@
 {% load static %}
 
 {% block head %}
-        <meta name="description" content="{{ ressource.titre }}" />
 {% endblock head %}
 
 {% block pagetitle %}
@@ -10,4 +9,5 @@
 {% endblock %}
 
 {% block content %}
+    {{ contenu_html|safe }}
 {% endblock %}

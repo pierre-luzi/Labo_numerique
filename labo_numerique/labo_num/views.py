@@ -70,7 +70,7 @@ def annales(request):
 def animation(request, slug):
     animation = get_object_or_404(Animation, slug=slug)
     template_path = 'labo_num/animations/' + slug + '.html'
-    return render(request, template_path, {'animation': animation,})
+    return render(request, template_path, {'animation': animation})
 
 def liste_animations(request):
     animations = Animation.objects.all()
@@ -87,13 +87,13 @@ def genially(request, slug):
 def article(request, slug):
     article = get_object_or_404(Article, slug=slug)
     template_path = 'labo_num/articles/' + slug + '.html'
-    return render(request, template_path, {'article': article,})
+    return render(request, template_path, {'article': article})
 
-def ressource(request, slug):
+def donnees(request, slug):
     ressource = get_object_or_404(Ressource, slug=slug)
     with ressource.fichier.open('r', encoding='utf-8') as file:
             contenu_html = file.read()
-    return render(request, 'labo_num/ressource.html', {'ressource': ressource, 'contenu_html': contenu_html,})
+    return render(request, 'labo_num/ressource.html', {'ressource': ressource, 'contenu_html': contenu_html})
 
 def punition(request, type_punition):
     if not type_punition in Punition.Type:
