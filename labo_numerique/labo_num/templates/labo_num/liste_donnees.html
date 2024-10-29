@@ -1,0 +1,18 @@
+{% extends 'labo_num/base.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'labo_num/css/liste_donnees.css' %}" />
+{% endblock head %}
+
+{% block pagetitle %}
+    <h1>Données physico-chimiques</h1>
+{% endblock %}
+
+{% block content %}
+    <ul>
+    {% for ressource in ressources %}
+        <li><a href="{% url 'donnees' ressource.slug %}">{{ ressource.titre }}</a></li>
+    {% endfor %}
+    </ul>
+{% endblock %}

@@ -95,6 +95,10 @@ def donnees(request, slug):
             contenu_html = file.read()
     return render(request, 'labo_num/ressource.html', {'ressource': ressource, 'contenu_html': contenu_html})
 
+def liste_donnees(request):
+    ressources = Ressource.objects.all()
+    return render(request, 'labo_num/liste_donnees.html', {'ressources': ressources})
+
 def punition(request, type_punition):
     if not type_punition in Punition.Type:
         raise Http404
