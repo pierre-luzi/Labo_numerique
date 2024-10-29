@@ -1,0 +1,149 @@
+{% extends 'labo_num/base.html' %}
+{% load static %}
+
+{% block head %}
+	<link rel="stylesheet" href="{% static 'articles/base_article.css' %}" />
+	<link rel="stylesheet" href="{% static 'articles/higgs/higgs.css' %}" />
+    <!-- LaTeX -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.css">
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/katex.min.js"></script>
+    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.15.3/dist/contrib/auto-render.min.js"
+            onload="renderMathInElement(document.body);"></script>
+	<script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+    <script src="{% static 'animations/js-utils.js' %}"></script>
+    <script>
+        const MCFilePath = "{% static 'articles/higgs/MC_events.json' %}";
+        const cutsPath = "{% static 'articles/higgs/masses_ptiso' %}";
+        
+        function loadScript(src) {
+            return new Promise((resolve, reject) => {
+                const script = document.createElement('script');
+                script.src = src;
+                script.onload = () => resolve(`Script ${src} chargé`);
+                script.onerror = () => reject(new Error(`Échec du chargement de ${src}`));
+                document.fonts.ready.then(() => {
+                    document.head.appendChild(script);
+                });
+            });
+        }
+        
+        async function loadScriptsSequentially() {
+            try {
+                console.log(await loadScript("{% static 'articles/higgs/higgs_histogram_settings.js' %}"));
+                console.log(await loadScript("{% static 'articles/higgs/higgsGamGam_feynman.js' %}"));
+                console.log(await loadScript("{% static 'articles/higgs/higgs_MC.js' %}"));
+                console.log(await loadScript("{% static 'articles/higgs/higgs_cuts.js' %}"));
+                console.log(await loadScript("{% static 'articles/higgs/higgs_mass.js' %}"));
+                // Tous les scripts sont chargés
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        loadScriptsSequentially();
+    </script>
+{% endblock %}
+
+{% block pagetitle %}<h1>À la recherce du boson de Higgs</h1>{% endblock %}
+
+{% block content %}
+    <main id="main">
+        <p>Le 4 juillet 2012, le CERN (Organisation européenne pour la recherche nucléaire) a annoncé la découverte du boson de Higgs [<a href="https://arxiv.org/pdf/1207.7214" target="_blank">1</a>, <a href="https://arxiv.org/pdf/1207.7235" target="_blank">2</a>]. Son existence avait été prédite plus de 40 ans auparavant, dans le cadre du modèle standard de la physique des particules. L'hypothèse du boson de Higgs permettait d'expliquer que les particules élémentaires telles que les électrons ou les quarks aient une masse.</p>
+        <p>Nous allons voir comment l'existence du boson de Higgs a pu être mise en évidence à partir de certaines données du détecteur ATLAS.</p>
+        
+        
+        
+        <h2>Production et désintégration du boson de Higgs</h2>
+        
+        <p>Pour produire des bosons de Higgs, les physiciens du CERN utilisent un accélérateur de particules, le LHC (Large Hadron Collider). Celui-ci produit des faisceaux de protons qui circulent, dans les deux sens, dans un anneau circulaire de 27 km de diamètre. Lorsque les protons entrent en collision, de nombreuses particules sont produites ; parfois, un boson de Higgs en fait partie.</p>
+        <p>Le boson de Higgs ne peut pas être détecté directement. En effet, il a une durée de vie très faible (de l'ordre de 10<sup>-22</sup> s) avant de se désintégrer en d'autres particules. Parmi les désintégrations possibles, le modèle standard prédit que le boson de Higgs peut donner lieu à deux photons. Le processus peut être modélisé par les diagrammes de Feynman suivants :</p>
+        <canvas id="feynman_canvas"></canvas>
+        <p>Pour identifier un boson de Higgs, il est donc nécessaire de détecter les photons émis lors de sa désintégration.</p>
+        
+        
+        
+        <h2>Le détecteur ATLAS</h2>
+        
+        <p>Le détecteur ATLAS (figure de gauche) est un détecteur de particules cylindrique de 22 mètres de diamètre pour 40 mètres de longueur, axé sur la ligne du faisceau de protons. Il est constitué de couches superposées à partir du point de collision des protons. Des calorimètres (figure de droite) permettent de mesurer l'énergie de certaines particules : les électrons et les photons pour la calorimètre électromagnétique ; les hadrons pour le calorimètre hadronique.</p>
+        <div style="text-align: center;">
+            <div style="display: flex; flex-wrap: wrap; flex-direction: row; justify-content: space-around;">
+                <img src="{% static 'articles/higgs/ATLAS_detector.png' %}" style="height: 300px; width: auto;" />
+                <img src="{% static 'articles/higgs/ATLAS_EM_calorimeter.jpg' %}" style="height: 300px; width: auto;" />
+            </div>
+            <span style="font-size: 75%;">Source : ATLAS Experiment © CERN</span>
+        </div>        
+        <p>Pour détecter les désintégrations d'un boson de Higgs en deux photons, c'est donc le calorimètre électromagnétique qui joue un rôle majeur. Il est constitué de plomb et d'argon liquide (LAr). S'il peut mesurer l'énergie des photons - et donc leur impulsion -, son découpage en un grand nombre de cellules permet aussi de mesurer leur position dans le calorimètre, et donc de connaître leur trajectoire.</p>
+        
+        
+        
+        <h2>Masse invariante des photons</h2>
+        
+        <p>L'identification d'un boson de Higgs passe par l'étude cinématique des deux photons détectés. Connaissant les énergies \( E_1 \) et \( E_2 \) des deux photons et l'angle \( \Theta \) entre leurs trajectoires, on peut calculer une grandeur appelée masse invariante :
+        $$m_{\gamma\gamma} = \sqrt{2 E_1 E_2 \left(1 - \cos\Theta\right)}$$
+        Si deux photons détectés par ATLAS sont issus de la désintégration d'un boson de Higgs, alors leur masse invariante est égale à la masse de celui-ci.
+        </p>
+        <p>On représente ci-dessous une simulation de désintégrations de bosons de Higgs. Le détecteur est vu de profil et de face et les trajectoires des photons sont représentées, depuis le point de désintégration du boson jusque dans le calorimètre électromagnétique (en vert). L'histogramme à droite représente la fréquence à laquelle différentes valeurs de masse invariante sont mesurées.</p>
+        <div id="simulation">
+            <div id="simulation_menu">
+                <div class="button" id="simulation_button">
+                    Lancer la simulation
+                </div>
+                <div class="simulation_variable">\( E_1 \) = <span class="simulation_value" id="lead_energy"></span> GeV</div>
+                <div class="simulation_variable">\( E_2 \) = <span class="simulation_value" id="sub_energy"></span> GeV</div>
+                <div class="simulation_variable">\( \Theta \) = <span class="simulation_value" id="photons_angle"></span> rad</div>
+                <div class="simulation_variable">\( m_{\gamma\gamma} \) = <span class="simulation_value" id="invariant_mass"></span> GeV/c<sup>2</sup></div>
+            </div>
+            <canvas id="MC_canvas"></canvas>
+        </div>
+        <p>On observe sur l'histogramme que la masse invariante n'a pas toujours la même valeur. Cela est dû à deux phénomènes. D'une part, les principes de la physique quantique impliquent que la masse du boson de Higgs n'est pas parfaitement définie. D'autre part, la résolution du détecteur - sa capacité à mesurer l'énergie et les trajectoires avec précision - est limitée, ce qui entraîne un élargissement de l'histogramme. Néanmoins, l'histogramme obtenu montre une distribution des valeurs de masse invariante en forme de cloche, avec un pic correspondant à la masse du boson de Higgs simulé.</p>
+        
+        
+        
+        <h2>Sélection des événements</h2>
+        
+        <p>En pratique, lorsqu'ATLAS détecte deux photons, rien ne garantit qu'ils sont issus de la désintégration d'un boson de Higgs. La plupart des paires de photons enregistrées ne correspondent à aucune phénomène physique intéressant. Si l'on représente l'histogramme de leur masse invariante, on n'obtient alors pas un pic clair, mais une distribution aléatoire dans laquelle le pic du boson de Higgs est noyé : on dit que ces paires de photons quelconques produisent un bruit de fond.</p>
+        <p>Pour isoler du mieux possible le signal produit par le boson de Higgs, il faut sélectionner avec soin les paires de photons. Pour cela, on s'appuie sur des simulations pour établir des critères qui permettent de supprimer du bruit de fond tout en conservant du signal.</p>
+        <p>Parmi les critères retenus par ATLAS pour la découverte du boson de Higgs, on peut citer :
+            <ul>
+                <li>des critères d'identification, qui permettent de s'assurer que les photons en sont bien, en analysant la façon dont ils déposent de l'énergie dans le calorimètre ;</li>
+                <li>des critères cinétiques : chaque photon est caractérisé par une impulsion transverse p<sub>T</sub> (qui mesure en quelque sorte la quantité de mouvement du photon perpendiculairement au faisceau de protons), qui doit être supérieure à une valeur seuil pour qu'il soit accepté ;</li>
+                <li>des critères d'isolation : les photons sans intérêt physique sont souvent accompagnés d'autres particules qui déposent de l'énergie autour d'eux ; pour ne garder que des photons d'intérêt, on vérifie que l'énergie E<sub>T, isolation</sub> déposée juste autour d'eux dans le calorimètre ne dépasse pas un certain seuil.</li>
+            </ul>
+        </p>
+        <p>On représente ci-dessous l'histogramme de la masse invariante des photons pour les données d'ATLAS. Les paires de photons sélectionnées ont passé les critères d'identification. Les critères cinétiques et d'isolation sont également appliqués et peuvent être modifiés.</p>
+        
+        <div id="cuts">
+            <canvas id="events_canvas"></canvas>
+            <div id="cuts_selection">
+                <p>Photon 1 : p<sub>T</sub> > <input id="pt_lead_cut" type="number" value="30" min="21" max="50" /> GeV</p>
+                <p>Photon 2 : p<sub>T</sub> > <input id="pt_sub_cut" type="number" value="20" min="20" max="49" /> GeV</p>
+                <p>Isolation des photons : E<sub>T, isolation</sub> < <input id="iso_cut" type="number" value="6" min="2" max="6" /> GeV</p>
+            </div>
+        </div>
+        
+        <p>Lorsque les critères ne sont pas suffisamment stricts, beaucoup d'événements sont retenus. Il est alors impossible de détecter le signal. À l'inverse, si les critères sont trop forts, on supprime trop de données : même si le bruit de fond est éliminé, il ne reste plus suffisamment de signal. Il faut donc trouver un compromis entre suppression du bruit de fond et maintien d'un signal suffisamment important.</p>
+        <p>Pour la découverte du boson de Higgs, les critères d'ATLAS étaient les suivants : p<sub>T</sub> > 40 GeV pour le photon le plus énergétique, p<sub>T</sub> > 30 GeV pour le photon le moins énergétique, E<sub>T, isolation</sub> < 4 GeV. L'ensemble des critères de sélection peuvent être retrouvés dans l'article d'ATLAS [<a href="https://arxiv.org/pdf/1207.7214" target="_blank">1</a>].</p>
+        
+        
+        
+        <h2>Recherche d'une résonance</h2>
+        
+        <p>Une fois les paires de photons sélectionnées, on peut mener l'analyse des données. L'objectif est d'observer, dans l'histogramme de la masse invariante des photons, un pic qui correspondrait à la masse du boson de Higgs, dans l'hypothèse où celui-ci existerait. Pour cela, on modélise l'histogramme par une certaine densité de probabilité, en s'appuyant sur des simulations du bruit de fond et du signal pour choisir un modèle mathématique adapté.</p>
+        <p>Le modèle retenu par ATLAS en 2012 utilise :
+            <ul>
+                <li>un polynôme d'ordre 4 pour modéliser le bruit de fond ;</li>
+                <li>une distribution gaussienne pour modéliser le signal.</li>
+            </ul>
+            Mathématiquement, la distribution modèle s'écrit alors:
+            \[
+                p(x) = c_0 + c_1 x + c_2 x^2 + c_3 x^3 + c_4 x^4 + A \exp\left(-\frac{(x-\mu)^2}{2 \sigma^2}\right)
+            \]
+        </p>
+        <p>Le principe de la modélisation est de trouver les paramètres \( c_0 \), \( c_1 \), \( c_2 \), \( c_3 \), \( c_4 \), \( A \), \( \mu \) et \( \sigma \). Le paramètre d'intérêt pour la physique est \( \mu \), qui correspond alors à la masse du boson de Higgs. Pour réaliser la modélisation, un algorithme teste différentes valeurs des paramètres et calcule un nombre noté χ². Les valeurs retenues pour le paramètres sont celles qui minimisent le χ².</p>
+        <p>Le graphe ci-dessous représente les données d'ATLAS et la modélisation. Le graphe inférieur représente les résidus, c'est-à-dire la différence entre les données et le bruit de fond modélisé. Il est possible de modifier les trois paramètres de la distribution gaussienne. La valeur du χ² est affichée. Essayez donc de trouver le pic du boson de Higgs et de déterminer sa masse !</p>
+        
+        <canvas id="graphic_canvas"></canvas>
+        <canvas id="settings_canvas"></canvas>
+    </main>
+{% endblock %}
+

@@ -1,0 +1,72 @@
+main a {
+    color: blue;
+}
+
+#cuts {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#cuts_selection {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+}
+
+/*#cuts_selection div {
+    margin: 0 20px;
+}*/
+
+input {
+    width: 50px;
+}
+
+#MC_canvas {
+/*    background-color: white;*/
+}
+
+#simulation {
+    border: solid black 1px;
+    background-color: white;
+}
+
+#simulation_menu {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    padding: 0 10px;
+}
+
+.button {
+    cursor: pointer;
+    padding: 7px 10px;
+    border-radius: 5px;
+    background-color: rgb(230, 100, 100);
+    color: white;
+    width: 180px;
+    text-align: center;
+}
+
+.simulation_variable {
+    margin-left: 70px;
+}
+
+.simulation_value {
+    display: inline-block;
+    width: 50px;
+    text-align: right;
+}
+
+#photons_angle {
+    width: 30px;
+}
