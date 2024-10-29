@@ -30,8 +30,8 @@
                     <div class="navigation">
                         <a href="{% url 'annales' %}">Annales TSTL</a>
                     </div>
-                    <div class="navigation">
-                        <a href="#">Ressources pour le laboratoire</a>
+                    <div class="navigation" id="nav_labo">
+                        <span>Ressources pour le laboratoire &#8964;</span>
                     </div>
                 </div>
             </nav>
@@ -43,6 +43,12 @@
             <div class="nav_liste" id="liste_num">
                 <a href="{% url 'liste_animations' %}">Animations et simulations</a>
                 <a href="{% url 'liste_geniallies' %}">Genially</a>
+            </div>
+            <div class="nav_liste" id="liste_labo">
+                <a href=#>Articles</a>
+                <a href=#>Données physico-chimiques</a>
+                <a href=#>LaTeX</a>
+                <a href=#>Python</a>
             </div>
         </header>
         
@@ -57,6 +63,7 @@
         </footer>
     </body>
     <script>
+        // ===== Menu de navigation pour les cours =====
         const navCours = document.getElementById("nav_cours");
         navCours.addEventListener("mousedown", displayListCours);
         
@@ -70,13 +77,18 @@
             listCours.style.top = yListCours + 'px';
             listCours.style.visibility = 'visible';
             event.stopPropagation();
-            if (listNum.style.visibility == 'visible') {
-                listNum.style.visibility = 'hidden';
-                navNum.addEventListener("mousedown", displayListNum);
-                document.removeEventListener("mousedown", hideListNum);
-            }
+            
             document.addEventListener("mousedown", hideListCours);
             navCours.removeEventListener("mousedown", displayListCours);
+            
+            listNum.style.visibility = 'hidden';
+            navNum.addEventListener("mousedown", displayListNum);
+            document.removeEventListener("mousedown", hideListNum);
+            
+            listLab.style.visibility = 'hidden';
+            console.log(listLab.style.visibility);
+            navLab.addEventListener("mousedown", displayListLab);
+            document.removeEventListener("mousedown", hideListLab);
         }
         
         function hideListCours(event) {
@@ -88,6 +100,9 @@
             }
         }
         
+        
+        
+        // ===== Menu de navigation pour les ressources numériques =====
         const navNum = document.getElementById("nav_num");
         navNum.addEventListener("mousedown", displayListNum);
         
@@ -101,13 +116,17 @@
             listNum.style.top = yListNum + 'px';
             listNum.style.visibility = 'visible';
             event.stopPropagation();
-            if (listCours.style.visibility == 'visible') {
-                listCours.style.visibility = 'hidden';
-                navCours.addEventListener("mousedown", displayListCours);
-                document.removeEventListener("mousedown", hideListCours);
-            }
+            
             document.addEventListener("mousedown", hideListNum);
             navNum.removeEventListener("mousedown", displayListNum);
+            
+            listCours.style.visibility = 'hidden';
+            navCours.addEventListener("mousedown", displayListCours);
+            document.removeEventListener("mousedown", hideListCours);
+
+            listLab.style.visibility = 'hidden';
+            navLab.addEventListener("mousedown", displayListLab);
+            document.removeEventListener("mousedown", hideListLab);
         }
         
         function hideListNum(event) {
@@ -116,6 +135,44 @@
                 listNum.style.visibility = 'hidden';
                 navNum.addEventListener("mousedown", displayListNum);
                 document.removeEventListener("mousedown", hideListNum);
+            }
+        }
+        
+        
+        
+        // ===== Menu de navigation pour les ressources du laboratoire =====
+        const navLab = document.getElementById("nav_labo");
+        navLab.addEventListener("mousedown", displayListLab);
+        
+        const listLab = document.getElementById("liste_labo");
+        listLab.style.zIndex = 10;
+        
+        function displayListLab(event) {
+            let xListLab = navLab.offsetLeft;
+            let yListLab = navLab.offsetTop + 30;
+            listLab.style.left = xListLab + 'px';
+            listLab.style.top = yListLab + 'px';
+            listLab.style.visibility = 'visible';
+            event.stopPropagation();
+  
+            document.addEventListener("mousedown", hideListLab);
+            navLab.removeEventListener("mousedown", displayListLab);
+  
+            listCours.style.visibility = 'hidden';
+            navCours.addEventListener("mousedown", displayListCours);
+            document.removeEventListener("mousedown", hideListCours);
+            
+            listNum.style.visibility = 'hidden';
+            navNum.addEventListener("mousedown", displayListNum);
+            document.removeEventListener("mousedown", hideListNum);
+        }
+        
+        function hideListLab(event) {
+            event.stopPropagation();
+            if (!listLab.contains(event.target)) {
+                listLab.style.visibility = 'hidden';
+                navLab.addEventListener("mousedown", displayListLab);
+                document.removeEventListener("mousedown", hideListLab);
             }
         }
     </script>
