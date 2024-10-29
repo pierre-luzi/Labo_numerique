@@ -91,7 +91,7 @@ def article(request, slug):
 
 def donnees(request, slug):
     ressource = get_object_or_404(Ressource, slug=slug)
-    with ressource.fichier.open('r', encoding='utf-8') as file:
+    with ressource.fichier.open('r') as file:
             contenu_html = file.read()
     return render(request, 'labo_num/ressource.html', {'ressource': ressource, 'contenu_html': contenu_html})
 
