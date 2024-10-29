@@ -89,6 +89,11 @@ def article(request, slug):
     template_path = 'labo_num/articles/' + slug + '.html'
     return render(request, template_path, {'article': article,})
 
+def ressource(request, slug):
+    ressource = get_object_or_404(Ressource, slug=slug)
+    template_path = 'labo_num/ressources/' + slug + '.html'
+    return render(request, template_path, {'ressource': ressource,})
+
 def punition(request, type_punition):
     if not type_punition in Punition.Type:
         raise Http404

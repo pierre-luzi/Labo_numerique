@@ -80,6 +80,13 @@ class ArticleAdmin(admin.ModelAdmin):
         models.TextField: {'widget': Textarea(attrs={'rows':4, 'cols':40})},
     }
 
+@admin.register(Ressource)
+class RessourceAdmin(admin.ModelAdmin):
+    list_display = ('titre',)
+    formfield_overrides = {
+        models.CharField: {'widget': TextInput(attrs={'size':'100'})},
+    }
+    
 @admin.register(Punition)
 class PunitionAdmin(admin.ModelAdmin):
     readonly_fields = ('nom', 'prenom', 'type_punition', 'date',)

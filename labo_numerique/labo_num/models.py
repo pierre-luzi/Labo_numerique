@@ -188,11 +188,17 @@ class Article(models.Model):
     titre = models.CharField(max_length=150)
     description = models.TextField(max_length=300, blank=True, null=True)
     slug = models.SlugField(null=False, unique=True)
-    visible = models.BooleanField(default=False);
+    visible = models.BooleanField(default=False)
     date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.titre
+
+class Ressource(models.Model):
+    """Modèle pour publier une ressource."""
+    titre = models.CharField(max_length=150)
+    slug = models.SlugField(null=False, unique=True)
+    fichier = models.FileField(upload_to='uploads/ressources/', null=False, blank=False)
 
 class Punition(models.Model):
     """Modèle pour enregistrer une punition."""
