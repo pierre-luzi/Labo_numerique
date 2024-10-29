@@ -1,0 +1,14 @@
+{% extends 'labo_num/base.html' %}
+{% load static %}
+
+{% block head %}
+        <meta name="description" content="{{ ressource.titre }}" />
+{% endblock head %}
+
+{% block pagetitle %}
+    <h1>{{ ressource.titre }}</h1>
+{% endblock %}
+
+{% block content %}
+    {{ contenu_html|safe }}
+{% endblock %}
