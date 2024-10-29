@@ -91,10 +91,9 @@ def article(request, slug):
 
 def ressource(request, slug):
     ressource = get_object_or_404(Ressource, slug=slug)
-    template_path = 'labo_num/ressources/' + slug + '.html'
     with ressource.fichier.open('r', encoding='utf-8') as file:
             contenu_html = file.read()
-    return render(request, template_path, {'ressource': ressource, 'contenu_html': contenu_html,})
+    return render(request, 'labo_num/ressource.html', {'ressource': ressource, 'contenu_html': contenu_html,})
 
 def punition(request, type_punition):
     if not type_punition in Punition.Type:
