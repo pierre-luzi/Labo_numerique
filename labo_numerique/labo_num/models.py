@@ -190,6 +190,7 @@ class Article(models.Model):
     slug = models.SlugField(null=False, unique=True)
     visible = models.BooleanField(default=False)
     date = models.DateTimeField(auto_now_add=True)
+    img = models.ImageField(upload_to='uploades/miniatures_articles', null=True, blank=True)
 
     def __str__(self):
         return self.titre

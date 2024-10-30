@@ -89,6 +89,10 @@ def article(request, slug):
     template_path = 'labo_num/articles/' + slug + '.html'
     return render(request, template_path, {'article': article})
 
+def liste_articles(request):
+    articles = Article.objects.all()
+    return render(request, 'labo_num/liste_articles.html', {'articles': articles})
+
 def donnees(request, slug):
     ressource = get_object_or_404(Ressource, slug=slug)
     with ressource.fichier.open('r') as file:

@@ -15,6 +15,7 @@ urlpatterns = [
     path('confirmation/punition/', labo_num.views.punition_valide, name='confirmer_punition'),
     path('punition/<str:type_punition>/', labo_num.views.punition, name='punition'),
     path('articles/<slug:slug>/', labo_num.views.article, name='article'),
+    path('articles/', labo_num.views.liste_articles, name='liste_articles'),
     path('donnees/<slug:slug>/', labo_num.views.donnees, name='donnees'),
     path('donnees/', labo_num.views.liste_donnees, name='liste_donnees'),
 ]

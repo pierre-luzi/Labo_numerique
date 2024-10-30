@@ -1,0 +1,35 @@
+.container {
+    width: 92%;
+}
+
+#articles {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.article {
+    width: 47%;
+}
+
+.contenu_article {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.contenu_article img {
+    height: auto;
+    width: 30%;
+}
+
+.contenu_article img:hover {
+    box-shadow: 0 0 8px rgba(25, 25, 25, 0.7);
+}
+
+.description {
+    width: 65%;
+    text-align: justify;
+}

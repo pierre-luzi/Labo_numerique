@@ -1,0 +1,28 @@
+{% extends 'labo_num/base.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'labo_num/css/liste_articles.css' %}" />
+{% endblock head %}
+
+{% block pagetitle %}
+    <h1>Articles</h1>
+{% endblock %}
+
+{% block content %}
+        <div id="articles">
+            {% for article in articles %}
+                <div class="article">
+                    <h3>{{ article.titre }}</h3>
+                    <div class="contenu_article">
+                        <a href="{% url 'article' article.slug %}">
+                            <img style="height: 100px; width: auto;" src="{{ article.img.url }}">
+                        </a>
+                        <div class="description">
+                            {{ article.description|safe }}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+{% endblock %}
