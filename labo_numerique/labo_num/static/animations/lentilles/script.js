@@ -741,7 +741,7 @@ function disableRadioButtons() {
 
 const screenCbx = document.getElementById("screenCbx");
 screenCbx.checked = false;
-screenCbx.disabled = true;
+screenCbx.disabled = false;
 
 screenCbx.addEventListener("change", changeScreenCbx);
 
