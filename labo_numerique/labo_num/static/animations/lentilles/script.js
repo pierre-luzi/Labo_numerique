@@ -13,6 +13,11 @@
 */
 
 
+
+document.fonts.ready.then(() => {
+
+
+
 // ===== Initialisation des paramètres =====
 
 // paramètres de l'objectif
@@ -811,3 +816,5 @@ drawLensObjectArrow();
 drawLensImageArrow();
 updateRays();
 stage.update();
+
+});
