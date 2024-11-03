@@ -1,0 +1,249 @@
+@import url('https://fonts.googleapis.com/css2?family=Boogaloo&family=Quicksand&display=swap');
+
+body {
+    height: calcul(100vh - 10px);
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Boogaloo', cursive;
+}
+
+h1 {
+    margin: 10px 0;
+    padding: 0px 0;
+    text-align: center;
+    font-size: 260%;
+}
+
+main {
+    font-family: 'Quicksand';
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+/*    align-items: center;*/
+}
+
+canvas {
+    margin: auto;
+    border: solid black 1px;
+}
+
+#bottom {
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    position: absolute;
+    top: 430px;
+    left: 10%;
+}
+
+.button-container {
+    margin: 0 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button {
+    color: white;
+    border-radius: 5px;
+    background-color: rgba(0, 195, 20, 0.8);
+    padding: 10px;
+}
+
+#autofocus-button:hover {
+    background-color: green;
+    cursor: pointer;
+}
+
+#guidelines {
+    margin-right: 50px;
+}
+
+#menu {
+    display: flex;
+    flex-direction: row;
+}
+
+#enlargement {
+    border: solid 1px black;
+    width: 200px;
+    margin-left: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding-left: 20px;
+}
+
+#enlargement p {
+    margin: 5px 0;
+}
+
+#settings {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+input[type="number"] {
+    width: 50px;
+    font-size: 100%;
+}
+
+
+/****************/
+/*  Checkboxes  */
+/****************/
+
+.cbx-label {
+    margin-left: 10px;
+}
+
+.checkbox {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: 5px 20px;
+}
+
+.checkbox input[type="checkbox"] {
+    display: none;
+    visibility: hidden;
+}
+.checkbox .cbx {
+    -webkit-perspective: 20;
+    perspective: 20;
+    display: inline-block;
+    border: 2px solid black;
+    background: #e8e8eb;
+    border-radius: 4px;
+    transform: translate3d(0, 0, 0);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+.checkbox .cbx:hover {
+    border-color: #0b76ef;
+}
+.checkbox .flip {
+    display: block;
+    transition: all 0.4s ease;
+    transform-style: preserve-3d;
+    position: relative;
+    width: 20px;
+    height: 20px;
+}
+
+/* Bordure des checkboxes cochées */
+.checkbox input[id="primaryFocusRay"]:checked + .cbx {
+    border-color: purple;
+}
+.checkbox input[id="centerRay"]:checked + .cbx {
+    border-color: #0b76ef;
+}
+.checkbox input[id="secondaryFocusRay"]:checked + .cbx {
+    border-color: green;
+}
+.checkbox input[id="randomRaysCbx"]:checked + .cbx {
+    border-color: red;
+}
+.checkbox input[id="screenCbx"]:checked + .cbx {
+    border-color: #aaa;
+}
+
+/* Bordure des checkboxes survolées */
+.checkbox label[for="primaryFocusRay"]:hover {
+    border-color: purple;
+}
+.checkbox label[for="centerRay"]:hover {
+    border-color: #0b76ef;
+}
+.checkbox label[for="secondaryFocusRay"]:hover {
+    border-color: green;
+}
+.checkbox label[for="randomRaysCbx"]:hover {
+    border-color: red;
+}
+.checkbox label[for="screenCbx"]:hover {
+    border-color: #aaa;
+}
+
+.checkbox input[type="checkbox"]:checked + .cbx .flip {
+    transform: rotateY(180deg);
+}
+.checkbox .front, .checkbox .back {
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 2px;
+}
+.checkbox .front {
+    background: #fff;
+    z-index: 1;
+}
+.checkbox .back {
+    transform: rotateY(180deg);
+    text-align: center;
+    color: #fff;
+    line-height: 20px;
+}
+.checkbox .back svg {
+    margin-top: 3px;
+    fill: none;
+}
+.checkbox .back svg path {
+    stroke: #fff;
+    stroke-width: 2.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+.checkbox label[for="primaryFocusRay"] .back {
+    background: purple;
+    box-shadow: 0 0 0 1px purple;    
+}
+.checkbox label[for="centerRay"] .back {
+    background: #0b76ef;
+    box-shadow: 0 0 0 1px #0b76ef;    
+}
+.checkbox label[for="secondaryFocusRay"] .back {
+    background: green;
+    box-shadow: 0 0 0 1px green;    
+}
+.checkbox label[for="randomRaysCbx"] .back {
+    background: red;
+    box-shadow: 0 0 0 1px red;    
+}
+.checkbox label[for="screenCbx"] .back {
+    background: #aaa;
+    box-shadow: 0 0 0 1px #aaa;    
+}
+
+
+
+/****************/
+/*    Radios    */
+/****************/
+
+input[type="radio"] {
+    margin: 0 5px;
+}
+
+input[type="radio"]:checked {
+    accent-color: red;
+}
+
+
+
+#fLeftArrow, #fRightArrow {
+    cursor: pointer;
+}
+
+#focalDistance {
+    display: inline-block;
+    width: 30px;
+    text-align: right;
+}

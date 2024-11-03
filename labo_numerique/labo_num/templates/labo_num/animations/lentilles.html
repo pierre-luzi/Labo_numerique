@@ -1,0 +1,118 @@
+{% extends 'labo_num/base_animation.html' %}
+{% load static %}
+
+{% block head %}
+	<link rel="stylesheet" href="{% static 'animations/lentilles/style.css' %}" />
+	<script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+    <script src="{% static 'animations/js-utils.js' %}"></script>
+    <script src="{% static 'animations/lentilles/script.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <main>
+        <canvas id="canvas"></canvas>
+        <div id="bottom">
+            <div id="guidelines">
+                <p>Sur le schéma, on peut déplacer l'objet lumineux AB et la lentille, ainsi que l'écran lorsqu'il est affiché.</p>
+                
+                <div id="menu">
+                    <div id="settings">
+                        <div id="randomRays">
+                            <div class="checkbox">
+                                <input id="randomRaysCbx" type="checkbox"/>
+                                <label class="cbx" for="randomRaysCbx">
+                                    <div class="flip">
+                                        <div class="front"></div>
+                                        <div class="back">
+                                        <svg width="16" height="14" viewBox="0 0 16 14">
+                                            <path d="M2 8.5L6 12.5L14 1.5"></path>
+                                        </svg>
+                                        </div>
+                                    </div>
+                                </label>
+                                <span class="cbx-label">
+                                    Afficher <input id="numberRays" type="number" value="10" min="2" max="20" /> rayons issus de
+                                    <input type="radio" id="radioA" name="radioRays" disabled /><label for="radioA">A</label>
+                                    <input type="radio" id="radioB" name="radioRays" checked disabled />B</label>
+                                </span>
+                            </div>
+                            <div class="checkbox">
+                                <input id="screenCbx" type="checkbox"/>
+                                <label class="cbx" for="screenCbx">
+                                    <div class="flip">
+                                        <div class="front"></div>
+                                        <div class="back">
+                                        <svg width="16" height="14" viewBox="0 0 16 14">
+                                            <path d="M2 8.5L6 12.5L14 1.5"></path>
+                                        </svg>
+                                        </div>
+                                    </div>
+                                </label>
+                                <span class="cbx-label">
+                                    Afficher l'écran
+                                </span>
+                            </div>
+                            <div style="margin-left: 20px;">
+                                Distance focale : <span id="fLeftArrow">&#9668;</span> <span id="focalDistance">100</span> mm <span id="fRightArrow">&#9658;</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="specialRays">
+                        <div class="checkbox">
+                            <input id="primaryFocusRay" type="checkbox"/>
+                            <label class="cbx" for="primaryFocusRay">
+                                <div class="flip">
+                                    <div class="front"></div>
+                                    <div class="back">
+                                    <svg width="16" height="14" viewBox="0 0 16 14">
+                                        <path d="M2 8.5L6 12.5L14 1.5"></path>
+                                    </svg>
+                                    </div>
+                                </div>
+                            </label>
+                            <span class="cbx-label">
+                                Afficher le rayon passant par F
+                            </span>
+                        </div>
+                        <div class="checkbox">
+                            <input id="centerRay" type="checkbox"/>
+                            <label class="cbx" for="centerRay">
+                                <div class="flip">
+                                    <div class="front"></div>
+                                    <div class="back">
+                                    <svg width="16" height="14" viewBox="0 0 16 14">
+                                        <path d="M2 8.5L6 12.5L14 1.5"></path>
+                                    </svg>
+                                    </div>
+                                </div>
+                            </label>
+                            <span class="cbx-label">
+                                Afficher le rayon passant par O
+                            </span>
+                        </div>
+                        <div class="checkbox">
+                            <input id="secondaryFocusRay" type="checkbox"/>
+                            <label class="cbx" for="secondaryFocusRay">
+                                <div class="flip">
+                                    <div class="front"></div>
+                                    <div class="back">
+                                    <svg width="16" height="14" viewBox="0 0 16 14">
+                                        <path d="M2 8.5L6 12.5L14 1.5"></path>
+                                    </svg>
+                                    </div>
+                                </div>
+                            </label>
+                            <span class="cbx-label">
+                                Afficher le rayon passant par F'
+                            </span>
+                        </div>
+                    </div>
+                    <div id="enlargement">
+                        <p id="imgP">AB = 50 mm</p>
+                        <p id="distP">A'B' = <span id="imgHeight"></span> mm</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
