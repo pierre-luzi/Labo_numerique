@@ -703,7 +703,6 @@ numberRaysInput.addEventListener("change", function() {
 // choix de l'origine des rayons
 const inputRadioA = document.getElementById("radioA");
 inputRadioA.checked = false;
-inputRadioA.disabled = true;
 
 inputRadioA.addEventListener("change", function(event) {
     if (this.checked) {
@@ -715,7 +714,6 @@ inputRadioA.addEventListener("change", function(event) {
 
 const inputRadioB = document.getElementById("radioB");
 inputRadioB.checked = true;
-inputRadioB.disabled = true;
 
 inputRadioB.addEventListener("change", function(event) {
     if (this.checked) {
@@ -741,7 +739,6 @@ function disableRadioButtons() {
 
 const screenCbx = document.getElementById("screenCbx");
 screenCbx.checked = false;
-screenCbx.disabled = false;
 
 screenCbx.addEventListener("change", changeScreenCbx);
 
