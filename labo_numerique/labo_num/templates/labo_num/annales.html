@@ -45,7 +45,7 @@
                     </div>
                     <div class="liens_chapitres">
                         <span style="margin-right: 10px">Chapitres :</span>
-                        {% for chapitre in sujet.chapitres.all %}
+                        {% for chapitre in sujet.chapitres.all|dictsort:"numero"|dictsortreversed:"matiere" %}
                             <a href="{% url 'chapitre' chapitre.niveau chapitre.matiere chapitre.numero %}" class="lien_chapitre" title="{% short_name chapitre %} - {{ chapitre.titre }}">
                                 {% short_name chapitre %}
                             </a>
