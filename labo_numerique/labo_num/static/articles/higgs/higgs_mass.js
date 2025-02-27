@@ -303,14 +303,14 @@ chiSquareLegend.y = yMax + 50;
 chiSquareLegend.textBaseline = 'middle';
 chiSquareLegend.textAlign = 'left';
 
-const massLegend = new createjs.Text("Masse invariante (GeV)", "16px Quicksand", 'black');
+const massLegend = new createjs.Text("Masse invariante (GeV/c²)", "16px Quicksand", 'black');
 plotContainer.addChild(massLegend);
 massLegend.x = 600;
 massLegend.y = 110;
 massLegend.textBaseline = 'middle';
 massLegend.textAlign = 'right';
 
-const eventsLegend = new createjs.Text("Événements / 3 GeV", "16px Quicksand", 'black');
+const eventsLegend = new createjs.Text("Événements / 3 GeV/c²", "16px Quicksand", 'black');
 plotContainer.addChild(eventsLegend);
 eventsLegend.x = -50;
 eventsLegend.y = yMax;

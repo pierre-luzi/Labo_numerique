@@ -53,18 +53,29 @@
         
         
         
-        <h2>Production et désintégration du boson de Higgs</h2>
+        <h2>Production de particules avec le LHC</h2>
         
-        <p>Pour produire des bosons de Higgs, les physiciens du CERN utilisent un accélérateur de particules, le LHC (Large Hadron Collider). Celui-ci produit des faisceaux de protons qui circulent, dans les deux sens, dans un anneau circulaire de 27 km de diamètre. Lorsque les protons entrent en collision, de nombreuses particules sont produites ; parfois, un boson de Higgs en fait partie.</p>
-        <p>Le boson de Higgs ne peut pas être détecté directement. En effet, il a une durée de vie très faible (de l'ordre de 10<sup>-22</sup> s) avant de se désintégrer en d'autres particules. Parmi les désintégrations possibles, le modèle standard prédit que le boson de Higgs peut donner lieu à deux photons. Le processus peut être modélisé par les diagrammes de Feynman suivants :</p>
+        <p>Pour produire des particules, comme le boson de Higgs, les physiciens utilisent des accélérateurs de particules. Au CERN, le LHC (Large Hadron Collider) accélère des protons dans un anneau circulaire, à des vitesses proches de celle de la lumière. Les protons circulent dans les deux sens et peuvent entrer en collision lorsqu'ils se croisent. De nombreuses particules peuvent alors être produites.</p>
+        <div style="text-align: center;">
+            <iframe width="560" height="315" src="https://www.youtube.com/embed/pQhbhpU9Wrg?si=qp7Q670DPA2UYO2s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+        </div>
+        <p>La production d'une particule est un phénomène aléatoire, qui obéit à des lois de probabilité. La physique des particules prédit le taux d'apparition d'une particule donnée grâce à la théorie quantique des champs, un domaine de la physique qui concilie mécanique quantique et relativité restreinte. On calcule ainsi que, aux énergies mises en jeu dans le LHC, seulement 1 collision sur 2 milliards produit un boson de Higgs ! On comprend alors qu'il faut un très grand nombre de collisions pour espérer observer cette particule.</p>
+        
+        
+        
+        <h2>Observer une particule invisible</h2>
+        
+        <p>Les particules produites lors d'une collision ne sont pas directement observables, car elles se désintègrent très rapidement en d'autres particules.</p>
+        <p>Comment alors détecter la particule souhaitée ? Imaginons une scène de meurtre : le détective peut trouver des empreintes digitales, des traces de pas dans le sang, des cheveux... Tous ces indices lui permettent de retrouver le coupable, sans jamais l'avoir vu directement commettre son crime. Le travail du physicien des particules est le même : il doit reconstituer la particule primaire produite lors de la collision, uniquement à partir de l'observation des particules secondaires produites lors de sa désintégration.</p>
+        <p>Dans le cas du boson de Higgs, dont la durée de vie est d'environ 10<sup>-22</sup>&nbsp;s, il existe plusieurs désintégrations possibles. L'une d'entre elles consiste à ce que le boson de Higgs se désintègre en deux photons. Ce processus est modélisé, en théorie quantique des champs, par les diagrammes de Feynman suivants :</p>
         <canvas id="feynman_canvas"></canvas>
-        <p>Pour identifier un boson de Higgs, il est donc nécessaire de détecter les photons émis lors de sa désintégration.</p>
+        <p>Une façon de détecter un boson de Higgs consiste donc à observer les deux photons émis lors de sa désintégration. Pour ce faire, on utilise des détecteurs de particules, qui peuvent déterminer la trajectoire de certaines particules ou mesurer leur énergie. Au CERN, deux détecteurs sont dédiés notamment à l'observation du boson de Higgs : CMS et ATLAS.</p>
         
         
         
         <h2>Le détecteur ATLAS</h2>
         
-        <p>Le détecteur ATLAS (figure de gauche) est un détecteur de particules cylindrique de 22 mètres de diamètre pour 40 mètres de longueur, axé sur la ligne du faisceau de protons. Il est constitué de couches superposées à partir du point de collision des protons. Des calorimètres (figure de droite) permettent de mesurer l'énergie de certaines particules : les électrons et les photons pour la calorimètre électromagnétique ; les hadrons pour le calorimètre hadronique.</p>
+        <p>Le détecteur ATLAS (figure de gauche) est un détecteur de particules cylindrique de 22 mètres de diamètre pour 40 mètres de longueur, axé sur la ligne du faisceau de protons. Il est constitué de couches superposées à partir du point de collision des protons. Des instrument appelés calorimètres (figure de droite) permettent de mesurer l'énergie de certaines particules : les hadrons (particules constituées de quarks) pour le calorimètre hadronique ; les électrons et les photons pour le calorimètre électromagnétique. C'est donc ce dernier qui est au cœur de la détection d'une désintégration d'un boson de Higgs en deux photons.</p>
         <div style="text-align: center;">
             <div style="display: flex; flex-wrap: wrap; flex-direction: row; justify-content: space-around;">
                 <img src="{% static 'articles/higgs/ATLAS_detector.png' %}" style="height: 300px; width: auto;" />
@@ -72,17 +83,15 @@
             </div>
             <span style="font-size: 75%;">Source : ATLAS Experiment © CERN</span>
         </div>        
-        <p>Pour détecter les désintégrations d'un boson de Higgs en deux photons, c'est donc le calorimètre électromagnétique qui joue un rôle majeur. Il est constitué de plomb et d'argon liquide (LAr). S'il peut mesurer l'énergie des photons - et donc leur impulsion -, son découpage en un grand nombre de cellules permet aussi de mesurer leur position dans le calorimètre, et donc de connaître leur trajectoire.</p>
+        <p>Le calorimètre électromagnétique est constitué de plomb et d'argon liquide (LAr). Schématiquement, les couches de plomb entraînent, à partir d'un photon incident, la production d'une gerbe électromagnétique, un ensemble de photons, d'électrons et d'anti-électrons. Cette gerbe dépose progressivement son énergie dans le calorimètre en ionisant l'argon liquide. Cette ionisation produit un signal électrique qui permet de mesurer l'énergie totale de la gerbe, donc celle du photon. En outre, le découpage du calorimètre en un grand nombre de cellules très fines permet de connaître la position du photon dans le calorimètre, et donc de reconstituer sa trajectoire.</p>
         
         
         
-        <h2>Masse invariante des photons</h2>
+        <h2>Des photons au boson de Higgs</h2>
         
-        <p>L'identification d'un boson de Higgs passe par l'étude cinématique des deux photons détectés. Connaissant les énergies \( E_1 \) et \( E_2 \) des deux photons et l'angle \( \Theta \) entre leurs trajectoires, on peut calculer une grandeur appelée masse invariante :
-        $$m_{\gamma\gamma} = \sqrt{2 E_1 E_2 \left(1 - \cos\Theta\right)}$$
-        Si deux photons détectés par ATLAS sont issus de la désintégration d'un boson de Higgs, alors leur masse invariante est égale à la masse de celui-ci.
-        </p>
-        <p>On représente ci-dessous une simulation de désintégrations de bosons de Higgs. Le détecteur est vu de profil et de face et les trajectoires des photons sont représentées, depuis le point de désintégration du boson jusque dans le calorimètre électromagnétique (en vert). L'histogramme à droite représente la fréquence à laquelle différentes valeurs de masse invariante sont mesurées.</p>
+        <p>Le calorimètre électromagnétique ne renseigne directement que sur les photons détectés. Comment, à partir de ces photons, obtenir des informations sur la particule produite ?</p>
+        <p>Revenons à notre scène de meurtre. Les cheveux trouvés sur place indiquent si le coupable est blond ou brun ; les analyses ADN permettent de savoir s'il s'agit d'un homme ou d'une femme... En cumulant les indices, on peut dresser un portrait robot, plus ou moins complet, du meurtrier. Il en va de même en physique des particules : les particules observées dans le détecteur et les mesures associées fournissent de précieuses informations qui permettent de reconstituer la particule dont elles sont issues. Par exemple, les mesures effectuées par le calorimètre électromagnétique d'ATLAS permettent de déterminer la masse du boson de Higgs.
+        <p>Pour faire le lien entre les propriétés des photons observés et celles du boson de Higgs, on s'appuie sur des simulations. En effet, grâce aux calculs de la théorie quantique des champs, on peut simuler la production et la désintégration d'un boson de Higgs en deux photons et leur détection par ATLAS. Une telle simulation est proposée ci-dessous. Le calorimètre électromagnétique (en vert) y est représenté de profil et de face et les trajectoires des photons sont tracées, depuis le point de désintégration du boson jusque dans le calorimètre.</p>
         <div id="simulation">
             <div id="simulation_menu">
                 <div class="button" id="simulation_button">
@@ -95,14 +104,21 @@
             </div>
             <canvas id="MC_canvas"></canvas>
         </div>
-        <p>On observe sur l'histogramme que la masse invariante n'a pas toujours la même valeur. Cela est dû à deux phénomènes. D'une part, les principes de la physique quantique impliquent que la masse du boson de Higgs n'est pas parfaitement définie. D'autre part, la résolution du détecteur - sa capacité à mesurer l'énergie et les trajectoires avec précision - est limitée, ce qui entraîne un élargissement de l'histogramme. Néanmoins, l'histogramme obtenu montre une distribution des valeurs de masse invariante en forme de cloche, avec un pic correspondant à la masse du boson de Higgs simulé.</p>
+        <p>Pour cette simulation, on a généré des bosons de Higgs avec une masse de 125 Gev/c<sup>2</sup>. Cela ne préjuge pas de la vraie masse de la particule : on pourrait aussi bien faire cette simulation pour une masse de 120 ou 130 GeV/c<sup>2</sup>.</p>
+        <p>Pour chaque paire de photons détectée, le calorimètre mesure leurs énergies respectives \( E_1 \) et \( E_2 \) ainsi que l'angle \( \Theta \) entre leurs trajectoires. On peut alors, à partir de ces mesures, calculer une grandeur appelée masse invariante :
+        $$m_{\gamma\gamma} = \sqrt{2 E_1 E_2 \left(1 - \cos\Theta\right)}$$
+        </p>
+        <p>L'histogramme à droite de la simulation représente la fréquence à laquelle différentes valeurs de masse invariante sont mesurées. On observe que la masse invariante des paires de photons produites se trouve autour de 125 GeV/c<sup>2</sup>, la valeur choisie pour la masse du boson de Higgs dans cette simulation. La masse invariante, calculée à partir des mesures du calorimètre, est donc égale à la masse du boson de Higgs dont ils sont issus.</p>
+        <p>Notons toutefois que la masse invariante n'a pas toujours exactement la même valeur. Cela est dû à deux phénomènes. D'une part, les principes de la physique quantique impliquent que la masse du boson de Higgs n'est pas parfaitement définie. D'autre part, la résolution du détecteur - sa capacité à mesurer l'énergie et les trajectoires avec précision - est limitée, ce qui entraîne un élargissement de l'histogramme autour de la valeur centrale.</p>
         
         
         
         <h2>Sélection des événements</h2>
         
-        <p>En pratique, lorsqu'ATLAS détecte deux photons, rien ne garantit qu'ils sont issus de la désintégration d'un boson de Higgs. La plupart des paires de photons enregistrées ne correspondent à aucune phénomène physique intéressant. Si l'on représente l'histogramme de leur masse invariante, on n'obtient alors pas un pic clair, mais une distribution aléatoire dans laquelle le pic du boson de Higgs est noyé : on dit que ces paires de photons quelconques produisent un bruit de fond.</p>
-        <p>Pour isoler du mieux possible le signal produit par le boson de Higgs, il faut sélectionner avec soin les paires de photons. Pour cela, on s'appuie sur des simulations pour établir des critères qui permettent de supprimer du bruit de fond tout en conservant du signal.</p>
+        <p>Le détective qui enquête sur un meurtre peut se servir des indices trouvés sur la scène du crime pour retrouver le coupable. Mais comment s'assurer que ces indices en soient vraiment ? Les cheveux d'une personne trouvés à son propre domicile ne prouvent pas qu'elle est coupable ; ils indiquent peut-être seulement que l'on se trouve chez elle !</p>
+        <p>Le même problème se pose en physique des particules : lorsqu'ATLAS détecte deux photons, rien ne garantit qu'ils sont issus de la désintégration d'un boson de Higgs. De nombreux phénomènes physiques, sans rapport avec la particule recherchée, peuvent produire des paires de photons. Si l'on représente l'histogramme de la masse invariante des paires de photons détectées lors de l'expérience (ci-dessous), on n'obtient en fait pas un pic comme celui de la simulation, mais une distribution quelconque.</p>        
+        <p>Si des bosons de Higgs sont réellement produits, le pic de masse invariante correspondant est noyé dans cette distribution. On dit que les paires de photons quelconques détectées produisent du bruit de fond.</p>
+        <p>Pour isoler du mieux possible le signal produit par le boson de Higgs, il faut sélectionner avec soin les paires de photons. Pour cela, on s'appuie sur les simulations pour établir des critères qui permettent de supprimer du bruit de fond tout en conservant du signal.</p>
         <p>Parmi les critères retenus par ATLAS pour la découverte du boson de Higgs, on peut citer :
             <ul>
                 <li>des critères d'identification, qui permettent de s'assurer que les photons en sont bien, en analysant la façon dont ils déposent de l'énergie dans le calorimètre ;</li>
@@ -110,8 +126,6 @@
                 <li>des critères d'isolation : les photons sans intérêt physique sont souvent accompagnés d'autres particules qui déposent de l'énergie autour d'eux ; pour ne garder que des photons d'intérêt, on vérifie que l'énergie E<sub>T, isolation</sub> déposée juste autour d'eux dans le calorimètre ne dépasse pas un certain seuil.</li>
             </ul>
         </p>
-        <p>On représente ci-dessous l'histogramme de la masse invariante des photons pour les données d'ATLAS. Les paires de photons sélectionnées ont passé les critères d'identification. Les critères cinétiques et d'isolation sont également appliqués et peuvent être modifiés.</p>
-        
         <div id="cuts">
             <canvas id="events_canvas"></canvas>
             <div id="cuts_selection">
@@ -120,7 +134,7 @@
                 <p>Isolation des photons : E<sub>T, isolation</sub> < <input id="iso_cut" type="number" value="6" min="2" max="6" /> GeV</p>
             </div>
         </div>
-        
+        <p>Sur l'histogramme précédent, les photons ont passé les critères d'identification. Les critères cinétiques et d'isolation sont également appliqués et peuvent être modifiés.</p>
         <p>Lorsque les critères ne sont pas suffisamment stricts, beaucoup d'événements sont retenus. Il est alors impossible de détecter le signal. À l'inverse, si les critères sont trop forts, on supprime trop de données : même si le bruit de fond est éliminé, il ne reste plus suffisamment de signal. Il faut donc trouver un compromis entre suppression du bruit de fond et maintien d'un signal suffisamment important.</p>
         <p>Pour la découverte du boson de Higgs, les critères d'ATLAS étaient les suivants : p<sub>T</sub> > 40 GeV pour le photon le plus énergétique, p<sub>T</sub> > 30 GeV pour le photon le moins énergétique, E<sub>T, isolation</sub> < 4 GeV. L'ensemble des critères de sélection peuvent être retrouvés dans l'article d'ATLAS [<a href="https://arxiv.org/pdf/1207.7214" target="_blank">1</a>].</p>
         
@@ -144,6 +158,15 @@
         
         <canvas id="graphic_canvas"></canvas>
         <canvas id="settings_canvas"></canvas>
+        
+        
+        
+        <h2>De l'observation à la découverte</h2>
+        
+        <p>Une fois le pic de masse invariante du boson de Higgs observé, il reste aux physiciens à s'assurer que ce pic en est bien un. En effet, les processus mis en jeu en physique des particules étant aléatoires, ce pic pourrait tout à fait être dû au bruit de fond.</p>
+        <p>Imaginons une pièce de monnaire lancée 100 fois. On s'attend à observer 50 fois le côté face et 50 fois le côté pile. Toutefois, si l'on observe 48 fois le côté face et 52 fois le côté pile, on ne concluera pas que la pièce est truquée. En revanche, si l'on n'observe que 5 fois le côté face et 95 fois le côté pile, on pourra sans crainte affirmer que la pièce n'est pas équilibrée et qu'il existe un mécanisme qui favorise le côté pile.</p>
+        <p>De la même façon, si le boson de Higgs n'existait pas, il serait tout à faire posible que, par le jeu des fluctuations statistiques, il y ait un excès de paires de photons pour une masse invariante donnée. On observerait alors un pic dans l'histogramme, qui ne correspondrait pas pour autant à une particule. Pour conclure à une découverte, il faut s'assurer que cette situation est improbable.</p>
+        <p>Dans l'article d'ATLAS de 2012 [<a href="https://arxiv.org/pdf/1207.7214" target="_blank">1</a>], la probabilité que le pic observé soit dû à des fluctuations statistiques était de 1,7 &times; 10<sup>-9</sup>. Cela signifie que, si le boson de Higgs n'existait pas, on n'observerait un tel pic que dans 17 expériences sur 10 milliards ! Compte tenu des critères utilisés en physique des particules, cela a permis de conclure à la découverte d'une nouvelle particule, d'une masse d'environ 125 GeV/c<sup>2</sup> et dont les propriétés sont compatibles avec celles d'un boson de Higgs.</p>
     </main>
 {% endblock %}
 

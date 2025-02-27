@@ -263,7 +263,7 @@ for (let m = minMC; m <= maxMC; m += 10) {
 }
 
 // légende
-const massMCLegend = new createjs.Text("Masse invariante (GeV)", "12px Quicksand", 'black');
+const massMCLegend = new createjs.Text("Masse invariante (GeV/c²)", "12px Quicksand", 'black');
 histogramMCContainer.addChild(massMCLegend);
 massMCLegend.x = histogramMCWidth;
 massMCLegend.y = 25;
