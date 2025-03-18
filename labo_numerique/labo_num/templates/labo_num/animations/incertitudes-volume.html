@@ -1,0 +1,94 @@
+{% extends 'labo_num/base_animation.html' %}
+{% load static %}
+
+{% block head %}
+	<link rel="stylesheet" href="{% static 'animations/incertitudes-volume/style.css' %}" />
+	<script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+	<script defer src="{% static 'animations/incertitudes-volume/script.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <main>
+        <div class="container" id="beaker">
+            <h2>Bécher</h2>
+            <div class="upperDiv">
+                <div class="results">
+                    <p>Moyenne : <input id="beakerMean"/> mL</p>
+                    <p>Écart-type : <input id="beakerStd" /> mL</p>
+                </div>
+                <div class="button resetButton" id="resetBeaker">
+                    Réinitialiser
+                </div>
+            </div>
+            <canvas id="beakerCanvas" height="280px"></canvas>
+            <div class="menu" id="beakerMenu">
+                <div class="drawOne button" id="1drawBeaker">
+                    1 mesure
+                </div>
+                <div class="drawTen button" id="10drawBeaker">
+                    10 mesures
+                </div>
+                <div class="drawHundred button" id="100drawBeaker">
+                    100 mesures
+                </div>
+            </div>
+            <div class="results" id="beakerResults">
+                <p>Nombre de mesures : <span class="value" id="nBeaker"></span></p>
+            </div>
+        </div>
+        <div class="container" id="testTube">
+            <h2>Éprouvette</h2>
+            <div class="upperDiv">
+                <div class="results">
+                    <p>Moyenne : <input id="testTubeMean"/> mL</p>
+                    <p>Écart-type : <input id="testTubeStd" /> mL</p>
+                </div>
+                <div class="button resetButton" id="resetTestTube">
+                    Réinitialiser
+                </div>
+            </div>
+            <canvas id="testTubeCanvas" height="280px"></canvas>
+            <div class="menu" id="testTubeMenu">
+                <div class="drawOne button" id="1drawTestTube">
+                    1 mesure
+                </div>
+                <div class="drawTen button" id="10drawTestTube">
+                    10 mesures
+                </div>
+                <div class="drawHundred button" id="100drawTestTube">
+                    100 mesures
+                </div>
+            </div>
+            <div class="results" id="testTubeResults">
+                <p>Nombre de mesures : <span class="value" id="nTestTube"></span></p>
+            </div>
+        </div>
+        <div class="container" id="flask">
+            <h2>Fiole jaugée</h2>
+            <div class="upperDiv">
+                <div class="results">
+                    <p>Moyenne : <input id="flaskMean"/> mL</p>
+                    <p>Écart-type : <input id="flaskStd" /> mL</p>
+                </div>
+                <div class="button resetButton" id="resetFlask">
+                    Réinitialiser
+                </div>
+            </div>
+            <canvas id="flaskCanvas" height="280px"></canvas>
+            <div class="menu" id="flaskMenu">
+                <div class="drawOne button" id="1drawFlask">
+                    1 mesure
+                </div>
+                <div class="drawTen button" id="10drawFlask">
+                    10 mesures
+                </div>
+                <div class="drawHundred button" id="100drawFlask">
+                    100 mesures
+                </div>
+            </div>
+            <div class="results" id="flaskResults">
+                <p>Nombre de mesures : <span class="value" id="nFlask"></span></p>
+            </div>
+        </div>
+    </main>
+{% endblock %}

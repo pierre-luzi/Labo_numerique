@@ -1,0 +1,92 @@
+@import url('https://fonts.googleapis.com/css2?family=Boogaloo&family=Calistoga&family=Kalam&family=Quicksand:wght@500&family=Titan+One&display=swap');
+  
+body {
+    height: calcul(100vh - 10px);
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 500;
+    background-color: rgb(255, 255, 245);
+}
+
+h1 {
+    margin: 10px 0;
+    padding: 0px 0;
+    text-align: center;
+    font-size: 260%;
+    font-family: 'Boogaloo', cursive;
+}
+
+h2 {
+    text-align: center;
+    margin: 3px 0;
+    font-size: 130%;
+}
+
+main {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: flex-start;
+    font-size: 16px;
+}
+
+.container {
+    border: solid black 1px;
+}
+
+.menu {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+
+input {
+    width: 50px;
+}
+
+.button {
+    cursor: pointer;
+    padding: 7px 10px;
+    border-radius: 5px;
+}
+
+.resetButton {
+    margin-left: 50px;
+    color: white;
+    background-color: rgb(130, 130, 130);
+}
+
+.drawOne {
+    background-color: rgb(100, 230, 100);
+}
+
+.drawTen {
+    background-color: rgb(230, 100, 100);
+}
+
+.drawHundred {
+    color: white;
+    background-color: rgb(80, 100, 210);
+}
+
+.upperDiv {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.results p {
+    margin-left: 10px;
+}
+
+.value {
+    display: inline-block;
+    width: 50px;
+}
