@@ -53,6 +53,7 @@ input {
     cursor: pointer;
     padding: 7px 10px;
     border-radius: 5px;
+    user-select: none;
 }
 
 .resetButton {
