@@ -102,8 +102,20 @@
     <script>
         const aside = document.getElementsByTagName("aside")[0];
         const header = document.getElementsByTagName("header")[0];
+        const footer = document.getElementsByTagName("footer")[0];
         
-        aside.style.top = String(header.clientHeight) + 'px';
-        aside.style.height = String(window.innerHeight - header.clientHeight) + 'px';
+        // aside.style.top = String(header.clientHeight) + 'px';
+        // aside.style.height = String(window.innerHeight - header.clientHeight) + 'px';
+        
+        function ajusterHauteurAside() {
+            const hauteurHeader = header.clientHeight;
+            const hauteurFooter = footer.clientHeight;
+            const hauteurDisponible = window.innerHeight - hauteurHeader - hauteurFooter;
+            aside.style.top = hauteurHeader + 'px';
+            aside.style.height = hauteurDisponible + 'px';
+        }
+
+        window.addEventListener('resize', ajusterHauteurAside);
+        window.addEventListener('load', ajusterHauteurAside);
     </script>
 {% endblock %}
