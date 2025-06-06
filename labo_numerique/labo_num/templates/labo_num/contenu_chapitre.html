@@ -11,7 +11,7 @@
 
 {% block content %}
     <aside>
-        <div style="margin-bottom: auto; display: flex; flex-direction: column;">
+        <div style="margin-bottom: auto; display: flex; flex-direction: column; scroll-behavior: smooth;">
             <h2>Sommaire {{ chapitre.niveau|niveau_formatte|safe }}</h2>
             {% for chap in chapitres|dictsort:"numero"|dictsortreversed:"matiere" %}
                 <a href="{% url 'chapitre' chap.niveau chap.matiere chap.numero %}">{% short_name chap %} : {{ chap.titre }}</a>
