@@ -1,0 +1,28 @@
+{% extends 'labo_num/base_animation.html' %}
+{% load static %}
+
+{% block head %}
+	<link rel="stylesheet" href="{% static 'animations/appareil-photographique/style.css' %}" />
+	<script src="https://code.createjs.com/1.0.0/createjs.min.js"></script>
+    <script src="{% static 'animations/js-utils.js' %}"></script>
+	<script defer src="{% static 'animations/spectres-infrarouge/list.js' %}"></script>
+	<script defer src="{% static 'animations/spectres-infrarouge/script.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <main>
+        <canvas id="spectrum" width="800px" height="320px" style="border: solid black 1px;">
+        </canvas>
+        <div id="select">
+            <p>
+                Espèce chimique :
+                <select name="selector" id="selector">
+                </select>
+            </p>
+        </div>
+        <div id="buttons">
+            <button onclick="saveCanvasAsImage()">Télécharger PNG</button>
+            <button onclick="saveDataAsCSV()">Télécharger CSV</button>
+        </div>
+    </main>
+{% endblock %}
