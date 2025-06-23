@@ -99,5 +99,49 @@ const list = [
     {
         nom: "Butan-2-ol",
         fichier: "butan-2-ol"
+    },
+    {
+        nom: "Méthanoate de méthyle",
+        fichier: "methyl-methanoate"
+    },
+    {
+        nom: "Méthanoate d'éthyle",
+        fichier: "ethyl-methanoate"
+    },
+    {
+        nom: "Éthanoate de méthyle",
+        fichier: "methyl-ethanoate"
+    },
+    {
+        nom: "Éthanoate de propyle",
+        fichier: "propyl-ethanoate"
+    },
+    {
+        nom: "Éthanoate de benzyle",
+        fichier: "benzyl-ethanoate"
+    },
+    {
+        nom: "Eau (liquide)",
+        fichier: "eau-liquide"
+    },
+    {
+        nom: "Eau (vapeur)",
+        fichier: "eau-gaz"
+    },
+    {
+        nom: "Dioxyde de carbone",
+        fichier: "carbone-dioxyde"
+    },
+    {
+        nom: "Ozone",
+        fichier: "ozone"
+    },
+    {
+        nom: "Ammoniac",
+        fichier: "ammoniac"
+    },
+    {
+        nom: "Dioxyde de soufre",
+        fichier: "soufre-dioxyde"
     }
 ]
