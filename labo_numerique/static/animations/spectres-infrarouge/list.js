@@ -114,23 +114,26 @@ const list = [
     },
     {
         nom: "Éthanoate de propyle",
-        fichier: "propyl-ethanoate"
+        fichier: "propyl-ethanoate",
+        reverseY: true
     },
-    {
-        nom: "Éthanoate de benzyle",
-        fichier: "benzyl-ethanoate"
-    },
+    // {
+    //     nom: "Éthanoate de benzyle",
+    //     fichier: "benzyl-ethanoate"
+    // },
     {
         nom: "Eau (liquide)",
         fichier: "eau-liquide"
     },
     {
         nom: "Eau (vapeur)",
-        fichier: "eau-gaz"
+        fichier: "eau-gaz",
+        reverseY: true
     },
     {
         nom: "Dioxyde de carbone",
-        fichier: "carbone-dioxyde"
+        fichier: "carbone-dioxyde",
+        reverseY: true
     },
     {
         nom: "Ozone",
