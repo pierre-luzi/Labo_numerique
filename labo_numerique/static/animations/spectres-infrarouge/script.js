@@ -180,7 +180,7 @@ function saveDataAsCSV() {
         Télécharge les données du spectre au format csv.
     */
     const link = document.createElement("a");
-    link.href = 'static/animations/spectres-infrarouge/data/' + filename + '.csv';
+    link.href = '/static/animations/spectres-infrarouge/data/' + filename + '.csv';
     link.download = "spectre-" + filename + ".csv";
     link.click();
 }
